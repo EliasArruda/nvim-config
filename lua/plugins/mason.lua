@@ -21,6 +21,9 @@ return {
       "roslyn",
       "netcoredbg",
       "emmet-ls",
+      "tailwindcss-language-server",
+      "ruff",
+      "pyright",
     },
   },
 }

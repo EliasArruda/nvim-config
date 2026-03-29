@@ -1,13 +1,19 @@
 return {
   {
-    "NvChad/nvim-colorizer.lua",
+    "NvChad/nvim-colorizer.lua", -- Recomendo este fork para suporte real a Tailwind
     config = function()
       require("colorizer").setup({
-        "*", -- aplica para todos os arquivos
-        css = { rgb_fn = true }, -- habilita funções rgb() no CSS
-        html = { names = true }, -- nomes de cores em HTML
-      }, {
-        mode = "foreground", -- ou "background", dependendo do que você quer
+        filetypes = { "*" },
+        user_default_options = {
+          RGB = true,
+          RRGGBB = true,
+          names = true,
+          RRGGBBAA = true,
+          rgb_fn = true,
+          hsl_fn = true,
+          css = true,
+          tailwind = true, -- Agora dentro de user_default_options
+        },
       })
     end,
   },
