@@ -6,7 +6,7 @@ return {
       "rcarriga/nvim-dap-ui",
     },
     config = function()
-      require("config.nvim-dap")
+      require("config.dap.nvim-dap")  -- CORRIGIDO: adicionado .dap
     end,
     event = "VeryLazy",
   },
@@ -22,7 +22,7 @@ return {
       "mfussenegger/nvim-dap",
     },
     config = function()
-      require("config.nvim-dap-ui")
+      require("config.dap.nvim-dap-ui")  -- CORRIGIDO: adicionado .dap
     end,
   },
 

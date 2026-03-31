@@ -38,6 +38,5 @@ return {
         { section = "header", hl = "SnacksDashboardHeader" }, -- ou "DashboardHeader"
       },
     },
-    picker = { enabled = true },
   },
 }

@@ -4,6 +4,17 @@ return {
     lazy = false,
     priority = 999,
     opts = {
+      extension = {
+        -- C# / .NET
+        razor = { glyph = "﹫", hl = "MiniIconsPurple" }, -- Blazor Components (.razor)
+        cshtml = { glyph = "﹫", hl = "MiniIconsPurple" }, -- MVC/Razor Pages (.cshtml)
+        cs = { glyph = "󰌛", hl = "MiniIconsGreen" }, -- C# Code (.cs)
+        csproj = { glyph = "󰪮", hl = "MiniIconsOrange" }, -- C# Project (.csproj)
+        sln = { glyph = "󰪮", hl = "MiniIconsOrange" }, -- Solution (.sln)
+
+        -- Typescript
+        ts = { hl = "MiniIconsMarine" },
+      },
       directory = {
         -- ╔══════════════════════════════════════════╗
         -- ║         MVC / WEB FRAMEWORKS             ║
@@ -988,15 +999,6 @@ return {
         -- Misc
         tmp = { glyph = "󰆐", hl = "MiniIconsGrey" },
         Tmp = { glyph = "󰆐", hl = "MiniIconsGrey" },
-
-        -- ╔══════════════════════════════════════════╗
-        -- ║               C# / .NET                  ║
-        -- ╚══════════════════════════════════════════╝
-        razor = { glyph = "󰪮", hl = "MiniIconsPurple" }, -- Blazor / Razor Components
-        cshtml = { glyph = "󰪮", hl = "MiniIconsPurple" }, -- Razor Views / MVC Pages
-        cs = { glyph = "󰌛", hl = "MiniIconsPurple" }, -- C# Code
-        csproj = { glyph = "󰪮", hl = "MiniIconsPurple" }, -- C# Project
-        sln = { glyph = "󰪮", hl = "MiniIconsPurple" }, -- Solution
       },
 
       file = {
