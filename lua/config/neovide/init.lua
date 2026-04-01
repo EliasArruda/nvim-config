@@ -1,6 +1,4 @@
--- ~/.config/nvim/lua/config/neovide/init.lua
-
--- Configs do Neovide
+vim.o.guifont = "JetBrainsMono Nerd Font:h16" -- mude o 14 pra 16, 18, 20, etc.
 vim.opt.linespace = 0
 vim.g.neovide_opacity = 0.95
 vim.g.neovide_normal_opacity = 0.95
@@ -10,26 +8,26 @@ vim.g.neovide_floating_blur_amount_y = 8.0
 vim.g.neovide_floating_shadow = true
 vim.g.neovide_floating_corner_radius = 4.0
 vim.g.neovide_scroll_animation_length = 0.25
-vim.g.neovide_cursor_animation_length = 0.13
+vim.g.neovide_cursor_animation_length = 0.22
 vim.g.neovide_cursor_vfx_mode = "pixiedust"
-vim.g.neovide_refresh_rate = 60
+vim.g.neovide_refresh_rate = 400
 vim.g.neovide_hide_mouse_when_typing = true
 vim.g.neovide_remember_window_size = true
 vim.g.neovide_confirm_quit = true
+vim.g.neovide_cursor_smooth_blink = true
+vim.g.neovide_cursor_animate_in_insert_mode = true
+vim.g.neovide_cursor_animate_command_line = true
+vim.g.neovide_cursor_vfx_particle_density = 4.0
+vim.g.neovide_cursor_vfx_particle_speed = 10.0
+vim.g.neovide_cursor_vfx_particle_lifetime = 1
+vim.g.neovide_no_idle = true
 
-vim.api.nvim_create_autocmd("BufRead", {
-  pattern = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.svg", "*.bmp", "*.ico" },
-  callback = function(args)
-    local file = args.file
-    -- Abre no visualizador
-    vim.fn.jobstart({ "xdg-open", file }, { detach = true })
-    -- Fecha o buffer vazio no nvim
-    vim.schedule(function()
-      vim.cmd("bd!")
-    end)
-  end,
-  desc = "Open images in system viewer",
-})
+vim.opt.clipboard = "unnamedplus"
+vim.keymap.set({ "i", "c" }, "<C-BS>", "<C-w>", { noremap = true, silent = true })
+if vim.g.neovide then
+  vim.keymap.set({ "n", "i", "c", "v" }, "<C-S-v>", "<C-r>+")
+  vim.keymap.set("t", "<C-S-v>", '<C-\\><C-n>"+pa')
+end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
