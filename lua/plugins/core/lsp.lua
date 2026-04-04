@@ -1,9 +1,35 @@
+vim.lsp.enable("roslyn_ls")
 return {
   "neovim/nvim-lspconfig",
   opts = {
     servers = {
-      ts_ls = {},
-      volar = {},
+      ts_ls = {
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue",
+        },
+        init_options = {
+          plugins = {
+            {
+              name = "@vue/typescript-plugin",
+              location = vim.fn.stdpath("data")
+                .. "/mason/packages/vue-language-server/node_modules/@vue/language-plugin",
+              languages = { "vue" },
+            },
+          },
+        },
+      },
+      volar = {
+        filetypes = { "vue" },
+        init_options = {
+          vue = {
+            hybridMode = true,
+          },
+        },
+      },
       eslint = {},
       dockerls = {},
       jsonls = {},

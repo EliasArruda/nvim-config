@@ -1,8 +1,5 @@
--- ~/.config/nvim/lua/plugins/terminal/init.lua
-
 return {
 
-  -- image.nvim sem luarocks.nvim
   {
     "3rd/image.nvim",
     config = function()
@@ -21,11 +18,11 @@ return {
     end,
   },
 
-  -- smear-cursor (independente)
   {
     "sphamba/smear-cursor.nvim",
+    lazy = true,
+    cond = false,
     opts = {
-      -- suas configs completas aqui
       smear_between_buffers = true,
       smear_between_neighbor_lines = true,
       scroll_buffer_space = true,

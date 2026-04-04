@@ -3,6 +3,15 @@ return {
   ---@module 'render-markdown'
   ---@type render.md.UserConfig
   opts = {
+    latex = {
+      enabled = true,
+      render_modes = true,
+      converter = "utftex",
+      highlight = "RenderMarkdownMath",
+      position = "center",
+      top_pad = 0,
+      bottom_pad = 0,
+    },
     render_modes = true,
     dash = {
       enabled = true,

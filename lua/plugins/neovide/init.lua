@@ -41,7 +41,6 @@ return {
     end,
   },
 
-  -- Override: bufferline (transparência)
   {
     "akinsho/bufferline.nvim",
     opts = function(_, opts)
@@ -64,54 +63,6 @@ return {
           winblend = 10,
         },
       },
-    },
-  },
-
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = {
-      indent = { char = "│" },
-      scope = {
-        enabled = true,
-        show_start = false,
-        show_end = false,
-      },
-    },
-  },
-  {
-    "sphamba/smear-cursor.nvim",
-    opts = {
-      -- ❌ Desliga animações fora da digitação
-      smear_between_buffers = false,
-      smear_between_neighbor_lines = false,
-      scroll_buffer_space = false,
-
-      legacy_computing_symbols_support = true,
-
-      -- ✅ ESSENCIAL: só no insert
-      smear_insert_mode = true,
-
-      -- 🧠 Física: normal mode quase sem efeito
-      stiffness = 0.95,
-      trailing_stiffness = 0.95,
-      damping = 1,
-
-      -- 🔥 Física no INSERT (onde importa)
-      stiffness_insert_mode = 0.6,
-      trailing_stiffness_insert_mode = 0.6,
-      damping_insert_mode = 0.9,
-
-      distance_stop_animating = 0.3,
-      time_interval = 5, -- mais responsivo ainda
-
-      cursor_color = "#d3cdc3",
-
-      -- ❌ Remove partículas (melhora input)
-      particles_enabled = false,
-
-      hide_target_hack = true,
-      never_draw_over_target = true,
     },
   },
 }
