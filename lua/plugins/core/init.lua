@@ -4,3 +4,4 @@ return {
   { import = "plugins.core.mason" },
   { import = "plugins.core.nvim-treesitter" },
 }
+

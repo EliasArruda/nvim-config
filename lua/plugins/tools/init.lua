@@ -5,3 +5,4 @@ return {
   { import = "plugins.tools.obsidian" },
   { import = "plugins.tools.venv-selector" },
 }
+

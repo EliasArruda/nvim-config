@@ -7,5 +7,7 @@ if vim.g.neovide or vim.g.goneovim then
 else
   return {
     { "sphamba/smear-cursor.nvim", lazy = true, cond = false },
+    { "catppuccin/nvim", lazy = true, cond = false, enabled = false },
+    { "folke/tokyonight.nvim", lazy = true, cond = false, enabled = false },
   }
 end

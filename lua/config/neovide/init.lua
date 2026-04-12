@@ -57,7 +57,18 @@ vim.keymap.set("t", "<C-BS>", function()
   end
 end, { noremap = true })
 -- ==========================================
---
+
+local disabled_plugins = {
+  "folke/flash.nvim",
+  "catppuccin/catppuccin",
+  "folke/tokyonight.nvim", -- Adicionado o autor
+}
+
+local overrides = {}
+for _, plugin in ipairs(disabled_plugins) do
+  table.insert(overrides, { plugin, enabled = false })
+end
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -76,7 +87,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = { colorscheme = "midnight" } },
     { import = "plugins.core" },
     { import = "plugins.editor" },
     { import = "plugins.ui" },
@@ -84,12 +95,21 @@ require("lazy").setup({
     { import = "plugins.lang" },
     { import = "plugins.terminal-stub" },
     { import = "plugins.neovide" },
+    unpack(overrides),
   },
   defaults = { lazy = false, version = false },
   checker = { enabled = true, notify = false },
   performance = {
     rtp = {
-      disabled_plugins = { "gzip", "tarPlugin", "tohtml", "tutor", "zipPlugin" },
+      disabled_plugins = {
+        "gzip",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+        "tokyonight",
+        "catppuccin",
+      },
     },
   },
 })

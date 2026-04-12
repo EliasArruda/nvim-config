@@ -1,3 +1,14 @@
+local disabled_plugins = {
+  "folke/flash.nvim",
+  "catppuccin/catppuccin",
+  "folke/tokyonight.nvim", -- Adicionado o autor
+}
+
+local overrides = {}
+for _, plugin in ipairs(disabled_plugins) do
+  table.insert(overrides, { plugin, enabled = false })
+end
+
 -- ~/.config/nvim/lua/config/terminal/init.lua
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -18,7 +29,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = { colorscheme = "midnight" } },
 
     -- Plugins organizados por categoria
     { import = "plugins.core" },
@@ -29,6 +40,8 @@ require("lazy").setup({
 
     -- Só no terminal
     { import = "plugins.terminal" },
+
+    unpack(overrides),
   },
   defaults = {
     lazy = false,
@@ -43,10 +56,12 @@ require("lazy").setup({
         "tohtml",
         "tutor",
         "zipPlugin",
+        "tokyonight",
+        "catppuccin",
+        "flash.nvim",
       },
     },
   },
 })
 
 require("config")
-

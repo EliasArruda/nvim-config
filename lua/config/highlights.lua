@@ -1,5 +1,3 @@
-vim.cmd.colorscheme("midnight")
-
 -- BACKGROUNDS (≈ 50% mais escuros baseados nos foregrounds)
 vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "#803C35" })
 vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#80663D" })

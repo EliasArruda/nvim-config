@@ -1,51 +1,38 @@
 local Snacks = require("snacks")
 
 -- Rastreia quais terminais estão visíveis (por índice)
-local visible = {}
+-- 👇 A MUDANÇA ESTÁ AQUI: { "n", "t", "i" }
+vim.keymap.set({ "n", "t", "i" }, "<C-t>", function()
+  -- 1. Verifica se os terminais existem na memória
+  local t1 = Snacks.terminal.get(nil, { count = 1, create = false })
+  local t2 = Snacks.terminal.get(nil, { count = 2, create = false })
 
-local function toggle_all_terminals()
-  local terminals = Snacks.terminal.list()
+  local t1_is_visible = t1 and t1.win and vim.api.nvim_win_is_valid(t1.win)
+  local t2_is_visible = t2 and t2.win and vim.api.nvim_win_is_valid(t2.win)
 
-  if #terminals == 0 then
-    Snacks.terminal.toggle(nil, { direction = "horizontal" })
-    visible[1] = true
-    return
-  end
-
-  local any_visible = false
-  for i, _ in ipairs(terminals) do
-    if visible[i] then
-      any_visible = true
-      break
+  if t1_is_visible or t2_is_visible then
+    -- 👇 SE ESTIVER ABERTO, ELE FECHA OS DOIS AQUI
+    if t1_is_visible then
+      t1:hide()
     end
-  end
-
-  if any_visible then
-    -- Esconder todos
-    for i, term in ipairs(terminals) do
-      if visible[i] then
-        term:toggle()
-        visible[i] = false
-      end
+    if t2_is_visible then
+      t2:hide()
     end
   else
-    -- Reabrir todos
-    for i, term in ipairs(terminals) do
-      if not visible[i] then
-        term:toggle()
-        visible[i] = true
-      end
-    end
-  end
-end
+    -- SE ESTIVER FECHADO, ABRE OS DOIS
+    local opts1 = { count = 1, win = { position = "bottom" }, interactive = false }
+    Snacks.terminal.get(nil, opts1):show()
 
-vim.keymap.set("n", "<C-t>", toggle_all_terminals, {
-  desc = "Toggle todos os terminais",
-})
+    vim.schedule(function()
+      local opts2 = { count = 2, win = { position = "bottom" } }
+      Snacks.terminal.get(nil, opts2):show()
+    end)
+  end
+end, { desc = "Toggle 2 Terminais no Bottom" })
 -- END
 
 -- SALVAR
-vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>", { desc = "Salvar e sair do insert", silent = true, noremap = true })
+vim.keymap.set("i", "<C-s>", "<Esc><Cmd>update<CR>", { desc = "Salvar do insert", silent = true })
 
 -- Code Actions (igual Ctrl+.)
 vim.keymap.set({ "n", "i" }, "<C-.>", vim.lsp.buf.code_action, {
