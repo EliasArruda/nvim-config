@@ -12,4 +12,3 @@ require("config.templates.react")
 require("config.custom_configs.emmet-language-server-config")
 require("config.custom_configs.auto-tag")
 require("config.custom_configs.razor")
-
