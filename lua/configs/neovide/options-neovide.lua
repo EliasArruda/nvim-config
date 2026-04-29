@@ -1,0 +1,43 @@
+vim.o.guifont = "JetBrainsMono Nerd Font:h16"
+vim.opt.linespace = 0
+vim.g.neovide_opacity = 0.95
+vim.g.neovide_normal_opacity = 0.95
+vim.g.neovide_window_blurred = false
+vim.g.neovide_floating_blur_amount_x = 8.0
+
+vim.g.neovide_floating_blur_amount_y = 8.0
+vim.g.neovide_floating_shadow = true
+vim.g.neovide_floating_corner_radius = 4.0
+vim.g.neovide_scroll_animation_length = 0.25
+vim.g.neovide_cursor_animation_length = 0.10
+vim.g.neovide_cursor_vfx_mode = "pixiedust"
+vim.g.neovide_refresh_rate = 400
+vim.g.neovide_hide_mouse_when_typing = true
+vim.g.neovide_remember_window_size = true
+vim.g.neovide_confirm_quit = true
+vim.g.neovide_cursor_smooth_blink = true
+vim.g.neovide_cursor_animate_in_insert_mode = true
+vim.g.neovide_cursor_animate_command_line = true
+vim.g.neovide_cursor_vfx_particle_density = 4.0
+vim.g.neovide_cursor_vfx_particle_speed = 10.0
+vim.g.neovide_cursor_vfx_particle_lifetime = 1
+vim.g.neovide_no_idle = true
+vim.opt.clipboard = "unnamedplus"
+
+-- Terminal Colors (Fixing the 'Strong Blue' issue for Midnight theme)
+vim.g.terminal_color_0 = "#1a1b26"
+vim.g.terminal_color_1 = "#f7768e"
+vim.g.terminal_color_2 = "#9ece6a"
+vim.g.terminal_color_3 = "#e0af68"
+vim.g.terminal_color_4 = "#7aa2f7"
+vim.g.terminal_color_5 = "#bb9af7"
+vim.g.terminal_color_6 = "#7dcfff"
+vim.g.terminal_color_7 = "#a9b1d6"
+vim.g.terminal_color_8 = "#414868"
+vim.g.terminal_color_9 = "#f7768e"
+vim.g.terminal_color_10 = "#9ece6a"
+vim.g.terminal_color_11 = "#e0af68"
+vim.g.terminal_color_12 = "#7aa2f7"
+vim.g.terminal_color_13 = "#bb9af7"
+vim.g.terminal_color_14 = "#7dcfff"
+vim.g.terminal_color_15 = "#c0caf5"

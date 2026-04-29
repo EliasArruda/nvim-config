@@ -1,0 +1,23 @@
+return {
+	ensure_installed = {
+		"lua-language-server",
+		"xmlformatter",
+		"prettier",
+		"stylua",
+		"bicep-lsp",
+		"html-lsp",
+		"css-lsp",
+		"eslint-lsp",
+		"vtsls",
+		"json-lsp",
+		"roslyn",
+		"tailwindcss-language-server",
+		"ruff",
+		"pyright",
+		"vue-language-server",
+		"elixir-ls",
+		"sqls",
+		"codelldb",
+		"netcoredbg",
+	},
+}

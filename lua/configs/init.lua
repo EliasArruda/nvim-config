@@ -1,0 +1,5 @@
+require("configs.templates")
+require("configs.neovide")
+require("configs.langs")
+require("configs.lazy")
+require("configs.highlights")
