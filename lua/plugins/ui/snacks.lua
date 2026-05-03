@@ -4,18 +4,31 @@ return {
 	lazy = false,
 	opts = {
 		terminal = { enabled = true },
-		explorer = { enabled = true },
-		picker = { enabled = true },
+		explorer = {
+			enabled = true,
+			exclude = { "bin", "obj", ".git", "node_modules", "%.git" },
+		},
+		picker = {
+			enabled = true,
+			exclude = { "bin", "obj", ".git", "node_modules", "%.git" },
+		},
 		notifier = { enabled = true },
 		styles = {
 			terminal = {
 				position = "bottom",
 				height = 0.35,
 				split = "split",
+				wo = {
+					winfixheight = true,
+					winfixwidth = true,
+				},
 			},
 			explorer = {
 				position = "left",
 				width = 22,
+				wo = {
+					winfixwidth = true,
+				},
 			},
 		},
 		dashboard = {

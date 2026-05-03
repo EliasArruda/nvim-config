@@ -57,4 +57,3 @@ opt.cursorline = true
 opt.laststatus = 3
 opt.showmode = false
 opt.ruler = false
-
