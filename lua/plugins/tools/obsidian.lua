@@ -8,7 +8,6 @@ return {
 		"Kicamon/markdown-table-mode.nvim",
 		"TobinPalmer/pastify.nvim",
 	},
-
 	cmd = { "Pastify", "PastifyAfter" },
 	keys = {
 		keys = {
@@ -17,7 +16,6 @@ return {
 			{ "<leader>P", "<cmd>Pastify<CR>", mode = "n", desc = "📌 Paste before" },
 		},
 	},
-
 	config = function()
 		-- setup do markdown-table-mode
 		require("markdown-table-mode").setup({
@@ -29,7 +27,6 @@ return {
 				alig_style = "default",
 			},
 		})
-
 		-- 🔥 ativa automaticamente no markdown
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = "markdown",
@@ -39,22 +36,18 @@ return {
 			end,
 		})
 	end,
-
 	opts = {
 		legacy_commands = false,
-
 		workspaces = {
 			{
 				name = "notes",
 				path = "~/obsidian",
 			},
 		},
-
 		daily_notes = {
 			folder = "dailies",
 			date_format = "%Y-%m-%d",
 		},
-
 		completion = {
 			nvim_cmp = false,
 			min_chars = 2,

@@ -1,6 +1,10 @@
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
+	dependencies = {
+		"MunifTanjim/nui.nvim",
+		"rcarriga/nvim-notify", -- integração explícita
+	},
 	opts = {
 		lsp = {
 			override = {
@@ -8,7 +12,6 @@ return {
 				["vim.lsp.util.stylize_markdown"] = true,
 				["cmp.entry.get_documentation"] = true,
 			},
-			-- 💬 Hover e signature com borda arredondada
 			hover = {
 				opts = { border = { style = "rounded" } },
 			},
@@ -17,9 +20,23 @@ return {
 				opts = { border = { style = "rounded" } },
 			},
 		},
-
+		cmdline = {
+			format = {
+				cmdline = { pattern = "^:", icon = "", lang = "vim" },
+				search_down = { pattern = "^/", icon = "" },
+				search_up = { pattern = "^%?", icon = "" },
+				filter = { pattern = "^:%s*!", icon = "" },
+				lua = { pattern = "^:%s*lua", icon = "" },
+				help = { pattern = "^:%s*he?l?p?%s", icon = "" },
+			},
+		},
 		routes = {
-			-- Mensagens curtas vão pro mini (canto inferior direito)
+			-- ✅ notificações gerais vão pro nvim-notify
+			{
+				filter = { event = "notify" },
+				view = "notify",
+			},
+			-- 📝 mensagens curtas vão pro mini
 			{
 				filter = {
 					event = "msg_show",
@@ -33,54 +50,71 @@ return {
 				},
 				view = "mini",
 			},
-			-- Esconde mensagens de busca desnecessárias
+			-- 🔇 esconde buscas e mensagens de busca
 			{
 				filter = { event = "msg_show", find = "^/" },
 				opts = { skip = true },
 			},
+			-- 🔇 esconde mensagens de busca do LSP
+			{
+				filter = { event = "msg_show", find = "^%?" },
+				opts = { skip = true },
+			},
 		},
-
 		presets = {
 			bottom_search = true,
-			command_palette = true,
+			command_palette = false,
 			long_message_to_split = true,
-			inc_rename = true, -- renaming mais bonito
-			lsp_doc_border = true, -- borda nos docs do LSP
+			inc_rename = true,
+			lsp_doc_border = true,
 		},
-
-		-- 🎨 Customização das views
 		views = {
+			-- 🖥️ popup do cmdline centralizado
 			cmdline_popup = {
-				position = { row = "40%", col = "50%" }, -- centralizado
+				position = { row = "40%", col = "50%" },
 				size = { width = 60, height = "auto" },
-				border = { style = "rounded" },
+				border = { style = "rounded", text = { top = "" } },
 				win_options = {
-					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
+					winblend = 10,
+					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
 				},
 			},
+			-- 📋 popupmenu de completions do cmdline
 			popupmenu = {
 				relative = "editor",
 				position = { row = "43%", col = "50%" },
 				size = { width = 60, height = 10 },
-				border = { style = "rounded" },
+				border = { style = "rounded", text = { top = "" } },
 				win_options = {
-					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
+					winblend = 10,
+					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
 				},
 			},
+			-- 💬 mini notifications (canto inferior direito)
 			mini = {
-				position = { row = -2, col = "100%" }, -- canto inferior direito
+				position = { row = -2, col = "100%" },
 				border = { style = "rounded" },
 				win_options = {
-					winblend = 10, -- leve transparência
+					winblend = 20,
+					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
 				},
 			},
+			-- 📖 hover docs
 			hover = {
 				border = { style = "rounded" },
 				size = { max_width = 80 },
+				win_options = {
+					winblend = 10,
+					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
+				},
+			},
+			-- 🔔 notify usa o rcarriga/nvim-notify
+			notify = {
+				backend = "notify",
+				fallback = "mini",
 			},
 		},
 	},
-
 	keys = {
 		{
 			"<leader>sn",
@@ -155,11 +189,17 @@ return {
 			mode = { "i", "n", "s" },
 		},
 	},
-
 	config = function(_, opts)
 		if vim.o.filetype == "lazy" then
 			vim.cmd([[messages clear]])
 		end
+
 		require("noice").setup(opts)
+
+		-- 🎨 Highlights transparentes do noice
+		vim.api.nvim_set_hl(0, "NoiceTransparent", { bg = "NONE", fg = "NONE" })
+		vim.api.nvim_set_hl(0, "NoiceBorder", { bg = "NONE", fg = "#565f89" })
+		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupTitle", { bg = "NONE", fg = "NONE" })
+		vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { bg = "NONE", fg = "NONE" })
 	end,
 }
