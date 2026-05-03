@@ -16,15 +16,56 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufWinEnter" }, {
 	end,
 })
 
+local terminal_layout = nil
 map({ "n", "t", "i" }, "<C-t>", function()
-	Snacks.terminal.toggle(nil, {
-		count = 1,
-		win = {
-			position = "bottom",
-			height = 0.35,
-		},
-	})
-end, { desc = "Toggle Terminal" })
+	local terminals = {}
+	local count = 1
+	while true do
+		local term = Snacks.terminal.get(nil, { count = count, create = false })
+		if not term or not term.win or not vim.api.nvim_win_is_valid(term.win) then
+			break
+		end
+		table.insert(terminals, { count = count, win = term.win, buf = term.buf })
+		count = count + 1
+	end
+
+	if vim.tbl_isempty(terminals) then
+		if terminal_layout then
+			for _, t in ipairs(terminal_layout) do
+				Snacks.terminal.toggle(nil, {
+					count = t.count,
+					win = t.win_opts,
+				})
+			end
+			terminal_layout = nil
+		else
+			Snacks.terminal.toggle(nil, {
+				count = 1,
+				win = { position = "bottom", height = 0.35 },
+			})
+		end
+	else
+		terminal_layout = {}
+		for _, t in ipairs(terminals) do
+			local w = t.win
+			local opts = {
+				position = "bottom",
+				height = vim.api.nvim_win_get_height(w) / vim.o.lines,
+				wo = { winfixwidth = vim.wo[w].winfixwidth },
+			}
+			local cfg = vim.api.nvim_win_get_config(w)
+			if cfg.split then
+				opts.split = cfg.split
+				opts.position = cfg.split == "vertical" and "right" or "bottom"
+			end
+			table.insert(terminal_layout, { count = t.count, win_opts = opts })
+		end
+
+		for i = #terminals, 1, -1 do
+			Snacks.terminal.toggle(nil, { count = terminals[i].count })
+		end
+	end
+end, { desc = "Toggle Terminal (Todos os Splits)" })
 
 map("t", "<C-n>", function()
 	local count = 2
@@ -44,7 +85,6 @@ end, { desc = "New Terminal Split" })
 -- ============================================================
 -- 💾 EDITOR
 -- ============================================================
-
 map({ "n", "i", "v", "x" }, "<C-s>", "<Esc><Cmd>update<CR>", { desc = "Save", silent = true })
 
 map("n", "<C-x>", function()
@@ -85,32 +125,32 @@ map("n", "<leader>gx", function()
 	vim.notify("❌ No URL found", vim.log.levels.WARN)
 end, { desc = "Open URL" })
 
-map("n", "<leader>mr", function()
-	local word = vim.fn.expand("<cword>")
-	local new_word
-
-	if word ~= "" then
-		new_word = vim.fn.input(string.format("(%s) -> ", word))
-	else
-		word = vim.fn.input("Replace: ")
-		if word == "" then
-			return
-		end
-		new_word = vim.fn.input(string.format("(%s) -> ", word))
-	end
-
-	if new_word == "" then
-		return
-	end
-
-	local s = vim.fn.searchpairpos("{", "", "}", "bnW")[1]
-	local e = vim.fn.searchpairpos("{", "", "}", "nW")[1]
-	local range = (s == 0 or e == 0) and "%" or (s .. "," .. e)
-
-	if range == "%" then
-		vim.notify("⚠️ Outside block {}, replacing in entire file", vim.log.levels.WARN)
-	end
-
-	vim.cmd(range .. "s/\\<" .. word .. "\\>/" .. new_word .. "/ge")
-	vim.notify("✅ Replaced: " .. word .. " → " .. new_word)
-end, { desc = "Multi-Replace (Block {})" })
+-- map("n", "<leader>mr", function()
+-- 	local word = vim.fn.expand("<cword>")
+-- 	local new_word
+--
+-- 	if word ~= "" then
+-- 		new_word = vim.fn.input(string.format("(%s) -> ", word))
+-- 	else
+-- 		word = vim.fn.input("Replace: ")
+-- 		if word == "" then
+-- 			return
+-- 		end
+-- 		new_word = vim.fn.input(string.format("(%s) -> ", word))
+-- 	end
+--
+-- 	if new_word == "" then
+-- 		return
+-- 	end
+--
+-- 	local s = vim.fn.searchpairpos("{", "", "}", "bnW")[1]
+-- 	local e = vim.fn.searchpairpos("{", "", "}", "nW")[1]
+-- 	local range = (s == 0 or e == 0) and "%" or (s .. "," .. e)
+--
+-- 	if range == "%" then
+-- 		vim.notify("⚠️ Outside block {}, replacing in entire file", vim.log.levels.WARN)
+-- 	end
+--
+-- 	vim.cmd(range .. "s/\\<" .. word .. "\\>/" .. new_word .. "/ge")
+-- 	vim.notify("✅ Replaced: " .. word .. " → " .. new_word)
+-- end, { desc = "Multi-Replace (Block {})" })
