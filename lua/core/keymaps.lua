@@ -111,46 +111,25 @@ end, { desc = "Copy Diagnostic" })
 -- ============================================================
 -- 🛠️ UTILITIES
 -- ============================================================
-
 map("n", "<leader>gx", function()
 	local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
 	for _, line in ipairs(lines) do
 		local url = line:match("(https?:[%w%-%._~:/%?#%[%]@!$&'()*+,;=]+)")
 		if url then
 			vim.fn.jobstart({ "xdg-open", url }, { detach = true })
-			vim.notify("🌐 Opening: " .. url)
+			vim.notify("Opening: " .. url)
 			return
 		end
 	end
 	vim.notify("❌ No URL found", vim.log.levels.WARN)
 end, { desc = "Open URL" })
 
--- map("n", "<leader>mr", function()
--- 	local word = vim.fn.expand("<cword>")
--- 	local new_word
---
--- 	if word ~= "" then
--- 		new_word = vim.fn.input(string.format("(%s) -> ", word))
--- 	else
--- 		word = vim.fn.input("Replace: ")
--- 		if word == "" then
--- 			return
--- 		end
--- 		new_word = vim.fn.input(string.format("(%s) -> ", word))
--- 	end
---
--- 	if new_word == "" then
--- 		return
--- 	end
---
--- 	local s = vim.fn.searchpairpos("{", "", "}", "bnW")[1]
--- 	local e = vim.fn.searchpairpos("{", "", "}", "nW")[1]
--- 	local range = (s == 0 or e == 0) and "%" or (s .. "," .. e)
---
--- 	if range == "%" then
--- 		vim.notify("⚠️ Outside block {}, replacing in entire file", vim.log.levels.WARN)
--- 	end
---
--- 	vim.cmd(range .. "s/\\<" .. word .. "\\>/" .. new_word .. "/ge")
--- 	vim.notify("✅ Replaced: " .. word .. " → " .. new_word)
--- end, { desc = "Multi-Replace (Block {})" })
+map("n", "<leader>r", function()
+	if vim.wo.number then
+		vim.wo.number = false
+		vim.wo.relativenumber = false
+	else
+		vim.wo.number = true
+		vim.wo.relativenumber = true
+	end
+end, { desc = "Toggle Line Numbers" })

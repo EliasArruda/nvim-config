@@ -32,4 +32,5 @@ return {
 	"eex",
 	"sql",
 	"rust",
+	"vue",
 }

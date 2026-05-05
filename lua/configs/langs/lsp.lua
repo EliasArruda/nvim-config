@@ -1,9 +1,8 @@
 return {
-        roslyn = {},
-        sqls = {},
-        vue_ls = {},
-        vtsls = {
-
+	roslyn = {},
+	sqls = {},
+	vue_ls = {},
+	vtsls = {
 		filetypes = {
 			"javascript",
 			"javascriptreact",
@@ -30,6 +29,7 @@ return {
 			},
 		},
 	},
+
 	elixirls = {
 		settings = {
 			elixirLS = {
@@ -48,6 +48,42 @@ return {
 		on_attach = function(client, _)
 			client.server_capabilities.hoverProvider = false
 		end,
+	},
+	tailwindcss = {
+		filetypes = {
+			"html",
+			"css",
+			"javascript",
+			"javascriptreact",
+			"typescript",
+			"typescriptreact",
+			"vue",
+			"svelte",
+		},
+		init_options = {
+			userLanguages = { vue = "html" },
+		},
+		settings = {
+			tailwindCSS = {
+				validate = true,
+				includeLanguages = {
+					vue = "html",
+					javascript = "html",
+					typescript = "html",
+				},
+				classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
+				-- SEM experimental.classRegex
+				lint = {
+					cssConflict = "warning",
+					invalidApply = "error",
+					invalidConfigPath = "error",
+					invalidScreen = "error",
+					invalidTailwindDirective = "error",
+					invalidVariant = "error",
+					recommendedVariantOrder = "warning",
+				},
+			},
+		},
 	},
 	pyright = {
 		settings = {
