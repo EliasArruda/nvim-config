@@ -5,20 +5,44 @@ return {
 		version = "*",
 		opts = {
 			enabled = function()
-				if vim.bo.buftype ~= "" then return false end
-				if vim.bo.filetype == "netrw" then return false end
-				if vim.bo.filetype == "TelescopePrompt" then return false end
+				if vim.bo.buftype ~= "" then
+					return false
+				end
+				if vim.bo.filetype == "netrw" then
+					return false
+				end
+				if vim.bo.filetype == "TelescopePrompt" then
+					return false
+				end
 				return true
 			end,
 			appearance = {
 				nerd_font_variant = "mono",
 				kind_icons = {
-					Text = "", Method = "", Function = "", Constructor = "",
-					Field = "", Variable = "", Class = "", Interface = "",
-					Module = "", Property = "", Unit = "", Value = "",
-					Enum = "", Keyword = "", Snippet = "", Color = "",
-					File = "", Reference = "", Folder = "", EnumMember = "",
-					Constant = "", Struct = "", Event = "", Operator = "",
+					Text = "",
+					Method = "",
+					Function = "",
+					Constructor = "",
+					Field = "",
+					Variable = "",
+					Class = "",
+					Interface = "",
+					Module = "",
+					Property = "",
+					Unit = "",
+					Value = "",
+					Enum = "",
+					Keyword = "",
+					Snippet = "",
+					Color = "",
+					File = "",
+					Reference = "",
+					Folder = "",
+					EnumMember = "",
+					Constant = "",
+					Struct = "",
+					Event = "",
+					Operator = "",
 					TypeParameter = "",
 				},
 			},
@@ -39,7 +63,11 @@ return {
 				keyword = { range = "full" },
 				ghost_text = { enabled = true },
 				list = { selection = { preselect = true, auto_insert = true } },
-				menu = { border = "rounded", scrollbar = false, draw = { columns = { { "kind_icon", "label", gap = 1 }, { "kind" } } } },
+				menu = {
+					border = "rounded",
+					scrollbar = false,
+					draw = { columns = { { "kind_icon", "label", gap = 1 }, { "kind" } } },
+				},
 				documentation = {
 					auto_show = true,
 					auto_show_delay_ms = 200,

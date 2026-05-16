@@ -22,7 +22,6 @@ return {
 	"vimdoc",
 	"xml",
 	"yaml",
-	"html",
 	"css",
 	"c_sharp",
 	"bicep",
@@ -33,4 +32,8 @@ return {
 	"sql",
 	"rust",
 	"vue",
+	"go",
+	"gomod",
+	"gosum",
+	"gowork",
 }

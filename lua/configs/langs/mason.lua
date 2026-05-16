@@ -8,8 +8,8 @@ return {
 		"html-lsp",
 		"css-lsp",
 		"eslint-lsp",
-		"vtsls",
 		"json-lsp",
+		"vtsls",
 		"roslyn",
 		"tailwindcss-language-server",
 		"ruff",
@@ -19,5 +19,7 @@ return {
 		"sqls",
 		"codelldb",
 		"netcoredbg",
+		"gopls",
+		"goimports",
 	},
 }

@@ -1,31 +1,52 @@
+local vue_plugin = {
+	name = "@vue/typescript-plugin",
+	location = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+	languages = { "vue" },
+	configNamespace = "typescript",
+}
+
 return {
-	roslyn = {},
 	sqls = {},
-	vue_ls = {},
+	roslyn = {},
+	vue_ls = {
+		capabilities = {
+			textDocument = {
+				colorProvider = { dynamicRegistration = false },
+			},
+		},
+		settings = {
+			vue = {
+				updateImportsOnFileMove = { enabled = false },
+			},
+		},
+	},
+
 	vtsls = {
 		filetypes = {
 			"javascript",
 			"javascriptreact",
-			"javascript.jsx",
 			"typescript",
 			"typescriptreact",
-			"typescript.tsx",
 			"vue",
 		},
+		on_attach = function(client, bufnr)
+			if vim.bo[bufnr].filetype == "vue" then
+				client.server_capabilities.semanticTokensProvider = nil
+				client.server_capabilities.documentColorProvider = nil
+				client.server_capabilities.documentHighlightProvider = nil
+			end
+		end,
 		settings = {
 			vtsls = {
 				tsserver = {
-					globalPlugins = {
-						{
-							name = "@vue/typescript-plugin",
-							location = vim.fn.stdpath("data")
-								.. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-							languages = { "vue" },
-							configNamespace = "typescript",
-							enableForWorkspaceTypeScriptVersions = true,
-						},
-					},
+					globalPlugins = { vue_plugin },
 				},
+			},
+		},
+		experimental = {
+			completion = {
+				enableServerSideFuzzyMatch = true,
+				entriesLimit = 1000,
 			},
 		},
 	},
@@ -34,29 +55,46 @@ return {
 		settings = {
 			elixirLS = {
 				dialyzerEnabled = true,
-				fetchDeps = false, -- true se quiser que ele rode mix deps.get automaticamente
+				fetchDeps = false,
 			},
 		},
 	},
+
 	eslint = {},
 	dockerls = {},
 	jsonls = {},
 	html = {},
 	cssls = {},
-	yamlls = { settings = { yaml = { validate = true } } },
+
+	yamlls = {
+		settings = {
+			yaml = { validate = true },
+		},
+	},
+
 	ruff = {
 		on_attach = function(client, _)
 			client.server_capabilities.hoverProvider = false
 		end,
 	},
+
+	pyright = {
+		settings = {
+			python = {
+				analysis = {
+					typeCheckingMode = "basic",
+					autoSearchPaths = true,
+					useLibraryCodeForTypes = true,
+					diagnosticMode = "openFilesOnly",
+				},
+			},
+		},
+	},
+
 	tailwindcss = {
 		filetypes = {
 			"html",
 			"css",
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact",
 			"vue",
 			"svelte",
 		},
@@ -68,11 +106,8 @@ return {
 				validate = true,
 				includeLanguages = {
 					vue = "html",
-					javascript = "html",
-					typescript = "html",
 				},
 				classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
-				-- SEM experimental.classRegex
 				lint = {
 					cssConflict = "warning",
 					invalidApply = "error",
@@ -82,17 +117,24 @@ return {
 					invalidVariant = "error",
 					recommendedVariantOrder = "warning",
 				},
+				experimental = {
+					classRegex = {
+						{ "tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]" },
+						{ "tv\\{([^}]*)\\}", "[\"'`]([^\"'`]*)[\"'`]" },
+					},
+				},
 			},
 		},
 	},
-	pyright = {
+	gopls = {
 		settings = {
-			python = {
-				analysis = {
-					typeCheckingMode = "basic",
-					autoSearchPaths = true,
-					useLibraryCodeForTypes = true,
+			gopls = {
+				analyses = {
+					unusedparams = true,
+					shadow = true,
 				},
+				staticcheck = true,
+				gofumpt = true,
 			},
 		},
 	},
