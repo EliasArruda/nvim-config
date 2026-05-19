@@ -25,11 +25,7 @@ return {
 				},
 			},
 			line_num = {
-				enable = true,
-				delay = 50,
-				style = {
-					{ fg = "#806d9c" },
-				},
+				enable = false, -- Desabilitado por performance: modo mais custoso com extmarks
 			},
 			blank = {
 				enable = false,

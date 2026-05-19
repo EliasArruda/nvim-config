@@ -22,7 +22,10 @@ vim.g.neovide_cursor_vfx_particle_density = 4.0
 vim.g.neovide_cursor_vfx_particle_speed = 10.0
 vim.g.neovide_cursor_vfx_particle_lifetime = 1
 vim.g.neovide_no_idle = true
-vim.opt.clipboard = "unnamedplus"
+-- Clipboard: respeita SSH detection do core/options.lua
+if vim.env.SSH_CONNECTION == nil then
+	vim.opt.clipboard = "unnamedplus"
+end
 
 -- Terminal Colors (Fixing the 'Strong Blue' issue for Midnight theme)
 vim.g.terminal_color_0 = "#1a1b26"

@@ -1,18 +1,18 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Remove conflicting/unused global flags
+-- vim.g.maplocalleader = " " -- Conflicts with space as leader
+-- vim.g.lazyvim_picker = "auto"  -- Not using LazyVim
+-- vim.g.lazyvim_cmp = "auto"     -- Not using LazyVim
+-- vim.g.ai_cmp = true            -- No AI plugin configured
+-- vim.g.deprecation_warnings = false -- Keep warnings enabled for debugging
+
 -- ─────────────────────────────────────────────
 -- ⚙️ GLOBAL FLAGS (plugins / features)
 -- ─────────────────────────────────────────────
 vim.g.autoformat = true
 vim.g.snacks_animate = true
-
--- plugin behavior switches (safe standalone usage)
-vim.g.lazyvim_picker = "auto"
-vim.g.lazyvim_cmp = "auto"
-vim.g.ai_cmp = true
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 vim.g.root_lsp_ignore = { "copilot" }
-vim.g.deprecation_warnings = false
 vim.g.trouble_lualine = true
 
 -- ─────────────────────────────────────────────

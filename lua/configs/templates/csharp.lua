@@ -14,7 +14,7 @@ local function get_dotnet_namespace(directory)
 	local sub_namespaces = {}
 	local project_name = nil
 
-	for _ = 1, 10 do
+	while true do
 		local search_path = vim.fn.fnameescape(current_dir) .. "/*.csproj"
 		local csproj_files = vim.fn.glob(search_path, true, true)
 
@@ -45,7 +45,7 @@ local function get_dotnet_namespace(directory)
 	return fallback:gsub("[/\\]", "."):gsub("[^%w%.]", "_")
 end
 
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
+vim.api.nvim_create_autocmd("BufNewFile", {
 	pattern = "*.cs",
 	group = template_group,
 	callback = function()

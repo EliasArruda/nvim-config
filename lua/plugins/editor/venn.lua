@@ -1,9 +1,6 @@
 return {
 	"jbyuki/venn.nvim",
 	config = function()
-		-- Permite que o cursor se mova livremente no buffer
-		vim.o.virtualedit = "all"
-
 		-- Função para ativar/desativar keymaps do venn.nvim com mensagem
 		function _G.Toggle_venn()
 			local venn_enabled = vim.b.venn_enabled
@@ -15,28 +12,28 @@ return {
 				vim.cmd([[setlocal virtualedit=all]]) -- cursor livre
 
 				-- Desenha linhas ao usar H/J/K/L
-				vim.api.nvim_buf_set_keymap(0, "n", "J", "<C-v>j:VBox<CR>", { noremap = true, silent = true })
-				vim.api.nvim_buf_set_keymap(0, "n", "K", "<C-v>k:VBox<CR>", { noremap = true, silent = true })
-				vim.api.nvim_buf_set_keymap(0, "n", "L", "<C-v>l:VBox<CR>", { noremap = true, silent = true })
-				vim.api.nvim_buf_set_keymap(0, "n", "H", "<C-v>h:VBox<CR>", { noremap = true, silent = true })
+				vim.keymap.set("n", "J", "<C-v>j:VBox<CR>", { buffer = 0, noremap = true, silent = true })
+				vim.keymap.set("n", "K", "<C-v>k:VBox<CR>", { buffer = 0, noremap = true, silent = true })
+				vim.keymap.set("n", "L", "<C-v>l:VBox<CR>", { buffer = 0, noremap = true, silent = true })
+				vim.keymap.set("n", "H", "<C-v>h:VBox<CR>", { buffer = 0, noremap = true, silent = true })
 
 				-- Desenha uma box com seleção visual + tecla "f"
-				vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", { noremap = true, silent = true })
-			else
+				vim.keymap.set("v", "f", ":VBox<CR>", { buffer = 0, noremap = true, silent = true })
+				else
 				-- Desativa o modo venn
 				vim.b.venn_enabled = nil
-				print("Venn mode desativado!") -- mensagem ao desativar
+				print("Venn mode desativado!")
 				vim.cmd([[setlocal virtualedit=]])
-				vim.api.nvim_buf_del_keymap(0, "n", "J")
-				vim.api.nvim_buf_del_keymap(0, "n", "K")
-				vim.api.nvim_buf_del_keymap(0, "n", "L")
-				vim.api.nvim_buf_del_keymap(0, "n", "H")
-				vim.api.nvim_buf_del_keymap(0, "v", "f")
-			end
+				vim.keymap.del("n", "J", { buffer = 0 })
+				vim.keymap.del("n", "K", { buffer = 0 })
+				vim.keymap.del("n", "L", { buffer = 0 })
+				vim.keymap.del("n", "H", { buffer = 0 })
+				vim.keymap.del("v", "f", { buffer = 0 })
+				end
 		end
 
 		-- Atalho global para ativar/desativar venn.nvim
 		-- Pressione <leader>v no modo normal
-		vim.api.nvim_set_keymap("n", "<leader>v", ":lua Toggle_venn()<CR>", { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>v", function() _G.Toggle_venn() end, { desc = "Toggle Venn Diagram" })
 	end,
 }

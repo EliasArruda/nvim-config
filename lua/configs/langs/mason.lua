@@ -21,5 +21,6 @@ return {
 		"netcoredbg",
 		"gopls",
 		"goimports",
+		"htmx-lsp",
 	},
 }

@@ -33,21 +33,6 @@ return {
 		-- Setup
 		TS.setup(opts)
 
-		-- Instala parsers faltando
-		local installed = TS.get_installed()
-		local installed_set = {}
-		for _, lang in ipairs(installed) do
-			installed_set[lang] = true
-		end
-
-		local missing = vim.tbl_filter(function(lang)
-			return not installed_set[lang]
-		end, opts.ensure_installed or {})
-
-		if #missing > 0 then
-			TS.install(missing, { summary = true })
-		end
-
 		-- Ativa highlight/indent/folds por filetype (igual ao LazyVim)
 		vim.api.nvim_create_autocmd("FileType", {
 			group = vim.api.nvim_create_augroup("treesitter_features", { clear = true }),

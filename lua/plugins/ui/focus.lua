@@ -5,8 +5,7 @@ return {
 		require("focus").setup({
 			enable = true,
 			autoresize = {
-				enable = true,
-				width = 0, -- Foca expandindo a janela ativa
+				enable = false, -- Desabilitado: smart-splits já gerencia redimensionamento
 			},
 			ui = {
 				cursorline = false, -- Desativado aqui para não criar "barras" em janelas pequenas

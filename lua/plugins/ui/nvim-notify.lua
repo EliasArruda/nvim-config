@@ -2,18 +2,27 @@ return {
 	"rcarriga/nvim-notify",
 	lazy = true,
 	opts = {
+		-- 🎯 RENDER: simples, direto ao ponto
 		render = "simple",
+		-- 🎬 ANIMAÇÃO: fade_in_slide_out (preferência pessoal)
 		stages = "fade_in_slide_out",
+		-- ⏱️ TIMEOUT: 3s padrão, suficiente
 		timeout = 3000,
+		-- 📐 DIMENSÕES otimizadas
 		max_width = 60,
 		minimum_width = 10,
-		top_down = true, -- <-- mude aqui
-		position = "top_right", -- <-- adicione esta linha
+		-- 📍 POSIÇÃO: top_right (não interfere com código)
+		position = "top_right",
+		-- 🎨 FUNDO: transparente
 		background_colour = "#000000",
-		fps = 120,
+		-- ⚡ FPS: 60 é suave sem sobrecarregar (default era 120!)
+		fps = 60,
+		-- 🔍 NÍVEL MÍNIMO: INFO (skip debug/trace)
 		level = vim.log.levels.INFO,
+		-- 🪟 BORDA/APARÊNCIA
 		on_open = function(win)
 			vim.api.nvim_win_set_config(win, { border = "rounded" })
+			pcall(vim.api.nvim_win_set_option, win, "winblend", 12)
 		end,
 	},
 	config = function(_, opts)

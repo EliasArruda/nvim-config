@@ -12,7 +12,7 @@ end
 local function apply_template(template, cursor_line, cursor_col)
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, template)
 
-	vim.defer_fn(function()
+	vim.schedule(function()
 		local line_count = vim.api.nvim_buf_line_count(0)
 		local safe_line = math.min(cursor_line, line_count)
 		vim.api.nvim_win_set_cursor(0, { safe_line, cursor_col })
@@ -21,13 +21,11 @@ local function apply_template(template, cursor_line, cursor_col)
 		else
 			vim.cmd("startinsert")
 		end
-	end, vim.g.vscode and 150 or 0)
+	end)
 end
 
 local function run_template()
-	local delay = vim.g.vscode and 200 or 0
-
-	vim.defer_fn(function()
+	vim.schedule(function()
 		local filename = vim.fn.expand("%:t")
 
 		if filename == "" or not filename:match("%.vue$") then
@@ -44,10 +42,10 @@ local function run_template()
 		}
 
 		apply_template(template, 2, 2)
-	end, delay)
+	end)
 end
 
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost", "BufEnter" }, {
+vim.api.nvim_create_autocmd("BufNewFile", {
 	pattern = "*.vue",
 	group = template_group,
 	callback = run_template,

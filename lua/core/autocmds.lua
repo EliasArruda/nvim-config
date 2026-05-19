@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup("highlight_yank"),
 	callback = function()
-		vim.highlight.on_yank()
+		vim.hl.on_yank()
 	end,
 })
 
@@ -33,9 +33,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("VimResized", {
 	group = augroup("resize_splits"),
 	callback = function()
-		local tab = vim.fn.tabpagenr()
-		vim.cmd("tabdo wincmd =")
-		vim.cmd("tabnext " .. tab)
+		-- Percorre apenas as janelas da aba atual, sem usar `tabdo` (mais eficiente)
+		local wins = vim.api.nvim_tabpage_list_wins(0)
+		for _, win in ipairs(wins) do
+			if vim.api.nvim_win_is_valid(win) then
+				vim.api.nvim_win_call(win, function()
+					vim.cmd("wincmd =")
+				end)
+			end
+		end
 	end,
 })
 
@@ -112,6 +118,20 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "json", "jsonc" },
 	callback = function()
 		vim.opt_local.conceallevel = 0
+	end,
+})
+
+-- ─────────────────────────────────────────────
+-- 🪄 AUTO FORMAT
+-- Automatically format buffer on save using conform.nvim
+-- ─────────────────────────────────────────────
+vim.api.nvim_create_autocmd("BufWritePre", {
+	group = augroup("auto_format"),
+	callback = function(event)
+		require("conform").format({
+			bufnr = event.buf,
+			timeout_ms = 3000,
+		})
 	end,
 })
 

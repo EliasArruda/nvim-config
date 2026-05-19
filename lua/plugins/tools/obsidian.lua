@@ -24,7 +24,7 @@ return {
 				insert = true,
 				insert_leave = true,
 				pad_separator_line = false,
-				alig_style = "default",
+				align_style = "default",
 			},
 		})
 		-- 🔥 ativa automaticamente no markdown

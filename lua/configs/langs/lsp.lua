@@ -1,6 +1,18 @@
+local function get_vue_language_server_path()
+	local ok, pkg = pcall(require, "mason-registry")
+	if ok then
+		ok, pkg = pcall(pkg.get_package, "vue-language-server")
+		if ok and pkg:is_installed() then
+			return pkg:get_install_path() .. "/node_modules/@vue/language-server"
+		end
+	end
+	-- Fallback: path hardcoded caso o Mason não esteja disponível
+	return vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
+end
+
 local vue_plugin = {
 	name = "@vue/typescript-plugin",
-	location = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+	location = get_vue_language_server_path(),
 	languages = { "vue" },
 	configNamespace = "typescript",
 }
@@ -137,5 +149,8 @@ return {
 				gofumpt = true,
 			},
 		},
+	},
+	htmx = {
+		filetypes = { "html", "php", "eelixir", "heex" },
 	},
 }

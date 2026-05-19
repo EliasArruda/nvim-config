@@ -37,7 +37,7 @@ return {
 				enabled = false,
 			},
 			folds = {
-				enabled = true,
+				enabled = false, --
 			},
 			format = {
 				formatting_options = nil,
@@ -80,7 +80,7 @@ return {
 	end,
 	config = function(_, opts)
 		-- ============================================================
-		-- 🩺 DIAGNOSTICS
+		-- 🩺 DIAGNOSTICS (tiny-inline-diagnostic sobrescreve depois)
 		-- ============================================================
 		vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
@@ -176,11 +176,11 @@ return {
 					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 				end
 
-				-- Folds
-				if opts.folds.enabled and client.server_capabilities.foldingRangeProvider then
-					vim.opt_local.foldmethod = "expr"
-					vim.opt_local.foldexpr = "v:lua.vim.lsp.foldexpr()"
-				end
+				-- Folds (desabilitado — Treesitter gerencia)
+				-- if opts.folds.enabled and client.server_capabilities.foldingRangeProvider then
+				-- 	vim.opt_local.foldmethod = "expr"
+				-- 	vim.opt_local.foldexpr = "v:lua.vim.lsp.foldexpr()"
+				-- end
 			end,
 		})
 

@@ -189,7 +189,7 @@ local function run_template()
 	end, delay)
 end
 
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost", "BufEnter" }, {
+vim.api.nvim_create_autocmd("BufNewFile", {
 	pattern = "*.cs",
 	group = template_group,
 	callback = run_template,

@@ -4,12 +4,11 @@ return {
 
 	keys = {
 		{
-			"<C-p>",
+			"<leader>rr",
 			function()
 				require("kulala").run()
 			end,
 			desc = "Run HTTP request",
-			mode = "n", -- normal mode
 		},
 	},
 }

@@ -1,6 +1,6 @@
 return {
 	{
 		"mrcjkb/rustaceanvim",
-		lazy = false, -- importante!
+		ft = { "rust" },
 	},
 }

@@ -12,7 +12,7 @@ return {
 			enabled = true,
 			exclude = { "bin", "obj", ".git", "node_modules", "%.git" },
 		},
-		notifier = { enabled = true },
+		notifier = { enabled = false }, -- Noice/nvim-notify já gerenciam notificações
 		styles = {
 			terminal = {
 				position = "bottom",

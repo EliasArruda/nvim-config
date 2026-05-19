@@ -5,7 +5,7 @@ local function parse_cargo_metadata(cargo_metadata)
 	for i = #cargo_metadata, 1, -1 do
 		local line = cargo_metadata[i]
 		if line and string.len(line) ~= 0 then
-			local ok, json_table = pcall(vim.fn.json_decode, line)
+			local ok, json_table = pcall(vim.json.decode, line)
 			if ok and json_table["reason"] == "compiler-artifact" and json_table["executable"] ~= vim.NIL then
 				return json_table["executable"]
 			end
@@ -14,21 +14,21 @@ local function parse_cargo_metadata(cargo_metadata)
 	return nil
 end
 
--- Helper: Run cargo build and extract the binary path
-local function cargo_inspector(config)
+-- Helper: Run cargo build and extract the binary path (assíncrono, sem travar a UI)
+local function cargo_inspector(config, on_config)
 	local final_config = vim.deepcopy(config)
 
 	-- 1. Setup compiler message window
 	local compiler_msg_buf = vim.api.nvim_create_buf(false, true)
-	vim.api.nvim_buf_set_option(compiler_msg_buf, "buftype", "nofile")
+	vim.bo[compiler_msg_buf].buftype = "nofile"
 	local window_width = math.max(#(final_config.name or "Cargo"), 50)
 	local window_height = 10
 	local compiler_msg_window = vim.api.nvim_open_win(compiler_msg_buf, false, {
 		relative = "editor",
 		width = window_width,
 		height = window_height,
-		col = vim.api.nvim_get_option "columns" - window_width - 1,
-		row = vim.api.nvim_get_option "lines" - window_height - 1,
+		col = vim.o.columns - window_width - 1,
+		row = vim.o.lines - window_height - 1,
 		border = "rounded",
 		style = "minimal",
 	})
@@ -51,9 +51,40 @@ local function cargo_inspector(config)
 		end
 	end
 
-	-- 3. Execute Cargo
+	-- 3. Track async job completion
+	local jobs_remaining = 3
 	local compiler_metadata = {}
-	local cargo_job = vim.fn.jobstart(cargo_cmd, {
+	local rust_hash = ""
+	local rust_source_path = ""
+
+	local function on_all_jobs_done()
+		-- Fecha a janela de compilação
+		vim.schedule(function()
+			if vim.api.nvim_win_is_valid(compiler_msg_window) then
+				vim.api.nvim_win_close(compiler_msg_window, { force = true })
+			end
+			if vim.api.nvim_buf_is_valid(compiler_msg_buf) then
+				vim.api.nvim_buf_delete(compiler_msg_buf, { force = true })
+			end
+		end)
+
+		-- Source Maps (Standard Library)
+		rust_hash = "/rustc/" .. rust_hash .. "/"
+		rust_source_path = rust_source_path .. "/lib/rustlib/src/rust/"
+		if final_config.sourceMap == nil then final_config["sourceMap"] = {} end
+		final_config.sourceMap[rust_hash] = rust_source_path
+		final_config.cargo = nil
+
+		-- Validate path before returning
+		if final_config.program and vim.fn.executable(final_config.program) == 0 then
+			vim.notify("DAP Error: Binary not found or not executable: " .. tostring(final_config.program), vim.log.levels.ERROR)
+		end
+
+		on_config(final_config)
+	end
+
+	-- 4. Execute Cargo
+	vim.fn.jobstart(cargo_cmd, {
 		cwd = final_config.cwd,
 		stdout_buffered = true,
 		on_stdout = function(_, data) compiler_metadata = data end,
@@ -63,16 +94,11 @@ local function cargo_inspector(config)
 					vim.fn.appendbufline(compiler_msg_buf, "$", partial_line)
 				end
 			end
-			vim.cmd "redraw"
+			vim.schedule(function()
+				vim.cmd("redraw")
+			end)
 		end,
 		on_exit = function(_, exit_code)
-			if vim.api.nvim_win_is_valid(compiler_msg_window) then
-				vim.api.nvim_win_close(compiler_msg_window, { force = true })
-			end
-			if vim.api.nvim_buf_is_valid(compiler_msg_buf) then
-				vim.api.nvim_buf_delete(compiler_msg_buf, { force = true })
-			end
-
 			if exit_code == 0 then
 				local executable_name = parse_cargo_metadata(compiler_metadata)
 				if executable_name then
@@ -83,11 +109,12 @@ local function cargo_inspector(config)
 			else
 				vim.notify("DAP Error: Cargo build failed with exit code " .. exit_code, vim.log.levels.ERROR)
 			end
+			jobs_remaining = jobs_remaining - 1
+			if jobs_remaining == 0 then on_all_jobs_done() end
 		end,
 	})
 
-	-- 4. Source Maps (Standard Library)
-	local rust_hash = ""
+	-- 5. Source Maps: rustc commit-hash
 	local rust_hash_stdout = {}
 	vim.fn.jobstart({ "rustc", "--version", "--verbose" }, {
 		stdout_buffered = true,
@@ -97,29 +124,20 @@ local function cargo_inspector(config)
 				local start, finish = string.find(line, "commit-hash: ", 1, true)
 				if start then rust_hash = string.sub(line, finish + 1) end
 			end
+			jobs_remaining = jobs_remaining - 1
+			if jobs_remaining == 0 then on_all_jobs_done() end
 		end,
 	})
 
-	local rust_source_path = ""
+	-- 6. Source Maps: rustc sysroot
 	vim.fn.jobstart({ "rustc", "--print", "sysroot" }, {
 		stdout_buffered = true,
 		on_stdout = function(_, data) rust_source_path = data[1] end,
+		on_exit = function()
+			jobs_remaining = jobs_remaining - 1
+			if jobs_remaining == 0 then on_all_jobs_done() end
+		end,
 	})
-
-	vim.fn.jobwait { cargo_job }
-
-	rust_hash = "/rustc/" .. rust_hash .. "/"
-	rust_source_path = rust_source_path .. "/lib/rustlib/src/rust/"
-	if final_config.sourceMap == nil then final_config["sourceMap"] = {} end
-	final_config.sourceMap[rust_hash] = rust_source_path
-	final_config.cargo = nil
-
-	-- Validate path before returning
-	if final_config.program and vim.fn.executable(final_config.program) == 0 then
-		vim.notify("DAP Error: Binary not found or not executable: " .. tostring(final_config.program), vim.log.levels.ERROR)
-	end
-
-	return final_config
 end
 
 function M.setup()
@@ -135,7 +153,9 @@ function M.setup()
 		},
 		enrich_config = function(config, on_config)
 			if config["cargo"] ~= nil then
-				on_config(cargo_inspector(config))
+				cargo_inspector(config, on_config)
+			else
+				on_config(config)
 			end
 		end,
 	}
