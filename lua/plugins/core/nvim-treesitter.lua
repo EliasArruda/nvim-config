@@ -33,6 +33,18 @@ return {
 		-- Setup
 		TS.setup(opts)
 
+		local function ensure_parsers()
+			local installed = require("nvim-treesitter.config").get_installed()
+			for _, lang in ipairs(opts.ensure_installed) do
+				if not vim.tbl_contains(installed, lang) then
+					vim.schedule(function()
+						vim.cmd.TSInstall({ args = { lang }, bang = true })
+					end)
+				end
+			end
+		end
+		ensure_parsers()
+
 		-- Ativa highlight/indent/folds por filetype (igual ao LazyVim)
 		vim.api.nvim_create_autocmd("FileType", {
 			group = vim.api.nvim_create_augroup("treesitter_features", { clear = true }),

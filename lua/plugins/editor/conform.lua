@@ -1,7 +1,8 @@
-return {
+	return {
 	"stevearc/conform.nvim",
 	dependencies = { "williamboman/mason.nvim" },
-	cmd = { "ConformInfo" }, -- Carregado via keys; autocmd no config gerencia BufWritePre
+	event = { "BufReadPre", "BufNewFile" },
+	cmd = { "ConformInfo" },
 	keys = {
 		{
 			"<leader>cF",
@@ -22,6 +23,10 @@ return {
 	},
 	config = function()
 		local opts = require("configs.langs.conform")
+		opts.format_on_save = vim.g.autoformat and {
+			timeout_ms = 3000,
+			lsp_format = "fallback",
+		} or nil
 		require("conform").setup(opts)
 	end,
 }

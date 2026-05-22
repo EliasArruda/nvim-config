@@ -83,8 +83,17 @@ local function cargo_inspector(config, on_config)
 		on_config(final_config)
 	end
 
+	local function safe_jobstart(cmd, opts)
+		local ok = vim.fn.jobstart(cmd, opts)
+		if ok == 0 then
+			vim.notify("DAP Error: Failed to start job: " .. vim.inspect(cmd), vim.log.levels.ERROR)
+			jobs_remaining = jobs_remaining - 1
+			if jobs_remaining == 0 then on_all_jobs_done() end
+		end
+	end
+
 	-- 4. Execute Cargo
-	vim.fn.jobstart(cargo_cmd, {
+	safe_jobstart(cargo_cmd, {
 		cwd = final_config.cwd,
 		stdout_buffered = true,
 		on_stdout = function(_, data) compiler_metadata = data end,
@@ -95,7 +104,7 @@ local function cargo_inspector(config, on_config)
 				end
 			end
 			vim.schedule(function()
-				vim.cmd("redraw")
+				vim.cmd.redraw()
 			end)
 		end,
 		on_exit = function(_, exit_code)
@@ -116,7 +125,7 @@ local function cargo_inspector(config, on_config)
 
 	-- 5. Source Maps: rustc commit-hash
 	local rust_hash_stdout = {}
-	vim.fn.jobstart({ "rustc", "--version", "--verbose" }, {
+	safe_jobstart({ "rustc", "--version", "--verbose" }, {
 		stdout_buffered = true,
 		on_stdout = function(_, data) rust_hash_stdout = data end,
 		on_exit = function()
@@ -130,7 +139,7 @@ local function cargo_inspector(config, on_config)
 	})
 
 	-- 6. Source Maps: rustc sysroot
-	vim.fn.jobstart({ "rustc", "--print", "sysroot" }, {
+	safe_jobstart({ "rustc", "--print", "sysroot" }, {
 		stdout_buffered = true,
 		on_stdout = function(_, data) rust_source_path = data[1] end,
 		on_exit = function()

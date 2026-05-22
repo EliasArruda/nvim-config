@@ -9,6 +9,7 @@ return {
 			options = {
 				show_all_diags_on_cursorline = true,
 				enable_on_insert = false,
+				use_icons_from_diagnostic = true,
 				overflow = {
 					mode = "wrap",
 				},
@@ -21,7 +22,6 @@ return {
 
 		vim.diagnostic.config({
 			virtual_text = false,
-			signs = true,
 			underline = true,
 			update_in_insert = false,
 			severity_sort = true,

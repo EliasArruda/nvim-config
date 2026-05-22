@@ -3,6 +3,7 @@ return {
 	"c",
 	"diff",
 	"html",
+	"http",
 	"javascript",
 	"jsdoc",
 	"json",
@@ -36,4 +37,5 @@ return {
 	"gomod",
 	"gosum",
 	"gowork",
+	"templ",
 }

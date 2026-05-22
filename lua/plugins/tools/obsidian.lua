@@ -10,11 +10,9 @@ return {
 	},
 	cmd = { "Pastify", "PastifyAfter" },
 	keys = {
-		keys = {
-			{ "<leader>p", "<cmd>PastifyAfter<CR>", mode = "x", desc = "📋 Paste after" },
-			{ "<leader>p", "<cmd>PastifyAfter<CR>", mode = "n", desc = "📋 Paste after" },
-			{ "<leader>P", "<cmd>Pastify<CR>", mode = "n", desc = "📌 Paste before" },
-		},
+		{ "<leader>p", "<cmd>PastifyAfter<CR>", mode = "x", desc = "📋 Paste after" },
+		{ "<leader>p", "<cmd>PastifyAfter<CR>", mode = "n", desc = "📋 Paste after" },
+		{ "<leader>P", "<cmd>Pastify<CR>", mode = "n", desc = "📌 Paste before" },
 	},
 	config = function()
 		-- setup do markdown-table-mode

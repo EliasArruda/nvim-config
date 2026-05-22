@@ -32,8 +32,26 @@ vim.api.nvim_set_hl(0, "RenderMarkdownDash", {
 })
 --------------------------------------
 
-vim.api.nvim_set_hl(0, "MiniIconsPurple", { fg = "#BF40BF" }) -- Roxo
-vim.api.nvim_set_hl(0, "MiniIconsMarine", { fg = "#3178C6" }) -- Roxo
+vim.api.nvim_set_hl(0, "MiniIconsPurple", { fg = "#8A6A9E" })
+vim.api.nvim_set_hl(0, "MiniIconsMarine", { fg = "#6A7F9E" })
+vim.api.nvim_set_hl(0, "MiniIconsGoBlue", { fg = "#5A8A9E" })
+vim.api.nvim_set_hl(0, "MiniIconsOrange", { fg = "#9A7A5A" })
+vim.api.nvim_set_hl(0, "MiniIconsAzure", { fg = "#5A7A9E" })
+vim.api.nvim_set_hl(0, "MiniIconsGrey", { fg = "#5A5A5A" })
+
+-- Outline-style color palette (muted, border-like)
+vim.api.nvim_set_hl(0, "OutlineSky", { fg = "#6A8FA5" })
+vim.api.nvim_set_hl(0, "OutlineBlue", { fg = "#6A7FA5" })
+vim.api.nvim_set_hl(0, "OutlineIndigo", { fg = "#7A7AA5" })
+vim.api.nvim_set_hl(0, "OutlinePurple", { fg = "#8A7AA5" })
+vim.api.nvim_set_hl(0, "OutlinePink", { fg = "#A57A8A" })
+vim.api.nvim_set_hl(0, "OutlineRed", { fg = "#A56A6A" })
+vim.api.nvim_set_hl(0, "OutlineOrange", { fg = "#A57A5A" })
+vim.api.nvim_set_hl(0, "OutlineAmber", { fg = "#A5905A" })
+vim.api.nvim_set_hl(0, "OutlineGreen", { fg = "#5A8A6A" })
+vim.api.nvim_set_hl(0, "OutlineTeal", { fg = "#5A8A7A" })
+vim.api.nvim_set_hl(0, "OutlineGray", { fg = "#6A6A6A" })
+vim.api.nvim_set_hl(0, "OutlineSlate", { fg = "#5A6474" })
 vim.api.nvim_set_hl(0, "SnacksPickerDir", { link = "Text" })
 vim.api.nvim_set_hl(0, "SnacksPickerPathHidden", { link = "Text" })
 vim.api.nvim_set_hl(0, "SnacksPickerGitStatusUntracked", { link = "Special" })

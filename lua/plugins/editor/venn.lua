@@ -9,7 +9,7 @@ return {
 				-- Ativa o modo venn
 				vim.b.venn_enabled = true
 				print("Venn mode ativado!") -- mensagem ao ativar
-				vim.cmd([[setlocal virtualedit=all]]) -- cursor livre
+				vim.opt_local.virtualedit = "all" -- cursor livre
 
 				-- Desenha linhas ao usar H/J/K/L
 				vim.keymap.set("n", "J", "<C-v>j:VBox<CR>", { buffer = 0, noremap = true, silent = true })
@@ -23,7 +23,7 @@ return {
 				-- Desativa o modo venn
 				vim.b.venn_enabled = nil
 				print("Venn mode desativado!")
-				vim.cmd([[setlocal virtualedit=]])
+				vim.opt_local.virtualedit = ""
 				vim.keymap.del("n", "J", { buffer = 0 })
 				vim.keymap.del("n", "K", { buffer = 0 })
 				vim.keymap.del("n", "L", { buffer = 0 })

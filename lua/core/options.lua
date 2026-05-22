@@ -1,10 +1,4 @@
 vim.g.mapleader = " "
--- Remove conflicting/unused global flags
--- vim.g.maplocalleader = " " -- Conflicts with space as leader
--- vim.g.lazyvim_picker = "auto"  -- Not using LazyVim
--- vim.g.lazyvim_cmp = "auto"     -- Not using LazyVim
--- vim.g.ai_cmp = true            -- No AI plugin configured
--- vim.g.deprecation_warnings = false -- Keep warnings enabled for debugging
 
 -- ─────────────────────────────────────────────
 -- ⚙️ GLOBAL FLAGS (plugins / features)
@@ -36,6 +30,22 @@ opt.expandtab = true
 opt.shiftwidth = 2
 opt.tabstop = 2
 opt.shiftround = true
+opt.smartindent = true
+
+-- ─────────────────────────────────────────────
+-- 📝 FOLDING
+-- ─────────────────────────────────────────────
+opt.foldlevel = 99
+opt.foldmethod = "indent"
+opt.foldtext = ""
+opt.fillchars = {
+	foldopen = "",
+	foldclose = "",
+	fold = " ",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
+}
 
 -- ─────────────────────────────────────────────
 -- 🔍 SEARCH BEHAVIOR
@@ -49,11 +59,37 @@ opt.grepformat = "%f:%l:%c:%m"
 -- ─────────────────────────────────────────────
 -- 🧭 UI / VISUALS
 -- ─────────────────────────────────────────────
-opt.number = true
-opt.relativenumber = true
-opt.signcolumn = "yes"
+opt.number = false
+opt.relativenumber = false
+opt.signcolumn = "no"
 opt.termguicolors = true
 opt.cursorline = true
 opt.laststatus = 3
 opt.showmode = false
 opt.ruler = false
+opt.list = true
+opt.linebreak = true
+opt.mouse = "a"
+opt.scrolloff = 4
+opt.sidescrolloff = 8
+opt.smoothscroll = true
+opt.pumblend = 10
+opt.pumheight = 10
+opt.winminwidth = 5
+opt.wrap = false
+opt.spelllang = { "en" }
+opt.formatoptions = "jcroqlnt"
+opt.shortmess:append({ W = true, I = true, c = true, C = true })
+opt.splitbelow = true
+opt.splitkeep = "screen"
+opt.splitright = true
+opt.jumpoptions = "view"
+opt.virtualedit = "block"
+opt.wildmode = "longest:full,full"
+opt.timeoutlen = 300
+opt.undofile = true
+opt.undolevels = 10000
+opt.updatetime = 200
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+
+vim.g.markdown_recommended_style = 0

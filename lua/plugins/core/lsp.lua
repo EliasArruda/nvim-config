@@ -2,8 +2,6 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"mason.nvim",
-		{ "williamboman/mason-lspconfig.nvim", config = function() end },
 		"Saghen/blink.cmp",
 	},
 	opts_extend = { "servers.*.keys" },
@@ -22,10 +20,10 @@ return {
 				severity_sort = true,
 				signs = {
 					text = {
-						[vim.diagnostic.severity.ERROR] = "",
-						[vim.diagnostic.severity.WARN] = "",
-						[vim.diagnostic.severity.HINT] = "",
-						[vim.diagnostic.severity.INFO] = "",
+						[vim.diagnostic.severity.ERROR] = "󰅚",
+						[vim.diagnostic.severity.WARN] = "󰀪",
+						[vim.diagnostic.severity.HINT] = "󰌶",
+						[vim.diagnostic.severity.INFO] = "󰋼",
 					},
 				},
 			},
@@ -92,7 +90,7 @@ return {
 		end, { desc = "LSP Info" })
 
 		vim.api.nvim_create_user_command("LspLog", function()
-			vim.cmd("edit " .. vim.lsp.get_log_path())
+			vim.cmd("edit " .. vim.fn.fnameescape(vim.lsp.get_log_path()))
 		end, { desc = "LSP Log" })
 
 		vim.api.nvim_create_user_command("LspStop", function(info)
@@ -119,7 +117,7 @@ return {
 				local name = client.name
 				client:stop()
 				vim.defer_fn(function()
-					vim.lsp.enable(name)
+					pcall(vim.lsp.enable, name)
 					vim.notify("🔄 Restarted: " .. name)
 				end, 500)
 			end
@@ -135,7 +133,7 @@ return {
 
 		vim.api.nvim_create_user_command("LspStart", function(info)
 			if info.args ~= "" then
-				vim.lsp.enable(info.args)
+				pcall(vim.lsp.enable, info.args)
 				vim.notify("✅ Started: " .. info.args)
 			end
 		end, {
@@ -171,16 +169,14 @@ return {
 					vim.keymap.set(map.mode or "n", map[1], map[2], { buffer = bufnr, silent = true, desc = map.desc })
 				end
 
-				-- Inlay Hints
-				if opts.inlay_hints.enabled and client.server_capabilities.inlayHintProvider then
+				-- Inlay Hints (respeita exclude)
+				local exclude = opts.inlay_hints.exclude or {}
+				if opts.inlay_hints.enabled
+					and client.server_capabilities.inlayHintProvider
+					and not vim.tbl_contains(exclude, vim.bo[bufnr].filetype)
+				then
 					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 				end
-
-				-- Folds (desabilitado — Treesitter gerencia)
-				-- if opts.folds.enabled and client.server_capabilities.foldingRangeProvider then
-				-- 	vim.opt_local.foldmethod = "expr"
-				-- 	vim.opt_local.foldexpr = "v:lua.vim.lsp.foldexpr()"
-				-- end
 			end,
 		})
 
@@ -191,6 +187,10 @@ return {
 
 		for _, name in ipairs(servers_to_setup) do
 			if name == "*" then
+				goto continue
+			end
+
+			if name == "roslyn" then
 				goto continue
 			end
 
@@ -217,13 +217,5 @@ return {
 			::continue::
 		end
 
-		-- ============================================================
-		-- 🧱 MASON-LSPCONFIG
-		-- ============================================================
-		require("mason-lspconfig").setup({
-			ensure_installed = vim.tbl_filter(function(name)
-				return name ~= "*" and name ~= "roslyn" and (opts.servers[name] ~= false)
-			end, servers_to_setup),
-		})
 	end,
 }

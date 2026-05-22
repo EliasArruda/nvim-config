@@ -12,7 +12,12 @@ return {
 			enabled = true,
 			exclude = { "bin", "obj", ".git", "node_modules", "%.git" },
 		},
-		notifier = { enabled = false }, -- Noice/nvim-notify já gerenciam notificações
+		notifier = { enabled = true },
+		indent = { enabled = false },
+		input = { enabled = true },
+		scope = { enabled = false },
+		scroll = { enabled = true },
+		words = { enabled = true },
 		styles = {
 			terminal = {
 				position = "bottom",
@@ -76,6 +81,13 @@ return {
 				Snacks.notifier.show_history()
 			end,
 			desc = "Notificações",
+		},
+		{
+			"<leader>uD",
+			function()
+				Snacks.notifier.hide()
+			end,
+			desc = "Descartar Notificações",
 		},
 	},
 }

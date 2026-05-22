@@ -22,7 +22,7 @@ return {
 		-- 🪟 BORDA/APARÊNCIA
 		on_open = function(win)
 			vim.api.nvim_win_set_config(win, { border = "rounded" })
-			pcall(vim.api.nvim_win_set_option, win, "winblend", 12)
+			vim.wo[win].winblend = 12
 		end,
 	},
 	config = function(_, opts)

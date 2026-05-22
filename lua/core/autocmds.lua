@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 	group = augroup("checktime"),
 	callback = function()
 		if vim.o.buftype ~= "nofile" then
-			vim.cmd("checktime")
+			vim.cmd.checktime()
 		end
 	end,
 })
@@ -79,16 +79,31 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("close_with_q"),
 	pattern = {
-		"help",
-		"qf",
-		"lspinfo",
+		"PlenaryTestPopup",
 		"checkhealth",
+		"dap-float",
+		"dbout",
+		"gitsigns-blame",
+		"grug-far",
+		"help",
+		"lspinfo",
 		"man",
+		"neotest-output",
+		"neotest-output-panel",
+		"neotest-summary",
+		"notify",
+		"qf",
+		"spectre_panel",
+		"startuptime",
+		"tsplayground",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
 
-		vim.keymap.set("n", "q", "<cmd>close<cr>", {
+		vim.keymap.set("n", "q", function()
+				vim.cmd.close()
+			pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+		end, {
 			buffer = event.buf,
 			silent = true,
 			desc = "Close buffer",
@@ -122,18 +137,10 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- ─────────────────────────────────────────────
--- 🪄 AUTO FORMAT
--- Automatically format buffer on save using conform.nvim
+-- 🔤 TEMPL FILETYPE
+-- Ensure .templ files are detected for Go templating
 -- ─────────────────────────────────────────────
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = augroup("auto_format"),
-	callback = function(event)
-		require("conform").format({
-			bufnr = event.buf,
-			timeout_ms = 3000,
-		})
-	end,
-})
+vim.filetype.add({ extension = { templ = "templ" } })
 
 -- ─────────────────────────────────────────────
 -- 📁 AUTO DIRECTORY CREATION

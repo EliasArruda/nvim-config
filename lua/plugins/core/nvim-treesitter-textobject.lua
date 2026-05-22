@@ -51,9 +51,9 @@ return {
           -- Define o atalho de teclado
           vim.keymap.set({ "n", "x", "o" }, key, function()
             -- Se estiver em modo diff e for um salto de classe, mantém o comportamento original do vim
-            if vim.wo.diff and key:find("[cC]") then
-              return vim.cmd("normal! " .. key)
-            end
+			if vim.wo.diff and key:find("[cC]") then
+				return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, false, true), "n", true)
+			end
             require("nvim-treesitter-textobjects.move")[method](query, "textobjects")
           end, {
             buffer = buf,

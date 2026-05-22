@@ -3,6 +3,7 @@ return {
 		"mg979/vim-visual-multi",
 		event = "VeryLazy",
 		init = function()
+			vim.g.VM_show_warnings = 0
 			vim.g.VM_set_mappings = 1
 			vim.g.VM_maps = {
 				["Find Under"] = "<C-d>",       -- Changed from <C-n> (conflict with blink.cmp)

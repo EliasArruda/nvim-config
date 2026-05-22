@@ -153,4 +153,5 @@ return {
 	htmx = {
 		filetypes = { "html", "php", "eelixir", "heex" },
 	},
+	templ = {},
 }

@@ -2,6 +2,7 @@ return {
 
 	{
 		"3rd/image.nvim",
+		cond = not vim.g.neovide,
 		config = function()
 			local ok, _ = pcall(require, "image")
 			if not ok then

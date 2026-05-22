@@ -110,7 +110,7 @@ return {
 				size = { width = 60, height = "auto" },
 				border = { style = "rounded", text = { top = "CmdLine" } },
 				win_options = {
-					winblend = 0,
+					winblend = 40,
 					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
 				},
 			},
@@ -124,7 +124,7 @@ return {
 					text = { top = " " },
 				},
 				win_options = {
-					winblend = 0,
+					winblend = 40,
 					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
 				},
 			},
@@ -133,7 +133,7 @@ return {
 				position = { row = -2, col = "100%" },
 				border = { style = "rounded" },
 				win_options = {
-					winblend = 20,
+					winblend = 40,
 					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
 				},
 			},
@@ -142,7 +142,7 @@ return {
 				border = { style = "rounded" },
 				size = { max_width = 80 },
 				win_options = {
-					winblend = 10,
+					winblend = 40,
 					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
 				},
 			},
@@ -229,7 +229,7 @@ return {
 	},
 	config = function(_, opts)
 		if vim.o.filetype == "lazy" then
-			vim.cmd([[messages clear]])
+			vim.cmd.messages({ args = "clear" })
 		end
 
 		require("noice").setup(opts)
