@@ -36,12 +36,12 @@ return {
 	end,
 	opts = {
 		legacy_commands = false,
-		workspaces = {
+		workspaces = vim.fn.isdirectory(vim.fn.expand("~/obsidian")) == 1 and {
 			{
 				name = "notes",
 				path = "~/obsidian",
 			},
-		},
+		} or {},
 		daily_notes = {
 			folder = "dailies",
 			date_format = "%Y-%m-%d",

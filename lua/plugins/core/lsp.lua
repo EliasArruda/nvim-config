@@ -51,17 +51,10 @@ return {
 							},
 						},
 					},
-					keys = {
-						{ "gr", require("telescope.builtin").lsp_references, desc = "References" },
-						{ "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
-						{
-							"<leader>cf",
-							function()
-								vim.lsp.buf.format({ async = true })
-							end,
-							desc = "Format Buffer",
-						},
-					},
+				keys = {
+					{ "gr", require("telescope.builtin").lsp_references, desc = "References" },
+					{ "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
+				},
 				},
 				lua_ls = {
 					settings = {

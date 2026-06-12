@@ -62,23 +62,11 @@ return {
 			mode = "t",
 		},
 
-		-- Redimensionar com Alt + hjkl
+		-- Redimensionar com Alt + hl (j e k ficam livres para mover linhas)
 		{
 			"<A-h>",
 			function()
 				require("smart-splits").resize_left()
-			end,
-		},
-		{
-			"<A-j>",
-			function()
-				require("smart-splits").resize_down()
-			end,
-		},
-		{
-			"<A-k>",
-			function()
-				require("smart-splits").resize_up()
 			end,
 		},
 		{

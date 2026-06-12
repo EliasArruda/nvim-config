@@ -1,4 +1,4 @@
-return {
+	return {
 	default_format_opts = {
 		timeout_ms = 3000,
 		lsp_format = "fallback",
@@ -17,9 +17,11 @@ return {
 		xml = { "xmlformat" },
 		-- Caddy
 		caddy = { "caddy" },
+		-- Go
+		go = { "goimports", "gofumpt" },
 		sql = { lsp_format = "never" },
 	},
-	formatters = {
+		formatters = {
 		injected = {
 			options = { ignore_errors = true },
 		},

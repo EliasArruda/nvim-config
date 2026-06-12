@@ -25,7 +25,6 @@
 		local opts = require("configs.langs.conform")
 		opts.format_on_save = vim.g.autoformat and {
 			timeout_ms = 3000,
-			lsp_format = "fallback",
 		} or nil
 		require("conform").setup(opts)
 	end,

@@ -12,9 +12,9 @@ return {
 			enabled = true,
 			exclude = { "bin", "obj", ".git", "node_modules", "%.git" },
 		},
-		notifier = { enabled = true },
+		notifier = { enabled = false }, -- Noice/nvim-notify já gerenciam notificações
 		indent = { enabled = false },
-		input = { enabled = true },
+		input = { enabled = false },
 		scope = { enabled = false },
 		scroll = { enabled = true },
 		words = { enabled = true },

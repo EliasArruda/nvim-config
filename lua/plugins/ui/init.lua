@@ -1,4 +1,3 @@
 return {
-  { import = "plugins.ui" },
-  { import = "plugins.ui.themes" },
+	{ import = "plugins.ui.themes" },
 }

@@ -13,7 +13,6 @@ return {
 
 			highlight = { enable = true },
 			indent = { enable = true },
-			folds = { enable = true },
 		}
 	end,
 
@@ -68,23 +67,13 @@ return {
 					pcall(vim.treesitter.start, ev.buf)
 				end
 
-				-- Indentação
-				if feat_enabled("indent") then
-					if vim.bo[ev.buf].indentexpr == "" then
-						vim.bo[ev.buf].indentexpr = "v:lua.vim.treesitter.indentexpr()"
-					end
+			-- Indentação
+			if feat_enabled("indent") then
+				if vim.bo[ev.buf].indentexpr == "" then
+					vim.bo[ev.buf].indentexpr = "v:lua.vim.treesitter.indentexpr()"
 				end
-
-				-- Folds
-				if feat_enabled("folds") then
-					local win = vim.api.nvim_get_current_win()
-					if vim.wo[win].foldmethod ~= "expr" then
-						vim.wo[win].foldmethod = "expr"
-						vim.wo[win].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-						vim.wo[win].foldenable = false
-					end
-				end
-			end,
-		})
+			end
+		end,
+	})
 	end,
 }

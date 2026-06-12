@@ -106,7 +106,7 @@ return {
 		},
 		views = {
 			cmdline_popup = {
-				position = { row = "45%", col = "50%" },
+				position = { row = "50%", col = "50%" },
 				size = { width = 60, height = "auto" },
 				border = { style = "rounded", text = { top = "CmdLine" } },
 				win_options = {

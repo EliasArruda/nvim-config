@@ -9,7 +9,7 @@ return {
 			options = {
 				show_all_diags_on_cursorline = true,
 				enable_on_insert = false,
-				use_icons_from_diagnostic = true,
+				use_icons_from_diagnostic = false,
 				overflow = {
 					mode = "wrap",
 				},

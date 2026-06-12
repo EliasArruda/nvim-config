@@ -78,7 +78,7 @@ opt.pumheight = 10
 opt.winminwidth = 5
 opt.wrap = false
 opt.spelllang = { "en" }
-opt.formatoptions = "jcroqlnt"
+opt.formatoptions = "jcoqlnt"
 opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.splitbelow = true
 opt.splitkeep = "screen"

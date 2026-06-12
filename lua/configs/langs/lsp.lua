@@ -41,13 +41,6 @@ return {
 			"typescriptreact",
 			"vue",
 		},
-		on_attach = function(client, bufnr)
-			if vim.bo[bufnr].filetype == "vue" then
-				client.server_capabilities.semanticTokensProvider = nil
-				client.server_capabilities.documentColorProvider = nil
-				client.server_capabilities.documentHighlightProvider = nil
-			end
-		end,
 		settings = {
 			vtsls = {
 				tsserver = {
@@ -77,6 +70,13 @@ return {
 	jsonls = {},
 	html = {},
 	cssls = {},
+	emmet_language_server = {
+		filetypes = { "css", "templ", "typescriptreact", "javascriptreact" },
+		init_options = {
+			showExpandedAbbreviation = "always",
+			showSuggestionsAsSnippets = true,
+		},
+	},
 
 	yamlls = {
 		settings = {
@@ -105,10 +105,10 @@ return {
 
 	tailwindcss = {
 		filetypes = {
-			"html",
 			"css",
 			"vue",
 			"svelte",
+			"templ",
 		},
 		init_options = {
 			userLanguages = { vue = "html" },
@@ -118,6 +118,7 @@ return {
 				validate = true,
 				includeLanguages = {
 					vue = "html",
+					templ = "html",
 				},
 				classAttributes = { "class", "className", "class:list", "classList", "ngClass" },
 				lint = {
@@ -144,14 +145,27 @@ return {
 				analyses = {
 					unusedparams = true,
 					shadow = true,
+					nilness = true,
+					unusedwrite = true,
+					fieldalignment = true,
 				},
 				staticcheck = true,
 				gofumpt = true,
+				usePlaceholders = true,
+				hints = {
+					assignVariableTypes = true,
+					compositeLiteralFields = true,
+					compositeLiteralTypes = true,
+					constantValues = true,
+					functionTypeParameters = true,
+					parameterNames = true,
+					rangeVariableTypes = true,
+				},
 			},
 		},
 	},
 	htmx = {
-		filetypes = { "html", "php", "eelixir", "heex" },
+		filetypes = { "php", "eelixir", "heex" },
 	},
 	templ = {},
 }

@@ -152,6 +152,49 @@ end
 function M.setup()
 	local dap = require("dap")
 
+	-- 🐹 GO (Delve)
+	dap.adapters.go = {
+		type = "server",
+		port = "${port}",
+		executable = {
+			command = vim.fn.stdpath("data") .. "/mason/bin/dlv",
+			args = { "dap", "-l", "127.0.0.1:${port}" },
+		},
+	}
+
+	dap.configurations.go = {
+		{
+			name = "Debug (current file)",
+			type = "go",
+			request = "launch",
+			program = "${fileDirname}",
+			cwd = "${workspaceFolder}",
+			showRegisters = false,
+		},
+		{
+			name = "Debug (test at cursor)",
+			type = "go",
+			request = "launch",
+			mode = "test",
+			program = "${fileDirname}",
+			cwd = "${workspaceFolder}",
+		},
+		{
+			name = "Debug (main module)",
+			type = "go",
+			request = "launch",
+			program = "${workspaceFolder}",
+			cwd = "${workspaceFolder}",
+		},
+		{
+			name = "Attach (running process)",
+			type = "go",
+			request = "attach",
+			mode = "local",
+			processId = nil,
+		},
+	}
+
 	-- 🦀 RUST (Professional Setup with Cargo Inspector)
 	dap.adapters.codelldb = {
 		type = "server",
@@ -174,11 +217,16 @@ function M.setup()
 			name = "Debug (Cargo)",
 			type = "codelldb",
 			request = "launch",
-			program = "${cargo:program}",
+			program = function()
+				local metadata = vim.fn.system({ "cargo", "metadata", "--format-version=1", "--no-deps" })
+				local ok, json = pcall(vim.json.decode, metadata)
+				if ok and json.packages and #json.packages > 0 then
+					local target_name = json.packages[1].targets[1].name
+					return vim.fn.getcwd() .. "/target/debug/" .. target_name
+				end
+				return vim.fn.input("Path to binary: ", vim.fn.getcwd() .. "/target/debug/", "file")
+			end,
 			cwd = "${workspaceFolder}",
-			cargo = {
-				args = { "build" },
-			},
 			sourceLanguages = { "rust" },
 		},
 	}

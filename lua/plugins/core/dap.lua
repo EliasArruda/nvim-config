@@ -1,7 +1,11 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
-		event = "VeryLazy",
+		cmd = { "DapContinue", "DapToggleBreakpoint", "DapToggleRepl" },
+		keys = {
+			{ "<F5>", function() require("dap").continue() end, desc = "DAP Continue" },
+			{ "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "DAP Toggle Breakpoint" },
+		},
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
 			"nvim-neotest/nvim-nio",
