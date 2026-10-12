@@ -36,6 +36,26 @@ return {
 			opts.sources.providers = opts.sources.providers or {}
 			opts.sources.providers.lsp = opts.sources.providers.lsp or {}
 			local provider = opts.sources.providers.lsp
+			local transform = provider.transform_items
+			provider.transform_items = function(context, items)
+				if transform then
+					items = transform(context, items)
+				end
+				if vim.bo[context.bufnr].filetype ~= "razor" then
+					return items
+				end
+				local result = {}
+				local code = razor.is_code_or_comment(context.bufnr, context.cursor)
+				for _, item in ipairs(items) do
+					if item.client_name ~= "emmet_language_server" then
+						result[#result + 1] = item
+					elseif not code then
+						item.score_offset = (item.score_offset or 0) + 25
+						result[#result + 1] = item
+					end
+				end
+				return result
+			end
 			provider.override = provider.override or {}
 			local previous = provider.override.get_completions
 			provider.override.get_completions = function(self, context, callback)

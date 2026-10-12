@@ -42,6 +42,15 @@ EOF
     cat "$integration_root/completion.log" >&2
     exit "$status"
   fi
+  if timeout 90 nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/pre.lua")' \
+    '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/emmet.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' \
+    > "$integration_root/emmet.log" 2>&1; then
+    printf 'PASS: Emmet abbreviations, Tab expansion and two-line Enter. Evidence: %s/emmet.json\n' "$integration_root"
+  else
+    status=$?
+    cat "$integration_root/emmet.log" >&2
+    exit "$status"
+  fi
 elif [[ -n "${1:-}" ]]; then
   printf '%s\n' 'Usage: check-blazor [--integration]' >&2
   exit 2

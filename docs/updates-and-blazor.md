@@ -85,3 +85,18 @@ O JSON registra os itens e o cliente que os produziu. Este teste não equivale a
 - [EasyDotnet: suporte Razor e servidor HTML](https://github.com/GustavEikaas/easy-dotnet.nvim#roslyn-lsp).
 - [EasyDotnet: mudanças do servidor e Roslyn oficial](https://github.com/GustavEikaas/easy-dotnet.nvim/blob/main/news.md).
 - [Gramática Razor: relato de invalid ranges em injeções combinadas](https://github.com/tris203/tree-sitter-razor/issues/28). Esse relato é do Helix; a reprodução no Neovim foi feita separadamente, sem assumir que os editores falham da mesma maneira.
+
+## Emmet no Razor
+
+Emmet já é fornecido pelo servidor `emmet_language_server`, com Razor mapeado para HTML. As sugestões recebem prioridade no markup; ficam fora de blocos C#, expressões Razor reais e comentários. Um `@` ausente na recuperação do parser não transforma uma abreviação HTML, como `div.container`, em código C#.
+
+Digite `span` e pressione Tab para gerar `<span></span>`. O cursor fica entre as tags. Enter gera exatamente duas linhas, com o cursor no início da linha da tag de fechamento:
+
+```html
+<span>
+</span>
+```
+
+`span.` inicia uma classe e gera `<span class=""></span>`, com o cursor no valor da classe. `div.container` gera uma div com essa classe; `ul>li*3` gera três itens. Os campos de snippets podem ser percorridos com Tab/Shift-Tab. Este comportamento usa Emmet real, sem substituição de texto inventada.
+
+`check-blazor --integration` também testa quatro abreviações digitadas, aceitação por Tab e Enter. O Enter de Razor já produzia duas linhas no ambiente verificado; sua configuração de autopairs foi preservada. Outros filetypes continuam com suas regras de indentação existentes.

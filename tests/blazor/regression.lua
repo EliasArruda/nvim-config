@@ -112,6 +112,39 @@ if inherited_combining then
 	end
 	check(retained, "Inherited C# combining must remain intact")
 end
+context({ "div.container" }, 1, 13)
+check(not razor.is_code_or_comment(), "Emmet abbreviation is not a recovered C# expression")
+context({ "@person.Name" }, 1, 12)
+check(razor.is_code_or_comment(), "Real Razor expressions remain C#")
+context({ "@if (person.Name" }, 1, 16)
+check(razor.is_code_or_comment(), "Incomplete if condition remains C#")
+context({ "@foreach (var item in items" }, 1, 26)
+check(razor.is_code_or_comment(), "Incomplete foreach header remains C#")
+context({ '@if (person.Name == ")" && check' }, 1, 31)
+check(razor.is_code_or_comment(), "Quoted parenthesis does not finish a C# header")
+local condition = "@if (person.Name) { <span></span> }"
+context({ condition }, 1, condition:find("Name", 1, true) + 3)
+check(razor.is_code_or_comment(), "If condition remains C#")
+context({ condition }, 1, condition:find("<span>", 1, true) + 4)
+check(not razor.is_code_or_comment(), "If body markup allows Emmet")
+local foreach = "@foreach (var item in items) { <span></span> }"
+context({ foreach }, 1, foreach:find("items", 1, true) + 4)
+check(razor.is_code_or_comment(), "Foreach header remains C#")
+context({ foreach }, 1, foreach:find("<span>", 1, true) + 4)
+check(not razor.is_code_or_comment(), "Foreach body markup allows Emmet")
+context({ "span" }, 1, 4)
+local transform = config.sources.providers.lsp.transform_items
+local suggestions = transform({ bufnr = 0, cursor = { 1, 4 } }, {
+	{ label = "span", client_name = "emmet_language_server" },
+	{ label = "Span", client_name = "easy_dotnet" },
+})
+check(#suggestions == 2 and suggestions[1].score_offset > 0, "Emmet preferred in markup")
+context({ "@code { var text = string.Empty; }" }, 1, 25)
+suggestions = transform({ bufnr = 0, cursor = { 1, 25 } }, {
+	{ label = "string.Empty", client_name = "emmet_language_server" },
+	{ label = "Empty", client_name = "easy_dotnet" },
+})
+check(#suggestions == 1 and suggestions[1].client_name == "easy_dotnet", "Keep C# completion free of Emmet markup")
 vim.bo.filetype = "lua"
 check(config.completion.list.selection.preselect({ bufnr = 0 }), "Other languages preserve selection")
 print(("PASS: %d Blazor regression checks"):format(checks))
