@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -euo pipefail
+if (( $# > 1 )) || [[ -n "${1:-}" && "${1:-}" != "--integration" ]]; then
+  printf "%s\n" "Usage: check-blazor [--integration]" >&2
+  exit 2
+fi
+config_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+check_state="$(mktemp -d)"
+trap 'rm -rf -- "$check_state"' EXIT
+export XDG_STATE_HOME="$check_state/state"
+export NVIM_LOG_FILE="$check_state/nvim.log"
+export NVIM_TEST_ROOT="$config_root"
+cd "$config_root"
+nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/pre.lua")' \
+  '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/regression.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
+if [[ "${1:-}" == "--integration" ]]; then
+  integration_root="$(mktemp -d "${TMPDIR:-/tmp}/nvim-blazor-check.XXXXXX")"
+  printf 'Integration artifacts: %s\n' "$integration_root"
+  export NVIM_BLAZOR_PROJECT_ROOT="$integration_root/BlazorSmoke"
+  export NVIM_BLAZOR_TEST_OUTPUT="$integration_root"
+  export XDG_STATE_HOME="$integration_root/state"
+  export NVIM_LOG_FILE="$integration_root/nvim.log"
+  dotnet new blazor --name BlazorSmoke --output "$NVIM_BLAZOR_PROJECT_ROOT" --interactivity Server --framework net10.0 > "$integration_root/build.log" 2>&1
+  cat > "$NVIM_BLAZOR_PROJECT_ROOT/Components/AuditButton.razor" <<'EOF'
+<button class="btn" @onclick="OnClick">@Text</button>
+@code {
+    [Parameter] public string Text { get; set; } = "Audit";
+    [Parameter] public EventCallback OnClick { get; set; }
+}
+EOF
+  cat > "$NVIM_BLAZOR_PROJECT_ROOT/Components/Pages/EditProbe.razor" <<'EOF'
+@page "/edit-probe"
+<h1>Editing probe</h1>
+EOF
+  dotnet build "$NVIM_BLAZOR_PROJECT_ROOT" --nologo >> "$integration_root/build.log" 2>&1
+  if timeout 150 nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/pre.lua")' \
+    '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/completion.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' \
+    > "$integration_root/completion.log" 2>&1; then
+    printf 'PASS: actual Blink menu in six Blazor scenarios. Evidence: %s/completion.json\n' "$integration_root"
+  else
+    status=$?
+    cat "$integration_root/completion.log" >&2
+    exit "$status"
+  fi
+elif [[ -n "${1:-}" ]]; then
+  printf '%s\n' 'Usage: check-blazor [--integration]' >&2
+  exit 2
+fi

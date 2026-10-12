@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+config_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+if [[ "${1:-}" == "--help" ]]; then
+  printf '%s\n' 'Usage: check-nvim-updates [output-directory]' 'Checks updates without replacing installed plugins, parsers or tools.'
+  exit 0
+fi
+if (( $# > 1 )); then
+  printf '%s\n' 'Expected at most one output directory.' >&2
+  exit 2
+fi
+output_dir="${1:-${XDG_STATE_HOME:-$HOME/.local/state}/nvim/update-plans/$(date +%Y%m%d-%H%M%S)}"
+mkdir -p -- "$output_dir"
+export NVIM_UPDATE_OUTPUT="$(cd -- "$output_dir" && pwd)"
+export NVIM_TEST_ROOT="$config_root"
+export XDG_STATE_HOME="$NVIM_UPDATE_OUTPUT/state"
+export NVIM_LOG_FILE="$NVIM_UPDATE_OUTPUT/nvim.log"
+cd "$config_root"
+if timeout 240 nvim --headless -i NONE \
+  --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/pre.lua")' \
+  '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/scripts/update-plan.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa! \
+  > "$NVIM_UPDATE_OUTPUT/check.log" 2>&1; then
+  cat "$NVIM_UPDATE_OUTPUT/check.log"
+else
+  status=$?
+  cat "$NVIM_UPDATE_OUTPUT/check.log" >&2
+  printf 'Check failed (%s). Full log: %s/check.log\n' "$status" "$NVIM_UPDATE_OUTPUT" >&2
+  exit "$status"
+fi
