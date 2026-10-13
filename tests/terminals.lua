@@ -29,6 +29,13 @@ vim.wait(80, function()
 	return false
 end)
 local list = shells()
+manager.select_number(1)
+check(vim.api.nvim_get_current_buf() == list[1].buf, "Alt-number selector matches first list entry")
+manager.select_number(2)
+check(vim.api.nvim_get_current_buf() == list[2].buf, "Alt-number selector matches second list entry")
+check(vim.fn.maparg("<M-1>", "t", false, true).buffer == 1, "Alt-number shortcuts are local to terminal buffers")
+manager.select_number(9)
+check(vim.api.nvim_get_current_buf() == list[2].buf, "Missing terminal number leaves selection unchanged")
 local t, s = counts()
 check(#list == 2 and t == 1 and s == 1, "Two sessions share one terminal and sidebar")
 local jobs = { vim.b[list[1].buf].terminal_job_id, vim.b[list[2].buf].terminal_job_id }

@@ -31,6 +31,22 @@ local function select_row()
 	end
 end
 
+local function bind_numbers(buf, modes)
+	for number = 1, 9 do
+		local index = number
+		vim.keymap.set(modes, "<M-" .. index .. ">", function()
+			M.select_number(index)
+		end, { buffer = buf, silent = true, desc = "Terminal " .. index })
+	end
+end
+
+function M.select_number(number)
+	local terminal = sessions()[number]
+	if terminal then
+		M.select(terminal)
+	end
+end
+
 local function render_sidebar()
 	local list = sessions()
 	close_sidebar()
@@ -41,6 +57,7 @@ local function render_sidebar()
 		list_buf = vim.api.nvim_create_buf(false, true)
 		vim.bo[list_buf].bufhidden = "hide"
 		vim.bo[list_buf].filetype = "terminal_sessions"
+		bind_numbers(list_buf, "n")
 		vim.keymap.set("n", "<CR>", select_row, { buffer = list_buf, silent = true })
 		vim.keymap.set("n", "<LeftMouse>", function()
 			local mouse = vim.fn.getmousepos()
@@ -98,6 +115,7 @@ function M.select(terminal)
 		end
 	end
 	active = terminal
+	bind_numbers(terminal.buf, { "n", "t" })
 	terminal.opts.position, terminal.opts.height, terminal.opts.winbar = "bottom", height, ""
 	terminal:show()
 	panel_win = terminal.win

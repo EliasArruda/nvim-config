@@ -9,3 +9,5 @@ export NVIM_TEST_ROOT="$config_root"
 cd "$config_root"
 nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
   '+lua local ok, err = xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/regression.lua"); dofile(vim.env.NVIM_TEST_ROOT .. "/tests/architecture.lua"); dofile(vim.env.NVIM_TEST_ROOT .. "/tests/diagnostics.lua"); dofile(vim.env.NVIM_TEST_ROOT .. "/tests/icons.lua"); dofile(vim.env.NVIM_TEST_ROOT .. "/tests/terminals.lua") end, debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
+timeout 20 nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
+  '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/terminal-numbers.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end'
