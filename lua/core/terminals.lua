@@ -207,6 +207,12 @@ end
 
 function M.setup()
 	local group = vim.api.nvim_create_augroup("terminal_sessions", { clear = true })
+	vim.api.nvim_create_autocmd("ExitPre", {
+		group = group,
+		callback = function()
+			busy = true -- Do not restore sessions while Neovim is closing their jobs.
+		end,
+	})
 	local mouse_key = vim.api.nvim_replace_termcodes("<LeftMouse>", true, false, true)
 	vim.on_key(function(key, typed)
 		if key ~= mouse_key and typed ~= mouse_key then

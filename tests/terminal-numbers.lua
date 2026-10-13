@@ -37,7 +37,14 @@ vim.defer_fn(function()
 						fail("Alt+1 did not select shell from sidebar")
 						return
 					end
-					print("PASS: actual Alt+1/Alt+2 terminal input and Alt+1 sidebar input")
+					manager.toggle()
+					for _, terminal in ipairs(list) do
+						vim.api.nvim_chan_send(vim.b[terminal.buf].terminal_job_id, "exit\n")
+					end
+					vim.wait(3000, function()
+						return #Snacks.terminal.list() == 0
+					end)
+					io.stdout:write("PASS: actual Alt+1/Alt+2 terminal input and Alt+1 sidebar input\n")
 					vim.cmd("qa!")
 				end, 100)
 			end, 50)
