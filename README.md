@@ -1,6 +1,6 @@
 # Neovim — configuração pessoal
 
-Reformulação para Neovim 0.12, com atalhos preservados, Kanagawa Dragon, LSP nativo e Emmet independente para Razor. [Arquitetura, decisões e atualização](docs/architecture.md).
+Reformulação para Neovim 0.12, com atalhos preservados, Nightfly com fundo neutro, LSP nativo e Emmet independente para Razor. [Arquitetura, decisões e atualização](docs/architecture.md).
 
 ## Instalação e manutenção
 

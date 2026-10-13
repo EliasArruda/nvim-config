@@ -28,7 +28,7 @@ As queries Razor corrigem regiões HTML combinadas e recuperam tags incompletas.
 
 ## Visual e desempenho
 
-Kanagawa Dragon é o padrão: cores consistentes, popups opacos e bordas discretas. A variante Dragon usa sua paleta escura original. Midnight e TokyoNight foram removidos da configuração. Neovide conserva fonte/tamanho, com menos movimento e sem partículas. Lualine mostra projeto, arquivo, diagnósticos e clientes em telas largas. Telescope preserva atalhos e usa a raiz corrigida. Snacks fornece indentação, explorer e proteção de arquivos grandes. Diagnósticos nativos aparecem em linhas virtuais na linha atual; tiny-inline-diagnostic e hlchunk ficam desativados para evitar sobreposição de responsabilidades.
+Nightfly com fundo neutro é o padrão: cores consistentes, popups opacos e bordas discretas. Nightfly mantém a paleta de código com superfícies neutras e fundo #080c10, escolhido pelo usuário. Midnight, TokyoNight e Kanagawa foram removidos da configuração. Neovide conserva fonte/tamanho, com menos movimento e sem partículas. Lualine mostra projeto, arquivo, diagnósticos e clientes em telas largas. Telescope preserva atalhos e usa a raiz corrigida. Snacks fornece indentação, explorer e proteção de arquivos grandes. Diagnósticos nativos aparecem em linhas virtuais na linha atual; tiny-inline-diagnostic e hlchunk ficam desativados para evitar sobreposição de responsabilidades.
 
 Arquivos acima de 1 MiB evitam completion, formatação automática e Treesitter. Os servidores comuns também evitam esses buffers. Plugins especializados, como EasyDotnet/Rustacean, podem administrar seus próprios clientes. Tailwind só inicia quando o projeto contém configuração ou dependência Tailwind; não varre o HOME por engano.
 

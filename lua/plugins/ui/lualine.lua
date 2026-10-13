@@ -12,7 +12,16 @@ return {
 
 		lualine.setup({
 			options = {
-				theme = "auto",
+				theme = (function()
+					local theme = vim.deepcopy(require("lualine.themes.nightfly"))
+					for _, mode in pairs(theme) do
+						for section, hl in pairs(mode) do
+							if section == "b" then hl.bg = "#20262e" elseif section == "c" then hl.bg = "#080c10" end
+							if section == "a" then hl.fg = "#080c10" end
+						end
+					end
+					return theme
+				end)(),
 				globalstatus = true,
 			},
 
