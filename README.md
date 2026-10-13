@@ -81,3 +81,7 @@ Pressione Espaço e aguarde o which-key para consultar os demais atalhos.
 O primeiro testa a configuração usando os plugins já instalados. O segundo cria uma solução temporária .NET 10 com Blazor e xUnit, faz restore/build/test e verifica LSP Razor, completion C#/HTML, diagnóstico proposital, formatação, rename, ProjX e breakpoint C#. Requer os plugins/parsers/ferramentas previamente instalados e acesso ao NuGet na primeira execução. Não altera projetos existentes; informa a pasta temporária com as evidências. A abertura normal também não instala ferramentas/plugins. Os testes mantêm o lockfile e o estado isolados.
 
 A configuração principal fica em `lua/core`, as ferramentas em `lua/configs/langs`, as specs em `lua/plugins` e o modo VSCode em `lua/vscode-nvim-config`. Neovide e VSCode possuem ajustes próprios; a integração gráfica não foi validada por testes headless.
+
+## Ícones Symbols
+
+[Adaptação da Symbols do VSCode](docs/symbols.md), com associações e cores da extensão instalada. Use `:SymbolsIcons` para a prévia. Glifos Nerd Font aproximam os desenhos SVG no Neovide.

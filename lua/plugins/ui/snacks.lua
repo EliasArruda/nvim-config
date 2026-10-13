@@ -11,6 +11,7 @@ return {
 			exclude = { "bin", "obj", ".git", "node_modules", "%.git" },
 		},
 		picker = {
+			icons = { files = { dir = "", dir_open = "", file = "" } },
 			enabled = true,
 			exclude = { "bin", "obj", ".git", "node_modules", "%.git" },
 		},
