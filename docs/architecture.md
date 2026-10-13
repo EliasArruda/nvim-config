@@ -62,3 +62,7 @@ Fontes primárias consultadas:
 - [TokyoNight](https://github.com/folke/tokyonight.nvim), [Snacks](https://github.com/folke/snacks.nvim), [SchemaStore](https://github.com/b0o/SchemaStore.nvim).
 
 Decisões refletem versões disponíveis em 12/10/2026, não versões futuras de novembro/dezembro.
+
+### Hierarquia Nightfly
+
+Superfícies preservam a hierarquia do tema usando tons neutros: editor #080c10, painéis secundários #10151b, menus/flutuantes #161d26, área ativa elevada #1c2633, prompt #222e3c e seleção #2c3e52. Bordas e foco usam contraste crescente; azul permanece como acento de foco, sem dominar o fundo. Abas e status seguem a mesma escala. Cores de sintaxe e alertas mantêm seu significado.

@@ -16,8 +16,14 @@ return {
 					local theme = vim.deepcopy(require("lualine.themes.nightfly"))
 					for _, mode in pairs(theme) do
 						for section, hl in pairs(mode) do
-							if section == "b" then hl.bg = "#20262e" elseif section == "c" then hl.bg = "#080c10" end
-							if section == "a" then hl.fg = "#080c10" end
+							if section == "b" then
+								hl.bg = "#222e3c"
+							elseif section == "c" then
+								hl.bg = mode == theme.inactive and "#10151b" or "#161d26"
+							end
+							if section == "a" then
+								hl.fg = "#080c10"
+							end
 						end
 					end
 					return theme
@@ -44,12 +50,19 @@ return {
 				},
 
 				lualine_x = {
-					{ function()
-						local clients = vim.lsp.get_clients({ bufnr = 0 })
-						local names = {}
-						for _, client in ipairs(clients) do names[#names + 1] = client.name end
-						return table.concat(names, " · ")
-					end, cond = function() return vim.o.columns > 140 end },
+					{
+						function()
+							local clients = vim.lsp.get_clients({ bufnr = 0 })
+							local names = {}
+							for _, client in ipairs(clients) do
+								names[#names + 1] = client.name
+							end
+							return table.concat(names, " · ")
+						end,
+						cond = function()
+							return vim.o.columns > 140
+						end,
+					},
 					"filetype",
 				},
 
