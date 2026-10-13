@@ -36,7 +36,11 @@ return {
 				lualine_b = { "branch" },
 
 				lualine_c = {
-					{ "diagnostics" },
+					{ "diagnostics", sources = {
+						function()
+							return require("config.diagnostics").counts()
+						end,
+					} },
 					{
 						"filename",
 						path = 1,

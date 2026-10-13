@@ -16,6 +16,7 @@ function M.setup()
 	require("core.options")
 	require("config.runtime").setup()
 	require("core.autocmds")
+	require("config.diagnostics").setup()
 	require("core.keymaps")
 	require("configs.templates")
 	if vim.g.neovide then

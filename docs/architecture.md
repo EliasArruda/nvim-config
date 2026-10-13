@@ -66,3 +66,9 @@ Decisões refletem versões disponíveis em 12/10/2026, não versões futuras de
 ### Nightfly escuro
 
 Preferência final do usuário: toda a interface próxima do preto. Editor #080c10; painéis, menus e documentação #0a0c10; linha/prompt #0d1014; aba ativa #101419; seleção #151b22. A barra de modo usa texto colorido sobre fundo escuro, sem bloco azul claro. Bordas ficam discretas. Cores de código e atalhos permanecem iguais.
+
+### Diagnósticos repetidos em Razor
+
+O Roslyn publica o mesmo CS8618 em nove namespaces de diagnóstico no projeto real. `config/diagnostics.lua` reúne linhas virtuais de origens com opções compatíveis e remove somente duplicatas com range, severidade, código, mensagem e origem iguais. Formatação e current_line específicos de cada origem continuam respeitados. Reset, ocultar, reativar e mover cursor preservam o ciclo nativo. Contadores da barra e das abas contam mensagens únicas. Os caches originais dos servidores são preservados; não se filtra a origem de erros ou avisos distintos.
+
+Referência: [handlers e agregação de namespaces no Neovim](https://neovim.io/doc/user/diagnostic/). Verificação: `tests/diagnostics.lua` e UI embutida no projeto real, nove relatos CS8618 em cache e uma linha exibida.

@@ -15,6 +15,11 @@ return {
 				show_buffer_close_icons = false,
 				show_close_icon = false,
 				diagnostics = "nvim_lsp",
+				diagnostics_indicator = function(_, _, _, context)
+					local counts = require("config.diagnostics").counts(context.buffer.id)
+					local total = counts.error + counts.warn + counts.info + counts.hint
+					return total > 0 and (" " .. total) or ""
+				end,
 				always_show_bufferline = false, -- não mostra se houver só 1 buffer
 			},
 			highlights = (function()
