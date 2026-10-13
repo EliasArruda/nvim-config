@@ -13,6 +13,7 @@ return {
 		picker = {
 			sources = {
 				explorer = {
+					formatters = { file = { icon_width = 3 } },
 					format = function(item, picker)
 						return require("config.icons").explorer_format(item, picker)
 					end,

@@ -20,6 +20,8 @@ Os ícones são rasterizações dos SVGs em tamanhos predefinidos, não SVGs esc
 
 Os desenhos ocupam 1,04 em na fonte auxiliar, 30% maiores que a adaptação inicial de 0,8 em. O centro horizontal usa o espaço de duas células reservado pelos componentes; o centro vertical acompanha a altura das maiúsculas da JetBrainsMono. Os offsets coloridos e os contornos monocromáticos usam a mesma referência, sem aumentar texto, linhas ou atalhos. Os testes verificam a centralização nas nove resoluções, com tolerância de meio pixel para arredondamento.
 
+O explorador reserva uma coluna extra entre esse espaço do ícone e o nome (`icon_width = 3`), para que badges de pastas não encostem no label. O mesmo espaçamento se aplica aos arquivos da árvore.
+
 ## Prévia
 
 - `:SymbolsIcons`: exemplos de arquivos e pastas.
