@@ -1,5 +1,6 @@
 local M = {}
-local active, sidebar, list_buf, panel_win
+local active, sidebar, list_buf, panel_win, active_buf
+local panel_open = false
 local hidden_commands, restore_panel = {}, false
 local busy = false
 local height = 0.35
@@ -115,6 +116,7 @@ function M.select(terminal)
 		end
 	end
 	active = terminal
+	active_buf, panel_open = terminal.buf, true
 	bind_numbers(terminal.buf, { "n", "t" })
 	terminal.opts.position, terminal.opts.height, terminal.opts.winbar = "bottom", height, ""
 	terminal:show()
@@ -137,6 +139,7 @@ function M.toggle()
 	end
 	if visible or #commands > 0 then
 		restore_panel, hidden_commands = visible, commands
+		panel_open = false
 		busy = true
 		if active and active:win_valid() then
 			height = vim.api.nvim_win_get_height(active.win)
@@ -260,21 +263,56 @@ function M.setup()
 				if tonumber(event.match) ~= panel_win then
 					return
 				end
-			else
-				if not vim.api.nvim_buf_is_valid(event.buf) then
-					return
+				if active and active:buf_valid() then
+					local job = vim.b[active.buf].terminal_job_id
+					if job and vim.fn.jobwait({ job }, 0)[1] == -1 then
+						panel_open = false -- A window was hidden, not a shell exited.
+					end
 				end
-				local info = vim.b[event.buf].snacks_terminal
-				if not info or info.cmd ~= nil then
-					return
+			else
+				-- Snacks may have already deleted this buffer in its own
+				-- TermClose callback. Keep ownership independent of that lifetime.
+				if event.buf ~= active_buf then
+					if not vim.api.nvim_buf_is_valid(event.buf) then
+						return
+					end
+					local info = vim.b[event.buf].snacks_terminal
+					if not info or info.cmd ~= nil then
+						return
+					end
 				end
 			end
-			local was_visible = sidebar ~= nil or (active and active:win_valid())
+			local was_visible = panel_open
+			local ended = (event.event == "BufWipeout" or event.event == "TermClose") and event.buf
+			local departed
+			if ended then
+				for _, terminal in ipairs(sessions()) do
+					if terminal.buf == ended then
+						departed = terminal
+						break
+					end
+				end
+			end
 			vim.schedule(function()
 				if busy then
 					return
 				end
-				if active and active:win_valid() then
+				if departed and departed:buf_valid() then
+					busy = true
+					departed:close()
+					busy = false
+				end
+				if ended and ended == active_buf and was_visible then
+					local remaining = vim.tbl_filter(function(terminal)
+						return terminal.buf ~= ended
+					end, sessions())
+					close_sidebar()
+					if #remaining > 0 then
+						M.select(remaining[#remaining])
+					else
+						active, active_buf, panel_win, panel_open = nil, nil, nil, false
+					end
+				elseif active and active:win_valid() then
 					busy = true
 					render_sidebar()
 					busy = false

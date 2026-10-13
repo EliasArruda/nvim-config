@@ -90,6 +90,35 @@ vim.wait(4000, function()
 	return #shells() == 2
 end)
 check(#shells() == 2 and counts() == 1, "Closing active shell shows a surviving session")
+local survivors = shells()
+local surviving_job = vim.b[survivors[1].buf].terminal_job_id
+manager.select(survivors[2])
+vim.api.nvim_chan_send(vim.b[survivors[2].buf].terminal_job_id, "exit\n")
+vim.wait(4000, function()
+	return #shells() == 1
+end)
+check(#shells() == 1 and counts() == 1, "Exiting second of two sessions keeps final terminal visible")
+check(select(2, counts()) == 0, "Sidebar disappears when one shell remains")
+check(vim.fn.jobwait({ surviving_job }, 0)[1] == -1, "Exit does not terminate surviving shell")
+manager.new_split()
+local failing = shells()[2]
+vim.api.nvim_chan_send(vim.b[failing.buf].terminal_job_id, "exit 7\n")
+vim.wait(4000, function()
+	return #shells() == 1
+end)
+check(#shells() == 1 and counts() == 1, "Nonzero shell exit also closes only its own session")
+check(vim.fn.jobwait({ surviving_job }, 0)[1] == -1, "Surviving process is untouched after nonzero exit")
+manager.new_split()
+local hidden_shell = shells()[2]
+manager.toggle()
+vim.api.nvim_chan_send(vim.b[hidden_shell.buf].terminal_job_id, "exit\n")
+vim.wait(4000, function()
+	return #shells() == 1
+end)
+check(#shells() == 1 and counts() == 0, "Exit while panel is hidden does not reopen or close other sessions")
+check(vim.fn.jobwait({ surviving_job }, 0)[1] == -1, "Hidden survivor remains alive after other shell exits")
+manager.toggle()
+check(counts() == 1, "Hidden-panel exit still permits restoring surviving shell")
 manager.toggle()
 for _, term in ipairs(shells()) do
 	vim.api.nvim_chan_send(vim.b[term.buf].terminal_job_id, "exit\n")

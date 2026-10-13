@@ -8,6 +8,8 @@ Clique no nome para trocar e voltar ao shell, ou navegue na lista com os movimen
 
 Ocultar ou trocar sessão não encerra o shell: processos e histórico permanecem no buffer original. Ctrl+T restaura a última sessão selecionada e conserva a altura do painel. Ao terminar a sessão ativa com `exit`, outra sessão disponível assume seu lugar; a lista desaparece quando sobra um único shell.
 
+O fechamento de shells pertence ao painel, sem depender do fechamento automático do Snacks. A sessão encerrada é identificada pelo buffer original, mesmo que a janela ou o buffer já tenham sido removidos por outro evento. `exit` e `exit N` removem somente essa sessão; a última sessão restante continua visível e ativa. Se o painel estiver oculto, um encerramento em segundo plano não o reabre.
+
 Terminais de comandos externos continuam com suas próprias janelas. Ctrl+T preserva a ocultação/restauração dessas janelas, sem misturá-las à lista de shells. A integração também reconhece shells abertos pelos atalhos existentes do Snacks. Fechamentos de popups alheios não recriam a lista nem roubam seu foco.
 
 `tests/terminals.lua` cobre criação, troca, processos vivos, hide/restore, encerramento, comandos externos e foco. A UI foi conferida no Neovide em compositor Wayland isolado, incluindo primeiro clique na lista, Ctrl+T e Ctrl+N reais.

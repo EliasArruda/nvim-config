@@ -5,7 +5,16 @@ return {
 	opts = {
 		bigfile = { enabled = true, size = 1024 * 1024, line_length = 1000 },
 		animate = { enabled = false },
-		terminal = { enabled = true },
+		terminal = {
+			enabled = true,
+			override = function(cmd, opts)
+				opts.override = false
+				if cmd == nil then
+					opts.auto_close = false -- Shell lifecycle belongs to the shared panel.
+				end
+				return Snacks.terminal.open(cmd, opts)
+			end,
+		},
 		explorer = {
 			enabled = true,
 			exclude = { "bin", "obj", ".git", "node_modules", "%.git" },
