@@ -12,7 +12,7 @@ Instale Neovim 0.12+, Git, `rg`, `fd`, compilador C, make e tree-sitter CLI. Nod
 
 Instale apenas os SDKs das linguagens que utiliza:
 
-- **C#/Blazor:** SDK .NET 10 para os testes desta configuração; SDKs adicionais conforme `global.json`/framework do projeto. Instale o servidor com `dotnet tool install --global EasyDotnet --version 3.4.30` (ou `update` se já instalado). Inclua `$HOME/.dotnet/tools` no PATH. O EasyDotnet gerencia Roslyn, Razor, a ponte HTML e netcoredbg. O pacote Roslyn do Mason fornece o binário; não habilite outro cliente Roslyn/OmniSharp/rzls simultaneamente.
+- **C#/Blazor:** SDK .NET 10 para os testes desta configuração; SDKs adicionais conforme `global.json`/framework do projeto. Instale o servidor com `dotnet tool install --global EasyDotnet --version 3.4.30` (ou `update` se já instalado). Inclua `$HOME/.dotnet/tools` no PATH. O EasyDotnet gerencia Roslyn, Razor, a ponte HTML e netcoredbg. O CLI EasyDotnet inicia o servidor compatível com sua versão. Não habilite outro cliente Roslyn/OmniSharp/rzls simultaneamente.
 - **Web:** instale as dependências com o gerenciador do projeto. JS/TS/CSS/JSON/GraphQL com `biome.json` usam Biome, que precisa estar instalado no projeto ou PATH; os demais usam Prettier. HTML/Vue/Svelte/Markdown usam Prettier. Execute `:ConformInfo` para conferir a resolução.
 - **Go:** Go, ferramentas declaradas no Mason e `govulncheck` externo (`go install golang.org/x/vuln/cmd/govulncheck@latest`); inclua `$(go env GOPATH)/bin` no PATH. GoLint suporta golangci-lint v2 e envia SARIF ao quickfix.
 - **Rust:** rustup, rust-analyzer e rustfmt para a toolchain do projeto.
@@ -51,7 +51,7 @@ Aguarde o carregamento da solução antes da primeira completion. `.cs`, `.razor
 
 Use `:checkhealth easy-dotnet`, `:lsp`, `:ConformInfo` e `:messages` para diagnóstico. O teste de depuração cobre C# no servidor; depuração de WebAssembly no navegador exige um fluxo próprio e não foi validada.
 
-A query local em `queries/razor/injections.scm` corrige a perda persistente de cores após editar HTML aninhado. O Blink permite completion de atributos após espaço dentro de tags Razor e normaliza essa requisição para Roslyn/HTML. Reinicie o Neovim após atualizar essas configurações, pois parsers e queries já carregados permanecem em cache. Detalhes: [diagnóstico da edição Razor](audit/2026-09-19/RAZOR-EDICAO.md).
+A query local em `queries/razor/injections.scm` corrige a perda persistente de cores após editar HTML aninhado. O Blink permite completion de atributos após espaço dentro de tags Razor e normaliza essa requisição para Roslyn/HTML. Reinicie o Neovim após atualizar essas configurações, pois parsers e queries já carregados permanecem em cache. Detalhes: [arquitetura e correções Razor](docs/architecture.md).
 
 A gramática Treesitter Razor atual ainda produz nós `ERROR` para DOCTYPE e texto solto na raiz em arquivos válidos do template oficial. Isso não é um diagnóstico Roslyn nem um erro de compilação. Os casos estão registrados no relatório; não foram escondidos nem classificados como corrigidos.
 
