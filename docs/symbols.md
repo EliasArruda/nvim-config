@@ -18,7 +18,7 @@ O tema escuro, a fonte de texto JetBrainsMono Nerd Font h16 e os atalhos permane
 
 Os ícones são rasterizações dos SVGs em tamanhos predefinidos, não SVGs escaláveis ao vivo. O antialiasing pode diferir do VSCode. A configuração usa a fonte apenas no Neovide quando o snapshot e a assinatura instalada correspondem. Sem a fonte, com snapshot atualizado sem rebuild ou em terminais, volta à adaptação Nerd Font. Renderizadores sem suporte a sbix têm contornos monocromáticos na fonte.
 
-Os desenhos ocupam 1 em na fonte auxiliar, 25% maiores que a adaptação inicial de 0,8 em. O centro horizontal usa o espaço de duas células reservado pelos componentes; o centro vertical acompanha a altura das maiúsculas da JetBrainsMono. Os offsets coloridos e os contornos monocromáticos usam a mesma referência, sem aumentar texto, linhas ou atalhos. Os testes verificam a centralização nas nove resoluções, com tolerância de meio pixel para arredondamento.
+Os desenhos ocupam 1,04 em na fonte auxiliar, 30% maiores que a adaptação inicial de 0,8 em. O centro horizontal usa o espaço de duas células reservado pelos componentes; o centro vertical acompanha a altura das maiúsculas da JetBrainsMono. Os offsets coloridos e os contornos monocromáticos usam a mesma referência, sem aumentar texto, linhas ou atalhos. Os testes verificam a centralização nas nove resoluções, com tolerância de meio pixel para arredondamento.
 
 ## Prévia
 
