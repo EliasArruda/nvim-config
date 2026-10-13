@@ -22,7 +22,7 @@ A configuração é personalizada para Neovim 0.12, com Lazy como gerenciador. A
 
 Blink permanece na versão estável 1.x; migrar para 2.x exige outro contrato de dependências. Em Razor, o Emmet consulta somente seu servidor e pode mostrar o menu sem esperar Roslyn/Tailwind. A fonte LSP remove entradas Emmet duplicadas. C#/comentários não recebem abreviações HTML. O HTML delegado pelo EasyDotnet continua responsável por atributos e os componentes/parâmetros usam Roslyn.
 
-`span` aparece automaticamente no menu. Tab aceita `<span></span>`. Enter entre as tags mantém duas linhas, com o cursor no início da segunda. `span.` produz uma classe editável. Tab continua indentando quando não existe completion/snippet ativo: o atalho foi preservado.
+`span` aparece automaticamente no menu. Tab aceita `<span></span>`. Enter entre tags vazias abre três linhas, com o cursor na linha interna indentada. A regra usa autopairs, respeita shiftwidth/expandtab e exclui C# e comentários. `span.` produz uma classe editável. Tab continua indentando quando não existe completion/snippet ativo: o atalho foi preservado.
 
 As queries Razor corrigem regiões HTML combinadas e recuperam tags incompletas. Parsers continuam tendo limites em documentos inválidos; não há promessa de equivalência integral com VSCode. Novos arquivos Razor recebem Roslyn após salvar, conforme o pipeline upstream.
 

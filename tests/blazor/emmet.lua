@@ -30,7 +30,7 @@ next_case = function()
 	local case = cases[index]
 	if not case then
 		vim.fn.writefile({ vim.json.encode(results) }, vim.env.NVIM_BLAZOR_TEST_OUTPUT .. "/emmet.json")
-		print("PASS: four Emmet abbreviations, actual Tab acceptance, and two-line Enter")
+		print("PASS: four Emmet abbreviations, actual Tab acceptance, and indented three-line Enter")
 		vim.cmd("qa!")
 		return
 	end
@@ -76,10 +76,13 @@ next_case = function()
 								results[case.text].enter = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
 								results[case.text].cursor_enter = vim.api.nvim_win_get_cursor(0)
 								if
-									not vim.deep_equal(results[case.text].enter, { "<span>", "</span>" })
-									or not vim.deep_equal(results[case.text].cursor_enter, { 2, 0 })
+									not vim.deep_equal(
+										results[case.text].enter,
+										{ "<span>", string.rep(" ", vim.fn.shiftwidth()), "</span>" }
+									)
+									or not vim.deep_equal(results[case.text].cursor_enter, { 2, vim.fn.shiftwidth() })
 								then
-									fail("Enter must produce exactly two lines with cursor before closing tag")
+									fail("Enter must create an indented middle line with the cursor inside")
 									return
 								end
 								next_case()

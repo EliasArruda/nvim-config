@@ -13,6 +13,8 @@ export NVIM_TEST_ROOT="$config_root"
 cd "$config_root"
 nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/pre.lua")' \
   '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/regression.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
+nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/pre.lua")' \
+  '+luafile tests/razor-enter.lua'
 if [[ "${1:-}" == "--integration" ]]; then
   integration_root="$(mktemp -d "${TMPDIR:-/tmp}/nvim-blazor-check.XXXXXX")"
   printf 'Integration artifacts: %s\n' "$integration_root"
@@ -45,7 +47,7 @@ EOF
   if timeout 90 nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/pre.lua")' \
     '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/blazor/emmet.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' \
     > "$integration_root/emmet.log" 2>&1; then
-    printf 'PASS: Emmet abbreviations, Tab expansion and two-line Enter. Evidence: %s/emmet.json\n' "$integration_root"
+    printf 'PASS: Emmet abbreviations, Tab expansion and indented three-line Enter. Evidence: %s/emmet.json\n' "$integration_root"
   else
     status=$?
     cat "$integration_root/emmet.log" >&2

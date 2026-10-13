@@ -90,13 +90,14 @@ O JSON registra os itens e o cliente que os produziu. Este teste não equivale a
 
 Emmet já é fornecido pelo servidor `emmet_language_server`, com Razor mapeado para HTML. As sugestões recebem prioridade no markup; ficam fora de blocos C#, expressões Razor reais e comentários. Um `@` ausente na recuperação do parser não transforma uma abreviação HTML, como `div.container`, em código C#.
 
-Digite `span` e pressione Tab para gerar `<span></span>`. O cursor fica entre as tags. Enter gera exatamente duas linhas, com o cursor no início da linha da tag de fechamento:
+Digite `span` e pressione Tab para gerar `<span></span>`. O cursor fica entre as tags. Enter entre tags vazias abre uma linha interna indentada, com o cursor nela:
 
 ```html
 <span>
+    | cursor
 </span>
 ```
 
 `span.` inicia uma classe e gera `<span class=""></span>`, com o cursor no valor da classe. `div.container` gera uma div com essa classe; `ul>li*3` gera três itens. Os campos de snippets podem ser percorridos com Tab/Shift-Tab. Este comportamento usa Emmet real, sem substituição de texto inventada.
 
-`check-blazor --integration` também testa quatro abreviações digitadas, aceitação por Tab e Enter. O Enter de Razor já produzia duas linhas no ambiente verificado; sua configuração de autopairs foi preservada. Outros filetypes continuam com suas regras de indentação existentes.
+`check-blazor --integration` também testa quatro abreviações digitadas, aceitação por Tab e Enter. A regra de Enter do autopairs é limitada a tags Razor correspondentes; preserva o recuo externo, usa a indentação do buffer e exclui strings C# e comentários. Outros filetypes continuam com suas regras de indentação existentes.
