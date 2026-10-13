@@ -27,4 +27,17 @@ vim.cmd.colorscheme("nightfly")
 check(color("file", "Program.cs") == 0x14B8A6, "Symbols colors persist after colorscheme reload")
 check(vim.api.nvim_get_hl(0, { name = "Normal", link = false }).bg == 0x080C10, "Dark editor background preserved")
 check(vim.fn.exists(":SymbolsIcons") == 2, "Symbols preview command")
+local icons = require("config.icons")
+local path_glyph, path_hl = icons.completion_icon({ kind = "File", item = { label = "Home.razor" } })
+check(
+	path_glyph == select(1, mini.get("file", "Home.razor")) and path_hl == select(2, mini.get("file", "Home.razor")),
+	"Path completion shares Razor icon and color"
+)
+local semantic, semantic_hl = icons.completion_icon({ kind = "Method", kind_icon = "", item = { label = "Save" } })
+check(semantic == "" and semantic_hl == "BlinkCmpKindMethod", "Semantic completion icons stay intact")
+vim.cmd("SymbolsIcons all")
+local snapshot =
+	vim.json.decode(table.concat(vim.fn.readfile(vim.fn.stdpath("config") .. "/data/symbols-icons.json"), "\n"))
+check(vim.api.nvim_buf_line_count(0) == vim.tbl_count(snapshot.catalog) + 3, "Complete catalog includes every SVG")
+vim.cmd("close")
 print(("PASS: %d icon checks"):format(checks))

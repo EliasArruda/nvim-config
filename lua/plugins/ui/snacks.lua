@@ -11,6 +11,13 @@ return {
 			exclude = { "bin", "obj", ".git", "node_modules", "%.git" },
 		},
 		picker = {
+			sources = {
+				explorer = {
+					format = function(item, picker)
+						return require("config.icons").explorer_format(item, picker)
+					end,
+				},
+			},
 			icons = { files = { dir = "", dir_open = "", file = "" } },
 			enabled = true,
 			exclude = { "bin", "obj", ".git", "node_modules", "%.git" },

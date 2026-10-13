@@ -85,7 +85,21 @@ return {
 				menu = {
 					border = "rounded",
 					scrollbar = false,
-					draw = { columns = { { "kind_icon", "label", gap = 1 }, { "kind" } } },
+					draw = {
+						columns = { { "kind_icon", "label", gap = 1 }, { "kind" } },
+						components = {
+							kind_icon = {
+								text = function(ctx)
+									local glyph = require("config.icons").completion_icon(ctx)
+									return glyph .. ctx.icon_gap
+								end,
+								highlight = function(ctx)
+									local _, hl = require("config.icons").completion_icon(ctx)
+									return { { group = hl, priority = 20000 } }
+								end,
+							},
+						},
+					},
 				},
 				documentation = {
 					auto_show = true,

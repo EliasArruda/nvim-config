@@ -1,27 +1,53 @@
 # Symbols no Neovim
 
-A configuração adapta a extensão [Symbols, de Miguel Solorio](https://github.com/miguelsolorio/vscode-symbols), instalada no VSCode como `miguelsolorio.symbols` 0.0.26. O snapshot usa o manifesto modificado declarado pela extensão, que é o tema ativo do usuário.
+A configuração adapta a [Symbols de Miguel Solorio](https://github.com/miguelsolorio/vscode-symbols) 0.0.26 instalada no VSCode. O snapshot vem do manifesto modificado declarado pela extensão, que é o tema ativo do usuário.
 
-`data/symbols-icons.json` reúne 1.479 associações de extensão, nome de arquivo, linguagem e diretório, além das cores extraídas dos SVGs. Foram acrescentados aliases para pastas .NET capitalizadas e filetypes Razor/JSONC. Arquivos nomeados como package.json mantêm prioridade sobre a extensão JSON. As cores dos ícones são próprias da Symbols e persistem após trocar o colorscheme; o fundo Nightfly quase preto permanece igual.
+## Cobertura
 
-`mini.icons` fornece os glifos e o adaptador nvim-web-devicons usado por Telescope e Bufferline. Snacks utiliza o mesmo provedor e pastas abertas/fechadas de fonte. `:SymbolsIcons` abre uma prévia. Nenhum atalho ou fonte foi alterado.
+- Todos os 348 desenhos SVG do catálogo, incluindo logos, variantes de cor e pastas com badges.
+- 1.479 associações: 427 extensões, 783 nomes de arquivo, 106 linguagens e 163 diretórios.
+- Aliases .NET capitalizados, Razor/JSONC e prioridade para arquivos nomeados, como package.json.
+- Explorador Snacks, pastas abertas/fechadas e raiz, Telescope, Bufferline e autocomplete de caminhos no Blink.
+- Normalização de extensão/filetype para o lookup do mini.icons. O manifesto instalado referencia dois ícones inexistentes: less usa code-blue e yml usa yaml.
 
-## Fidelidade
+O tema escuro, a fonte de texto JetBrainsMono Nerd Font h16 e os atalhos permanecem iguais. A Symbols fornece ícones de arquivos/pastas; os ícones semânticos de métodos, classes e propriedades continuam com seus desenhos próprios.
 
-Neovide utiliza ícones de fonte, portanto os desenhos são aproximações com Nerd Fonts. Não são os SVGs originais nem uma execução da extensão VSCode. Logos com várias cores e detalhes internos de pastas não são reproduzidos integralmente. A cor dominante de cada SVG é preservada.
+## Desenhos originais no Neovide
 
-Plugins de SVG reais, como [real-icons.nvim](https://github.com/Mirsmog/real-icons.nvim), dependem de terminais com protocolo Kitty e usam fallback de fonte no Neovide. Por isso não foram adicionados para este fluxo.
+`Neovim Symbols` é uma fonte auxiliar local gerada de `data/symbols-svg/*.svg`, com rasterização resvg e nove resoluções coloridas no formato sbix. Mantém múltiplas cores, contornos, máscaras, transparências e detalhes das pastas. A fonte entra como fallback na opção guifont; não substitui letras, números nem ícones Nerd Font existentes. A renderização foi conferida no Neovide real em uma sessão Wayland isolada.
 
-## Atualizar o snapshot
+Os ícones são rasterizações dos SVGs em tamanhos predefinidos, não SVGs escaláveis ao vivo. O antialiasing pode diferir do VSCode. A configuração usa a fonte apenas no Neovide quando o snapshot e a assinatura instalada correspondem. Sem a fonte, com snapshot atualizado sem rebuild ou em terminais, volta à adaptação Nerd Font. Renderizadores sem suporte a sbix têm contornos monocromáticos na fonte.
 
-Execute explicitamente, usando o diretório da versão instalada:
+## Prévia
+
+- `:SymbolsIcons`: exemplos de arquivos e pastas.
+- `:SymbolsIcons all`: os 348 desenhos, em ordem alfabética.
+- `:SymbolsIcons directory`: todas as associações de pastas.
+- `:SymbolsIcons file`, `extension` ou `filetype`: associações dessas categorias.
+
+Nenhum atalho foi acrescentado. As janelas de prévia usam os comandos e movimentos existentes do Neovim.
+
+## Instalação e atualização
+
+A fonte está instalada neste computador. Para reconstruir em outra instalação Linux com Python 3 e Fontconfig:
+
+```bash
+~/.config/nvim/bin/install-symbols-font
+```
+
+O comando cria um venv fora do repositório, instala dependências com versões fixadas, gera a fonte em `${XDG_DATA_HOME:-~/.local/share}/fonts/nvim-symbols` e atualiza o cache Fontconfig. O binário não é versionado; os SVGs, importador, gerador e licença MIT são versionados.
+
+Para importar uma versão instalada da Symbols e reconstruir a fonte:
 
 ```bash
 python3 ~/.config/nvim/scripts/import-symbols.py ~/.vscode/extensions/miguelsolorio.symbols-0.0.26
+~/.config/nvim/bin/install-symbols-font
 ```
 
-Depois reabra o editor. A abertura normal lê apenas o snapshot local; não consulta nem modifica o VSCode. A licença da Symbols acompanha os dados em `licenses/symbols-MIT.txt`.
+Depois reabra o Neovide. Não há rede, instalação nem consulta ao VSCode durante a abertura normal. Para desativar a fonte auxiliar antes de carregar os plugins, defina `vim.g.symbols_icons_font = false`.
 
 ## Verificação
 
-Treze checks cobrem cores, Razor, Vue por languageId, nomes de arquivo, aliases de diretório, devicons, reload de colorscheme e fundo escuro. A fonte JetBrainsMono Nerd Font instalada contém todos os glifos usados. A UI embutida foi conferida no explorador do projeto Blazor e na prévia; a janela nativa Neovide não foi automatizada.
+`bin/check-nvim` cobre o fallback terminal, cores, precedência de nomes, reload, fundo escuro, catálogos e autocomplete. O teste explícito `tests/symbols-font.lua` verifica todas as 1.479 associações contra os caracteres da fonte e a largura usada pelo Neovim. `tests/symbols-font.py` valida o cmap, as imagens coloridas, contornos e a separação da fonte de texto.
+
+Os testes visuais usam o Neovide em um compositor Wayland independente, sem depender da janela ou do foco da sessão do usuário.

@@ -1,4 +1,4 @@
-vim.o.guifont = "JetBrainsMono Nerd Font:h16"
+vim.o.guifont = require("config.icons").gui_font()
 vim.opt.linespace = 0
 vim.g.neovide_opacity = 1.0
 vim.g.neovide_normal_opacity = 1.0
