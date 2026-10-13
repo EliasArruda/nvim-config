@@ -85,3 +85,7 @@ A configuração principal fica em `lua/core`, as ferramentas em `lua/configs/la
 ## Ícones Symbols
 
 [Symbols do VSCode](docs/symbols.md): 348 desenhos originais e 1.479 associações, com fonte auxiliar colorida no Neovide e fallback Nerd Font em terminais. Integra explorador, abas, Telescope e autocomplete de caminhos. Use `:SymbolsIcons all` para o catálogo completo; `bin/install-symbols-font` reconstrói a fonte. Texto e atalhos permanecem iguais.
+
+## Painel de terminais
+
+[Sessões em um único painel](docs/terminal-sessions.md): Ctrl+T mostra/oculta e Ctrl+N cria outra sessão no modo terminal. Com vários shells, a lista à direita permite trocar por clique ou Enter, mantendo os processos ativos.

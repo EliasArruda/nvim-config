@@ -59,6 +59,7 @@ return {
 	config = function(_, opts)
 		require("snacks").setup(opts)
 		require("core.toggles").setup()
+		require("core.terminals").setup()
 	end,
 	keys = {
 		{
