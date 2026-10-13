@@ -9,7 +9,7 @@ function M.setup()
 		checker = { enabled = false },
 		change_detection = { notify = false },
 		rocks = { enabled = false },
-		install = { missing = false, colorscheme = { "tokyonight", "habamax" } },
+		install = { missing = false, colorscheme = { "kanagawa", "habamax" } },
 		ui = { border = "rounded" },
 		performance = { rtp = { disabled_plugins = { "gzip", "tarPlugin", "tohtml", "tutor", "zipPlugin" } } },
 	})
