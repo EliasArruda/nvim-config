@@ -16,13 +16,13 @@ return {
 					local theme = vim.deepcopy(require("lualine.themes.nightfly"))
 					for _, mode in pairs(theme) do
 						for section, hl in pairs(mode) do
-							if section == "b" then
-								hl.bg = "#222e3c"
-							elseif section == "c" then
-								hl.bg = mode == theme.inactive and "#10151b" or "#161d26"
-							end
 							if section == "a" then
-								hl.fg = "#080c10"
+								hl.fg = hl.bg
+								hl.bg = "#080c10"
+							elseif section == "b" then
+								hl.bg = "#101419"
+							else
+								hl.bg = "#0a0c10"
 							end
 						end
 					end

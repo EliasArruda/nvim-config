@@ -18,15 +18,15 @@ return {
 				always_show_bufferline = false, -- não mostra se houver só 1 buffer
 			},
 			highlights = {
-				background = { fg = "#8894a5", bg = "#10151b" },
+				background = { fg = "#8894a5", bg = "#0a0c10" },
 				buffer_selected = {
 					fg = "#d6deeb",
-					bg = "#1c2633",
+					bg = "#101419",
 					bold = true,
 				},
 				indicator_selected = {
 					fg = "#82aaff",
-					bg = "#1c2633",
+					bg = "#101419",
 				},
 				fill = {
 					bg = "#080c10",

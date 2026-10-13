@@ -63,6 +63,6 @@ Fontes primárias consultadas:
 
 Decisões refletem versões disponíveis em 12/10/2026, não versões futuras de novembro/dezembro.
 
-### Hierarquia Nightfly
+### Nightfly escuro
 
-Superfícies preservam a hierarquia do tema usando tons neutros: editor #080c10, painéis secundários #10151b, menus/flutuantes #161d26, área ativa elevada #1c2633, prompt #222e3c e seleção #2c3e52. Bordas e foco usam contraste crescente; azul permanece como acento de foco, sem dominar o fundo. Abas e status seguem a mesma escala. Cores de sintaxe e alertas mantêm seu significado.
+Preferência final do usuário: toda a interface próxima do preto. Editor #080c10; painéis, menus e documentação #0a0c10; linha/prompt #0d1014; aba ativa #101419; seleção #151b22. A barra de modo usa texto colorido sobre fundo escuro, sem bloco azul claro. Bordas ficam discretas. Cores de código e atalhos permanecem iguais.
