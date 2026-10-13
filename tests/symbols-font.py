@@ -14,7 +14,7 @@ path = Path(os.environ.get('XDG_DATA_HOME', str(Path.home()/'.local/share')))/'f
 font = TTFont(path)
 metadata = json.loads(path.with_suffix('.json').read_text())
 assert metadata['signature'] == data['font_signature']
-assert metadata['renderer'] == 'resvg-sbix-v1'
+assert metadata['renderer'] == 'resvg-sbix-v2'
 expected = {entry['codepoint']: name for name, entry in data['catalog'].items()}
 assert font.getBestCmap() == expected, 'Font must contain exactly the catalog codepoints'
 text = TTFont(subprocess.check_output(['fc-match','-f','%{file}','JetBrainsMono Nerd Font']).decode())
@@ -24,7 +24,7 @@ for codepoint, name in expected.items():
     assert font['glyf'][name].numberOfContours > 0, name+' has no monochrome outline'
     for size, strike in font['sbix'].strikes.items():
         image = Image.open(io.BytesIO(strike.glyphs[name].imageData)).convert('RGBA')
-        assert image.width == image.height == round(size*.8), name+' has inconsistent bitmap dimensions'
+        assert image.width == image.height == size, name+' has inconsistent bitmap dimensions'
         assert image.getchannel('A').getbbox(), name+' is invisible'
         images += 1
 assets = Image.open(io.BytesIO(font['sbix'].strikes[64].glyphs['folder-assets'].imageData)).convert('RGBA')
@@ -32,5 +32,5 @@ assert len({rgba[:3] for rgba in assets.get_flattened_data() if rgba[3]==255}) >
 # SVG luminance masks define the Svelte negative space. An alpha-only renderer
 # incorrectly fills it; test a pixel well inside the cutout at this resolution.
 svelte = Image.open(io.BytesIO(font['sbix'].strikes[96].glyphs['svelte'].imageData)).convert('RGBA')
-assert svelte.getpixel((38, 38))[3] < 30, 'Svelte SVG mask lost its central negative space'
+assert svelte.getpixel((48, 48))[3] < 30, 'Svelte SVG mask lost its central negative space'
 print(f'PASS: {len(expected)} glyphs, {images} colored bitmaps, folder badge colors and SVG mask; no text-font collisions')

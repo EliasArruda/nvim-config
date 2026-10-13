@@ -49,7 +49,7 @@ def outline(png):
     while edges:
         start = next(iter(edges))
         point = start
-        pen.moveTo((round(point[0]*800/size), round(40+(size-point[1])*800/size)))
+        pen.moveTo((round(point[0]*1000/size), round(-60+(size-point[1])*1000/size)))
         while True:
             choices = edges[point]
             next_point = choices.pop()
@@ -57,7 +57,7 @@ def outline(png):
                 del edges[point]
             if next_point == start:
                 break
-            pen.lineTo((round(next_point[0]*800/size), round(40+(size-next_point[1])*800/size)))
+            pen.lineTo((round(next_point[0]*1000/size), round(-60+(size-next_point[1])*1000/size)))
             point = next_point
         pen.closePath()
     return pen.glyph()
@@ -88,10 +88,10 @@ def main():
         png = render(source, 64)
         glyphs[name] = outline(png)
         for size, strike in sbix.strikes.items():
-            pixels = round(size*.8)
+            pixels = size
             png = render(source, pixels)
             strike.glyphs[name] = Glyph(
-                glyphName=name, originOffsetX=0, originOffsetY=round(size*.04),
+                glyphName=name, originOffsetX=0, originOffsetY=round(-size*.06),
                 graphicType='png ', imageData=png,
             )
     font.setupGlyf(glyphs)
@@ -110,7 +110,7 @@ def main():
     font.font['sbix'] = sbix
     args.output.parent.mkdir(parents=True, exist_ok=True)
     font.save(args.output)
-    args.output.with_suffix('.json').write_text(json.dumps({'signature': data['font_signature'], 'icons': len(catalog), 'renderer': 'resvg-sbix-v1'})+'\n')
+    args.output.with_suffix('.json').write_text(json.dumps({'signature': data['font_signature'], 'icons': len(catalog), 'renderer': 'resvg-sbix-v2'})+'\n')
     print(f'PASS: {len(catalog)} SVG icons, {len(sbix.strikes)} color strikes: {args.output}')
 
 

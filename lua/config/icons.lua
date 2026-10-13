@@ -10,7 +10,7 @@ if vim.fn.filereadable(font_path) == 1 and vim.fn.filereadable(metadata_path) ==
 	font_matches = ok
 		and type(metadata) == "table"
 		and metadata.signature == data.font_signature
-		and metadata.renderer == "resvg-sbix-v1"
+		and metadata.renderer == "resvg-sbix-v2"
 end
 local glyphs = {
 	csharp = "󰌛",
