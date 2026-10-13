@@ -18,6 +18,11 @@ from fontTools.ttLib import newTable
 from fontTools.ttLib.tables.sbixGlyph import Glyph
 from fontTools.ttLib.tables.sbixStrike import Strike
 
+# JetBrainsMono has a 600-unit cell and 730-unit cap height. Consumers reserve
+# two cells (icon + padding): center the 1000-unit artwork at (600, 365).
+ICON_X = 100
+ICON_Y = -135
+
 
 def render(source, pixels):
     png = resvg_py.svg_to_bytes(svg_string=source.decode('utf-8'), width=pixels, height=pixels, skip_system_fonts=True)
@@ -49,7 +54,7 @@ def outline(png):
     while edges:
         start = next(iter(edges))
         point = start
-        pen.moveTo((round(point[0]*1000/size), round(-60+(size-point[1])*1000/size)))
+        pen.moveTo((round(ICON_X+point[0]*1000/size), round(ICON_Y+(size-point[1])*1000/size)))
         while True:
             choices = edges[point]
             next_point = choices.pop()
@@ -57,7 +62,7 @@ def outline(png):
                 del edges[point]
             if next_point == start:
                 break
-            pen.lineTo((round(next_point[0]*1000/size), round(-60+(size-next_point[1])*1000/size)))
+            pen.lineTo((round(ICON_X+next_point[0]*1000/size), round(ICON_Y+(size-next_point[1])*1000/size)))
             point = next_point
         pen.closePath()
     return pen.glyph()
@@ -91,7 +96,7 @@ def main():
             pixels = size
             png = render(source, pixels)
             strike.glyphs[name] = Glyph(
-                glyphName=name, originOffsetX=0, originOffsetY=round(-size*.06),
+                glyphName=name, originOffsetX=round(size*ICON_X/1000), originOffsetY=round(size*ICON_Y/1000),
                 graphicType='png ', imageData=png,
             )
     font.setupGlyf(glyphs)
@@ -110,7 +115,7 @@ def main():
     font.font['sbix'] = sbix
     args.output.parent.mkdir(parents=True, exist_ok=True)
     font.save(args.output)
-    args.output.with_suffix('.json').write_text(json.dumps({'signature': data['font_signature'], 'icons': len(catalog), 'renderer': 'resvg-sbix-v2'})+'\n')
+    args.output.with_suffix('.json').write_text(json.dumps({'signature': data['font_signature'], 'icons': len(catalog), 'renderer': 'resvg-sbix-v3'})+'\n')
     print(f'PASS: {len(catalog)} SVG icons, {len(sbix.strikes)} color strikes: {args.output}')
 
 

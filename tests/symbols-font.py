@@ -14,7 +14,7 @@ path = Path(os.environ.get('XDG_DATA_HOME', str(Path.home()/'.local/share')))/'f
 font = TTFont(path)
 metadata = json.loads(path.with_suffix('.json').read_text())
 assert metadata['signature'] == data['font_signature']
-assert metadata['renderer'] == 'resvg-sbix-v2'
+assert metadata['renderer'] == 'resvg-sbix-v3'
 expected = {entry['codepoint']: name for name, entry in data['catalog'].items()}
 assert font.getBestCmap() == expected, 'Font must contain exactly the catalog codepoints'
 text = TTFont(subprocess.check_output(['fc-match','-f','%{file}','JetBrainsMono Nerd Font']).decode())
@@ -23,6 +23,9 @@ images = 0
 for codepoint, name in expected.items():
     assert font['glyf'][name].numberOfContours > 0, name+' has no monochrome outline'
     for size, strike in font['sbix'].strikes.items():
+        glyph = strike.glyphs[name]
+        assert abs(glyph.originOffsetX + size/2 - size*1.2/2) <= .5, name+' is not centered in its two-cell slot'
+        assert abs(glyph.originOffsetY + size/2 - size*.730/2) <= .5, name+' is not centered against the text cap height'
         image = Image.open(io.BytesIO(strike.glyphs[name].imageData)).convert('RGBA')
         assert image.width == image.height == size, name+' has inconsistent bitmap dimensions'
         assert image.getchannel('A').getbbox(), name+' is invisible'
