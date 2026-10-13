@@ -10,10 +10,14 @@ local function is_buffer_empty()
 end
 
 local function apply_template(template, cursor_line, cursor_col)
+	local buf = vim.api.nvim_get_current_buf()
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, template)
 
 	vim.schedule(function()
-		local line_count = vim.api.nvim_buf_line_count(0)
+		if not vim.api.nvim_buf_is_valid(buf) or vim.api.nvim_get_current_buf() ~= buf then
+			return
+		end
+		local line_count = vim.api.nvim_buf_line_count(buf)
 		local safe_line = math.min(cursor_line, line_count)
 		vim.api.nvim_win_set_cursor(0, { safe_line, cursor_col })
 		if vim.g.vscode then
@@ -24,8 +28,12 @@ local function apply_template(template, cursor_line, cursor_col)
 	end)
 end
 
-local function run_template()
+local function run_template(event)
+	local buf = event.buf
 	vim.schedule(function()
+		if not vim.api.nvim_buf_is_valid(buf) or vim.api.nvim_get_current_buf() ~= buf then
+			return
+		end
 		local filename = vim.fn.expand("%:t")
 
 		if filename == "" or not filename:match("%.vue$") then

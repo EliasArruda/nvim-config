@@ -28,6 +28,10 @@ vim.keymap.set("t", "<C-BS>", function()
 	end
 end, { noremap = true })
 
--- Clipboard
-vim.keymap.set({ "n", "v", "i" }, "<C-S-c>", '"+y', { desc = "Copy to system clipboard" })
-vim.keymap.set("t", "<C-S-v>", '<C-\\><C-n>"+pi', { desc = "Paste in terminal" })
+-- Mode-specific clipboard: use the native paste API for terminal input.
+vim.keymap.set("n", "<C-S-c>", '"+yy', { desc = "Copy line" })
+vim.keymap.set("x", "<C-S-c>", '"+y', { desc = "Copy selection" })
+vim.keymap.set("i", "<C-S-c>", '<C-o>"+yy', { desc = "Copy line" })
+vim.keymap.set("t", "<C-S-v>", function()
+	vim.api.nvim_paste(vim.fn.getreg("+"), true, -1)
+end, { desc = "Paste in terminal" })

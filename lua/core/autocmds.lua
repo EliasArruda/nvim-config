@@ -33,15 +33,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("VimResized", {
 	group = augroup("resize_splits"),
 	callback = function()
-		-- Percorre apenas as janelas da aba atual, sem usar `tabdo` (mais eficiente)
-		local wins = vim.api.nvim_tabpage_list_wins(0)
-		for _, win in ipairs(wins) do
-			if vim.api.nvim_win_is_valid(win) then
-				vim.api.nvim_win_call(win, function()
-					vim.cmd("wincmd =")
-				end)
-			end
-		end
+		vim.cmd("wincmd =")
 	end,
 })
 
@@ -101,7 +93,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.bo[event.buf].buflisted = false
 
 		vim.keymap.set("n", "q", function()
-				vim.cmd.close()
+			vim.cmd.close()
 			pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
 		end, {
 			buffer = event.buf,
@@ -121,6 +113,8 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		vim.opt_local.wrap = true
 		vim.opt_local.spell = true
+		-- O dicionário `pt` instalado é o português brasileiro (UTF-8).
+		vim.opt_local.spelllang = "pt"
 	end,
 })
 
@@ -140,7 +134,11 @@ vim.api.nvim_create_autocmd("FileType", {
 -- 🔤 TEMPL FILETYPE
 -- Ensure .templ files are detected for Go templating
 -- ─────────────────────────────────────────────
-vim.filetype.add({ extension = { templ = "templ" } })
+vim.filetype.add({
+	extension = { templ = "templ", razor = "razor", cshtml = "razor" },
+	filename = { ["appsettings.json"] = "jsonc", ["launchSettings.json"] = "jsonc", ["secrets.json"] = "jsonc" },
+	pattern = { [".*[/\\]appsettings%.[^/\\]+%.json"] = "jsonc" },
+})
 
 -- ─────────────────────────────────────────────
 -- 📁 AUTO DIRECTORY CREATION
@@ -149,6 +147,9 @@ vim.filetype.add({ extension = { templ = "templ" } })
 vim.api.nvim_create_autocmd("BufWritePre", {
 	group = augroup("mkdir"),
 	callback = function(event)
+		if vim.bo[event.buf].buftype ~= "" or event.match == "" or event.match:match("^%a[%w+.-]*://") then
+			return
+		end
 		local file = vim.fs.normalize(event.match)
 		vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
 	end,

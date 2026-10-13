@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+nvim_data="${XDG_DATA_HOME:-$HOME/.local/share}/nvim"
+if [[ ! -d "$nvim_data/lazy/lazy.nvim" ]]; then
+  git clone --filter=blob:none --branch=stable https://github.com/folke/lazy.nvim.git "$nvim_data/lazy/lazy.nvim"
+fi
+nvim --headless '+Lazy! restore' +qa
+printf '%s\n' 'Plugins restored. Open Neovim and run :NvimToolsInstall and :NvimParsersInstall.'

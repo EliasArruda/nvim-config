@@ -1,6 +1,2 @@
-require("core")
-require("configs")
-
-if vim.g.vscode then
-	require("vscode-nvim-config.init")
-end
+-- A single bootstrap owns runtime services; keyboard definitions stay intact.
+require("config").setup()

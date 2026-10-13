@@ -45,13 +45,10 @@ return {
 					return items
 				end
 				local result = {}
-				local code = razor.is_code_or_comment(context.bufnr, context.cursor)
 				for _, item in ipairs(items) do
 					if item.client_name ~= "emmet_language_server" then
 						result[#result + 1] = item
-					elseif not code then
-						item.score_offset = (item.score_offset or 0) + 25
-						result[#result + 1] = item
+
 					end
 				end
 				return result

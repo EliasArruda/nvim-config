@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -eu
+
+ruby_bindir="$(mise exec -- ruby -e 'print Gem.bindir')"
+ruby_lsp_executable="$ruby_bindir/ruby-lsp"
+
+if [ ! -x "$ruby_lsp_executable" ]; then
+	printf '%s\n' "ruby-lsp is not installed for $(mise current ruby). Run: mise exec -- gem install ruby-lsp --no-document" >&2
+	exit 127
+fi
+
+# ruby-lsp restarts itself after composing .ruby-lsp/Gemfile. Keeping the
+# selected Ruby's gem bin directory first ensures that restart uses the same
+# Ruby ABI and never falls back to Mason's Ruby executables.
+export PATH="$ruby_bindir:$PATH"
+exec mise exec -- "$ruby_lsp_executable" "$@"

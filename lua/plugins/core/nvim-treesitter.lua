@@ -1,79 +1,57 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	branch = "main",
-	build = ":TSUpdate",
-	event = { "VeryLazy" },
+	lazy = false,
+	build = function()
+		local ts = require("nvim-treesitter")
+		local available = ts.get_available()
+		local langs = vim.tbl_filter(function(lang) return vim.tbl_contains(available, lang) end, require("configs.langs.treesitter"))
+		ts.update(langs):wait(300000)
+	end,
 	cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
 
 	opts = function()
 		local ok, langs = pcall(require, "configs.langs.treesitter")
 
-		return {
-			ensure_installed = (ok and type(langs) == "table") and langs or {},
-
-			highlight = { enable = true },
-			indent = { enable = true },
-		}
+		return { ensure_installed = (ok and type(langs) == "table") and langs or {} }
 	end,
 
 	config = function(_, opts)
-		local TS = require("nvim-treesitter")
+		local treesitter = require("nvim-treesitter")
+		treesitter.setup()
+		-- Installation is explicit through :NvimParsersInstall or :TSUpdate.
 
-		if not TS.get_installed then
-			vim.notify("Reinicie o Neovim e rode :TSUpdate", vim.log.levels.ERROR)
-			return
-		end
-
-		if type(opts.ensure_installed) ~= "table" then
-			vim.notify("`ensure_installed` deve ser uma tabela", vim.log.levels.ERROR)
-			return
-		end
-
-		-- Setup
-		TS.setup(opts)
-
-		local function ensure_parsers()
-			local installed = require("nvim-treesitter.config").get_installed()
-			for _, lang in ipairs(opts.ensure_installed) do
-				if not vim.tbl_contains(installed, lang) then
-					vim.schedule(function()
-						vim.cmd.TSInstall({ args = { lang }, bang = true })
-					end)
-				end
-			end
-		end
-		ensure_parsers()
-
-		-- Ativa highlight/indent/folds por filetype (igual ao LazyVim)
 		vim.api.nvim_create_autocmd("FileType", {
 			group = vim.api.nvim_create_augroup("treesitter_features", { clear = true }),
-			callback = function(ev)
-				local ft = ev.match
-				local lang = vim.treesitter.language.get_lang(ft)
-
-				-- Verifica se o parser está disponível
-				local has_parser = pcall(vim.treesitter.get_parser, ev.buf, lang)
-				if not has_parser then
+			callback = function(event)
+				if require("config.runtime").is_large(event.buf) then return end
+				-- The main branch exposes highlighting through Neovim itself.
+				-- Razor injects its markup into the HTML parser. Neovim does not
+				-- reliably load that injected language before the Razor highlighter,
+				-- leaving tag names without captures until HTML is opened elsewhere.
+				if event.match == "razor" then
+					pcall(vim.treesitter.language.add, "html")
+				end
+				local lang = vim.treesitter.language.get_lang(event.match)
+				if not lang then
 					return
 				end
-
-				local function feat_enabled(feat)
-					local f = opts[feat] or {}
-					return f.enable ~= false and not (type(f.disable) == "table" and vim.tbl_contains(f.disable, lang))
+				local loaded, available = pcall(vim.treesitter.language.add, lang)
+				if not loaded or not available then
+					return
 				end
-
-				-- Highlighting
-				if feat_enabled("highlight") then
-					pcall(vim.treesitter.start, ev.buf)
+				local ok, err = pcall(vim.treesitter.start, event.buf)
+				if not ok then
+					vim.notify_once("Treesitter " .. lang .. ": " .. tostring(err), vim.log.levels.ERROR)
+					return
 				end
-
-			-- Indentação
-			if feat_enabled("indent") then
-				if vim.bo[ev.buf].indentexpr == "" then
-					vim.bo[ev.buf].indentexpr = "v:lua.vim.treesitter.indentexpr()"
+				if event.match == "razor" then
+					local ok_parser, parser = pcall(vim.treesitter.get_parser, event.buf, "razor")
+					if ok_parser then
+						parser:parse(true)
+					end
 				end
-			end
-		end,
-	})
+			end,
+		})
 	end,
 }

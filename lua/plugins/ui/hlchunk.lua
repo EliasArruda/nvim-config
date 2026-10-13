@@ -1,4 +1,5 @@
 return {
+	enabled = false,
 	"shellRaining/hlchunk.nvim",
 	config = function()
 		require("hlchunk").setup({

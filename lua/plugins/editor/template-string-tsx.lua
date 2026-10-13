@@ -1,4 +1,4 @@
 return {
 	"chrisgrieser/nvim-puppeteer",
-	lazy = false,
+	ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
 }

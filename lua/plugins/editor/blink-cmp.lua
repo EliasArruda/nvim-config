@@ -2,10 +2,11 @@ return {
 	{
 		"saghen/blink.cmp",
 		dependencies = "rafamadriz/friendly-snippets",
-		version = "*",
+		version = "1.*",
+		lazy = false,
 		opts = {
 			enabled = function()
-				if vim.bo.buftype ~= "" then
+				if require("config.runtime").is_large(0) or vim.bo.buftype ~= "" then
 					return false
 				end
 				if vim.bo.filetype == "netrw" then
@@ -51,7 +52,7 @@ return {
 				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 				["<C-e>"] = { "hide", "fallback" },
 				["<CR>"] = { "accept", "fallback" },
-				["<Tab>"] = { "snippet_forward", "fallback" },
+				["<Tab>"] = { "snippet_forward", "select_and_accept", "fallback" },
 				["<S-Tab>"] = { "snippet_backward", "fallback" },
 				["<Up>"] = { "select_prev", "fallback" },
 				["<Down>"] = { "select_next", "fallback" },
@@ -62,10 +63,24 @@ return {
 				["<C-d>"] = { "scroll_documentation_down", "fallback" },
 				["<C-u>"] = { "scroll_documentation_up", "fallback" },
 			},
+			signature = { enabled = false },
 			completion = {
+				trigger = {
+					show_on_blocked_trigger_characters = function()
+						-- HTML attributes are requested after a space; Blink blocks it
+						-- globally by default. Restrict this exception to Razor tags.
+						if vim.bo.filetype == "razor" then
+							local col = vim.api.nvim_win_get_cursor(0)[2]
+							local before = vim.api.nvim_get_current_line():sub(1, col)
+							if before:match("<[%w_:.-][^>]*$") then
+								return { "\n", "\t" }
+							end
+						end
+						return { " ", "\n", "\t" }
+					end,
+				},
 				keyword = { range = "full" },
 				ghost_text = { enabled = true },
-				signature = { enabled = false },
 				list = { selection = { preselect = true, auto_insert = true } },
 				menu = {
 					border = "rounded",
@@ -79,7 +94,33 @@ return {
 				},
 				accept = { auto_brackets = { enabled = true } },
 			},
-			sources = { default = { "lsp", "path", "snippets", "buffer" } },
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer" },
+				per_filetype = { razor = { inherit_defaults = true, "emmet" } },
+				providers = {
+					emmet = { name = "Emmet", module = "config.sources.emmet", async = true, score_offset = 35 },
+					lsp = {
+						async = true,
+						timeout_ms = 350,
+						score_offset = 10,
+						override = {
+							get_completions = function(self, context, callback)
+								-- Roslyn advertises space, but the delegated HTML server
+								-- needs an Invoked request to return standard attributes.
+								if vim.bo.filetype == "razor" and context.trigger.character == " " then
+									context = vim.deepcopy(context)
+									context.trigger.kind = "manual"
+									context.trigger.character = nil
+								end
+								return self:get_completions(context, callback)
+							end,
+						},
+					},
+					path = { score_offset = 5 },
+					snippets = { score_offset = 0 },
+					buffer = { score_offset = -5 },
+				},
+			},
 		},
 		config = function(_, opts)
 			require("blink.cmp").setup(opts)
@@ -110,9 +151,16 @@ return {
 				Operator = "#56b6c2",
 				TypeParameter = "#4EC9B0",
 			}
-			for kind, fg in pairs(kind_colors) do
-				vim.api.nvim_set_hl(0, "BlinkCmpKind" .. kind, { fg = fg })
+			local function apply_colors()
+				for kind, fg in pairs(kind_colors) do
+					vim.api.nvim_set_hl(0, "BlinkCmpKind" .. kind, { fg = fg })
+				end
 			end
+			apply_colors()
+			vim.api.nvim_create_autocmd(
+				"ColorScheme",
+				{ group = vim.api.nvim_create_augroup("blink_kind_colors", { clear = true }), callback = apply_colors }
+			)
 		end,
 	},
 }

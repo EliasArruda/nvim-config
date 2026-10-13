@@ -3,15 +3,8 @@ return {
 	event = "VeryLazy",
 
 	init = function()
-		-- Define a statusline global para evitar repetição em cada janela
 		vim.opt.laststatus = 3
 		vim.g.lualine_laststatus = 3
-
-		if vim.fn.argc(-1) > 0 then
-			vim.o.statusline = " "
-		else
-			vim.o.laststatus = 0
-		end
 	end,
 
 	config = function()
@@ -20,7 +13,7 @@ return {
 		lualine.setup({
 			options = {
 				theme = "auto",
-				globalstatus = true, -- Ativa a barra única na parte inferior
+				globalstatus = true,
 			},
 
 			sections = {
@@ -32,28 +25,29 @@ return {
 					{
 						"filename",
 						path = 1,
-						-- FUNÇÃO PARA LIMPAR O [No Name] E O [-]
 						fmt = function(str)
-							-- Se for um buffer sem nome, retorna vazio
 							if str:find("%[No Name%]") then
 								return ""
 							end
-							-- Remove o indicador de modificado [ - ] ou [ + ] do final da string
 							return str:gsub("%s%[%s?[-+]%s?%]$", "")
 						end,
 					},
 				},
 
 				lualine_x = {
-					"encoding",
-					"fileformat",
+					{ function()
+						local clients = vim.lsp.get_clients({ bufnr = 0 })
+						local names = {}
+						for _, client in ipairs(clients) do names[#names + 1] = client.name end
+						return table.concat(names, " · ")
+					end, cond = function() return vim.o.columns > 140 end },
 					"filetype",
 				},
 
 				lualine_y = { "progress" },
 				lualine_z = {
 					function()
-						return " " .. os.date("%R")
+						return vim.fn.fnamemodify(require("core.project").root(), ":t")
 					end,
 				},
 			},

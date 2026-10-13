@@ -1,8 +1,1 @@
-return {
-	"folke/lazydev.nvim",
-	opts = {
-		library = {
-			{ path = "vim/lua", words = { "vim" } },
-		},
-	},
-}
+return { "folke/lazydev.nvim", ft = "lua", opts = {} }

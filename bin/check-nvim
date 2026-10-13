@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -eu
+config_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+check_state="$(mktemp -d)"
+trap 'rm -rf -- "$check_state"' EXIT
+export XDG_STATE_HOME="$check_state/state"
+export NVIM_LOG_FILE="$check_state/nvim.log"
+export NVIM_TEST_ROOT="$config_root"
+cd "$config_root"
+nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
+  '+lua local ok, err = xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/regression.lua"); dofile(vim.env.NVIM_TEST_ROOT .. "/tests/architecture.lua") end, debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!

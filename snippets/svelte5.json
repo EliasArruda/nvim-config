@@ -1,0 +1,87 @@
+{
+	"$state": {
+		"prefix": "$state",
+		"body": ["let ${1:name} = $state(${2:value});"],
+		"description": "Svelte 5: reactive state"
+	},
+	"$state.raw": {
+		"prefix": "$state.raw",
+		"body": ["let ${1:name} = $state.raw(${2:value});"],
+		"description": "Svelte 5: raw reactive state (no deep reactivity)"
+	},
+	"$state.snapshot": {
+		"prefix": "$state.snapshot",
+		"body": ["$state.snapshot(${1:state})"],
+		"description": "Svelte 5: get snapshot of reactive state"
+	},
+	"$derived": {
+		"prefix": "$derived",
+		"body": ["let ${1:name} = $derived(${2:expression});"],
+		"description": "Svelte 5: derived value"
+	},
+	"$derived.by": {
+		"prefix": "$derived.by",
+		"body": ["let ${1:name} = $derived.by(() => {", "\t${2:// computation}", "});"],
+		"description": "Svelte 5: derived with computation function"
+	},
+	"$effect": {
+		"prefix": "$effect",
+		"body": ["$effect(() => {", "\t${1:// side effect}", "});"],
+		"description": "Svelte 5: side effect"
+	},
+	"$effect.pre": {
+		"prefix": "$effect.pre",
+		"body": ["$effect.pre(() => {", "\t${1:// runs before DOM updates}", "});"],
+		"description": "Svelte 5: pre-update side effect"
+	},
+	"$effect.root": {
+		"prefix": "$effect.root",
+		"body": ["$effect.root(() => {", "\t${1:// untracked root effect}", "});"],
+		"description": "Svelte 5: root effect (no cleanup needed)"
+	},
+	"$props": {
+		"prefix": "$props",
+		"body": ["let { ${1:prop} } = $props();"],
+		"description": "Svelte 5: declare component props"
+	},
+	"$bindable": {
+		"prefix": "$bindable",
+		"body": ["let { ${1:prop} = $bindable(${2:defaultValue}) } = $props();"],
+		"description": "Svelte 5: bindable prop"
+	},
+	"$inspect": {
+		"prefix": "$inspect",
+		"body": ["$inspect(${1:value});"],
+		"description": "Svelte 5: debug reactive value"
+	},
+	"$inspect.effect": {
+		"prefix": "$inspect.effect",
+		"body": ["$inspect(${1:value}).effect((val) => {", "\t${2:console.log('changed:', val)}", "});"],
+		"description": "Svelte 5: debug with effect callback"
+	},
+	"$host": {
+		"prefix": "$host",
+		"body": ["$host()"],
+		"description": "Svelte 5: get custom element host"
+	},
+	"$snippet": {
+		"prefix": "$snippet",
+		"body": ["{#snippet ${1:name}(${2:params})}", "\t${3:content}", "{/snippet}"],
+		"description": "Svelte 5: define snippet"
+	},
+	"@render": {
+		"prefix": "@render",
+		"body": ["{@render ${1:snippet}(${2:args})}"],
+		"description": "Svelte 5: render snippet"
+	},
+	"@render.if": {
+		"prefix": "@render.if",
+		"body": ["{#if ${1:condition}}", "\t{@render ${2:snippet}()}", "{/if}"],
+		"description": "Svelte 5: conditional render"
+	},
+	"@render.each": {
+		"prefix": "@render.each",
+		"body": ["{#each ${1:items} as ${2:item}}", "\t{@render ${3:snippet}(${2:item})}", "{/each}"],
+		"description": "Svelte 5: each render"
+	}
+}

@@ -138,7 +138,7 @@ local suggestions = transform({ bufnr = 0, cursor = { 1, 4 } }, {
 	{ label = "span", client_name = "emmet_language_server" },
 	{ label = "Span", client_name = "easy_dotnet" },
 })
-check(#suggestions == 2 and suggestions[1].score_offset > 0, "Emmet preferred in markup")
+check(#suggestions == 1 and suggestions[1].client_name == "easy_dotnet", "Dedicated Emmet source prevents duplicate LSP entries")
 context({ "@code { var text = string.Empty; }" }, 1, 25)
 suggestions = transform({ bufnr = 0, cursor = { 1, 25 } }, {
 	{ label = "string.Empty", client_name = "emmet_language_server" },

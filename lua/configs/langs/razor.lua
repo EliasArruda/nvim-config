@@ -135,6 +135,7 @@ function M.setup()
 		group = vim.api.nvim_create_augroup("blazor_editing", { clear = true }),
 		pattern = "razor",
 		callback = function(event)
+			if require("config.runtime").is_large(event.buf) then return end
 			if not configured then
 				-- Resolve inherited queries before replacing only unsafe combining.
 				local sources, seen = {}, {}
@@ -160,8 +161,8 @@ function M.setup()
 				vim.treesitter.query.set("razor", "injections", source)
 				configured = true
 			end
-			vim.treesitter.language.add("html")
-			vim.treesitter.start(event.buf, "razor")
+			pcall(vim.treesitter.language.add, "html")
+			pcall(vim.treesitter.start, event.buf, "razor")
 		end,
 	})
 end

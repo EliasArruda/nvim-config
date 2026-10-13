@@ -1,6 +1,5 @@
-	return {
+return {
 	"stevearc/conform.nvim",
-	dependencies = { "williamboman/mason.nvim" },
 	event = { "BufReadPre", "BufNewFile" },
 	cmd = { "ConformInfo" },
 	keys = {
@@ -23,9 +22,12 @@
 	},
 	config = function()
 		local opts = require("configs.langs.conform")
-		opts.format_on_save = vim.g.autoformat and {
-			timeout_ms = 3000,
-		} or nil
+		opts.format_on_save = function(bufnr)
+			if require("config.runtime").is_large(bufnr) or vim.g.autoformat == false or vim.b[bufnr].autoformat == false then
+				return
+			end
+			return { timeout_ms = vim.bo[bufnr].filetype == "razor" and 5000 or 3000 }
+		end
 		require("conform").setup(opts)
 	end,
 }
