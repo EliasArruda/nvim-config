@@ -20,7 +20,7 @@ function M.apply()
 		teal = p.emerald,
 		comment = p.grey_blue,
 	}
-	-- Neutralize UI surfaces while retaining Nightfly syntax foregrounds.
+	-- Keep UI surfaces neutral independently of the syntax palette.
 	local backgrounds = {
 		[p.bg] = "#080c10",
 		[p.black_blue] = "#0a0c10",
@@ -116,6 +116,7 @@ function M.apply()
 	for index, color in ipairs({ c.blue, c.cyan, c.green, c.yellow, c.magenta, c.orange }) do
 		vim.api.nvim_set_hl(0, "RenderMarkdownH" .. index, { fg = color, bold = true })
 	end
+	require("config.syntax").apply()
 end
 function M.setup()
 	M.apply()
