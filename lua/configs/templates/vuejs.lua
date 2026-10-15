@@ -53,8 +53,12 @@ local function run_template(event)
 	end)
 end
 
-vim.api.nvim_create_autocmd("BufNewFile", {
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost", "BufEnter" }, {
 	pattern = "*.vue",
 	group = template_group,
-	callback = run_template,
+	callback = function(event)
+		if require("configs.templates.common").eligible(event) then
+			run_template(event)
+		end
+	end,
 })

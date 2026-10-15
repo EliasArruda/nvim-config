@@ -1,91 +1,100 @@
-# Neovim — configuração pessoal
+<div align="center">
+  <h1>Neovim</h1>
+  <p><strong>Seu projeto. Seus atalhos. Menos distrações.</strong></p>
+  <p>Configuração pessoal para desenvolvimento com C#, Blazor e web.<br />Fundo escuro, sintaxe Cyberdream e ícones Symbols no Neovide.</p>
+  <p>
+    <img src="https://img.shields.io/badge/Neovim-0.12%2B-5eff6c" alt="Neovim 0.12 ou superior" />
+    <img src="https://img.shields.io/badge/config-Lua-5ea1ff" alt="Configuração Lua" />
+    <img src="https://img.shields.io/badge/validado-Linux-ffbd5e" alt="Validado no Linux" />
+  </p>
+  <p><a href="#o-que-você-encontra">Recursos</a> · <a href="#comece-a-usar">Instalação</a> · <a href="#arquivos-novos-com-templates">Templates</a> · <a href="#bom-saber">Bom saber</a></p>
+</div>
 
-Reformulação para Neovim 0.12, com atalhos preservados, Nightfly com fundo neutro, LSP nativo e Emmet independente para Razor. [Arquitetura, decisões e atualização](docs/architecture.md).
+## O que você encontra
 
-## Instalação e manutenção
+- **C# e Blazor no mesmo fluxo.** Roslyn e Razor pelo EasyDotnet, completion de componentes e atributos, Emmet, formatação, testes e depuração C#.
+- **Arquivos novos com uma base pronta.** Templates automáticos para C#, Vue, Go e componentes Razor, inclusive quando o explorador cria o arquivo antes de abri-lo.
+- **Seu projeto como ponto de partida.** Busca e ferramentas resolvem a raiz mais próxima pelo projeto ou pacote.
+- **Código com mais cor.** Sintaxe Cyberdream sobre uma interface Nightfly com fundo neutro. Abas, menus e painéis mantêm a mesma identidade.
+- **Ícones Symbols.** 348 desenhos e 1.479 associações de arquivos e pastas; fonte auxiliar colorida no Neovide e fallback Nerd Font no terminal.
+- **Vários shells, um painel.** Lista de sessões à direita, troca por Alt+1…9 e processos preservados ao ocultar. `exit` fecha somente a sessão atual.
+- **Instalação explícita.** Plugins fixados no lockfile; ferramentas, parsers e atualizações são operações manuais.
 
-Requisitos: Neovim 0.12+, Git, rg/fd, Node, compilador C e tree-sitter CLI compatível com Treesitter main. Clone em `~/.config/nvim`, execute `bin/bootstrap-nvim`, abra o editor e rode `:NvimToolsInstall` e `:NvimParsersInstall`. A abertura normal não instala plugins ou ferramentas. Use `:NvimDoctor` para diagnóstico.
+## Comece a usar
 
-## Dependências
+Requisitos: Neovim **0.12+**, Git, `ripgrep`, `fd`, Node.js/npm, compilador C, make e tree-sitter CLI compatível com nvim-treesitter. Use uma Nerd Font. Neovide é opcional.
 
-Instale Neovim 0.12+, Git, `rg`, `fd`, compilador C, make e tree-sitter CLI. Node.js/npm são necessários para os servidores web. Uma Nerd Font fornece os ícones. Os plugins são instalados pelo Lazy; as ferramentas declaradas em `lua/configs/langs/mason.lua`, pelo Mason. Preserve `lazy-lock.json` e use `:Lazy restore` para reproduzir os commits.
+1. Com o editor fechado, coloque este repositório em `~/.config/nvim`. Se essa pasta já existe, mova sua configuração atual para um local escolhido por você antes de clonar.
 
-Instale apenas os SDKs das linguagens que utiliza:
+   ```bash
+   git clone https://github.com/EliasArruda/nvim-config.git ~/.config/nvim
+   cd ~/.config/nvim
+   ./bin/bootstrap-nvim
+   ```
 
-- **C#/Blazor:** SDK .NET 10 para os testes desta configuração; SDKs adicionais conforme `global.json`/framework do projeto. Instale o servidor com `dotnet tool install --global EasyDotnet --version 3.4.30` (ou `update` se já instalado). Inclua `$HOME/.dotnet/tools` no PATH. O EasyDotnet gerencia Roslyn, Razor, a ponte HTML e netcoredbg. O CLI EasyDotnet inicia o servidor compatível com sua versão. Não habilite outro cliente Roslyn/OmniSharp/rzls simultaneamente.
-- **Web:** instale as dependências com o gerenciador do projeto. JS/TS/CSS/JSON/GraphQL com `biome.json` usam Biome, que precisa estar instalado no projeto ou PATH; os demais usam Prettier. HTML/Vue/Svelte/Markdown usam Prettier. Execute `:ConformInfo` para conferir a resolução.
-- **Go:** Go, ferramentas declaradas no Mason e `govulncheck` externo (`go install golang.org/x/vuln/cmd/govulncheck@latest`); inclua `$(go env GOPATH)/bin` no PATH. GoLint suporta golangci-lint v2 e envia SARIF ao quickfix.
-- **Rust:** rustup, rust-analyzer e rustfmt para a toolchain do projeto.
-- **Ruby/Rails:** mise, Ruby e Bundler. Execute `mise exec -- gem install ruby-lsp erb-formatter --no-document` para cada Ruby utilizado e `bundle install` no projeto. RuboCop/Standard devem fazer parte do bundle quando utilizados. Os wrappers em `bin/` selecionam a versão Ruby pelo mise.
-- **Opcionais:** `fish_indent` vem do Fish; `caddy fmt` requer Caddy. Não estão instalados nesta máquina. `shfmt` está declarado no Mason. Ferramentas externas e SDKs não são fixados pelo lockfile do Lazy.
+2. Abra `nvim` e execute `:NvimToolsInstall` e `:NvimParsersInstall`. A abertura normal não baixa plugins nem ferramentas.
+3. Instale os SDKs das linguagens que utiliza. Para C#/Blazor, consulte o [guia de dependências](docs/usage.md#dependências); o SDK .NET e o CLI EasyDotnet são externos ao Mason.
+4. Para ícones coloridos no Neovide, execute `./bin/install-symbols-font` e reinicie o Neovide. Veja os [requisitos da fonte Symbols](docs/symbols.md).
+5. Abra o editor na pasta do projeto. Use `:NvimDoctor` para conferir raiz, ferramentas e LSPs.
 
-## C#, Razor e Blazor
+## Arquivos novos com templates
 
-Abra o Neovim na pasta da solução. Use `:Dotnet new` para criar projetos pelos templates instalados; `:Dotnet solution select` escolhe a solução, e `:Dotnet solution add` acrescenta projetos. Para começar pelo terminal:
+Crie e abra o arquivo pelo explorador ou use `:edit caminho/Arquivo.cs`. O conteúdo aparece no buffer e só vai ao disco quando você salvar.
 
-```bash
-mkdir MinhaSolucao && cd MinhaSolucao
-dotnet new sln --name MinhaSolucao --format slnx
-dotnet new blazor --name MinhaApp --interactivity Server
-dotnet sln MinhaSolucao.slnx add MinhaApp
-nvim MinhaApp/Components/Pages/Counter.razor
-```
+| Arquivo | Conteúdo inicial |
+| --- | --- |
+| `Customer.cs`, `IService.cs` | Classe ou interface com namespace derivado do `.csproj` e das pastas |
+| `OrderDto.cs`, `OrdersController.cs`, `OrderStatus.cs` | Record, controller ou enum conforme o nome |
+| `Counter.razor.cs` | Classe parcial para o code-behind do componente |
+| `Card.vue` | Bloco `<template>` pronto para editar |
+| `main.go`, outros `.go` | Declaração de pacote, reutilizando o pacote dos arquivos vizinhos |
+| `Card.razor` | Título do componente e bloco `@code` |
 
-Aguarde o carregamento da solução antes da primeira completion. `.cs`, `.razor` e `.cshtml` usam o pipeline do EasyDotnet; abrir apenas `.csproj` também carrega o suporte ProjX. Arquivos novos passam a anexar o LSP após salvar. A formatação Razor é enviada ao Roslyn; C# usa CSharpier com fallback LSP. A indentação C# permanece a nativa do Neovim.
+Arquivos com conteúdo e arquivos vazios antigos ficam intactos. Arquivos vazios já criados no disco são elegíveis por até **10 segundos** após a modificação. `_Imports.razor` e outros `.razor` iniciados por `_` ficam vazios. Um template Razor de componente não acrescenta rota automaticamente.
 
-`<leader>` é Espaço:
+## Atalhos essenciais
+
+O líder é **Espaço**. Pressione-o e aguarde para consultar o which-key.
 
 | Atalho | Ação |
 | --- | --- |
-| `<Space>nn` / `nf` | Criar projeto/solução / arquivo |
-| `<Space>ns` / `na` | Selecionar solução / adicionar projeto |
-| `<Space>nR` / `nb` | Restore / build com quickfix |
-| `<Space>nr` / `nw` | Executar / executar com watch |
-| `<Space>nd` / `nt` | Depurar / abrir test runner |
-| `<Space>nl` | Reiniciar Roslyn |
+| `<Space>ff` / `<Space>fg` / `<Space>sg` | Arquivos / arquivos Git / busca por texto |
 | `gd` / `K` | Definição / documentação |
-| `<Space>ca` / `cr` / `cf` | Code actions / renomear / formatar |
-| `<Space>db` / `F5` | Breakpoint / iniciar ou continuar |
-| `F10` / `F11` / `F12` | Step over / into / out |
-| `Ctrl-F5` | Encerrar a sessão de depuração |
-
-Use `:checkhealth easy-dotnet`, `:lsp`, `:ConformInfo` e `:messages` para diagnóstico. O teste de depuração cobre C# no servidor; depuração de WebAssembly no navegador exige um fluxo próprio e não foi validada.
-
-A query local em `queries/razor/injections.scm` corrige a perda persistente de cores após editar HTML aninhado. O Blink permite completion de atributos após espaço dentro de tags Razor e normaliza essa requisição para Roslyn/HTML. Reinicie o Neovim após atualizar essas configurações, pois parsers e queries já carregados permanecem em cache. Detalhes: [arquitetura e correções Razor](docs/architecture.md).
-
-A gramática Treesitter Razor atual ainda produz nós `ERROR` para DOCTYPE e texto solto na raiz em arquivos válidos do template oficial. Isso não é um diagnóstico Roslyn nem um erro de compilação. Os casos estão registrados no relatório; não foram escondidos nem classificados como corrigidos.
-
-## Outros atalhos
-
-| Atalho/comando | Ação |
-| --- | --- |
-| `<Space>ff` / `fg` / `sg` | Arquivos / arquivos Git / grep |
-| `<Space>cf` / `uf` | Formatar / alternar formatação ao salvar |
-| `<Space>rpd`, `rpb`, `rpt`, `rpl`, `rpc` | Scripts web dev, build, test, lint, check |
-| `<Space>rt` / `rl` | Testes Ruby (atalhos preservados) |
-| `<Space>mt` / `mT` | Teste Go da função / testes do pacote |
-| `<Space>un` / `uX` | Histórico Noice / dispensar mensagens |
-| `<Space>uN` | Alternar números das linhas |
+| `<Space>ca` / `<Space>cr` / `<Space>cf` | Ações de código / renomear / formatar |
+| `<Space>nn` / `<Space>nf` | Criar projeto .NET / arquivo .NET |
+| `<Space>nb` / `<Space>nr` / `<Space>nt` | Build / executar / testes .NET |
+| `Ctrl+T` | Mostrar ou ocultar terminais |
+| `Ctrl+N` no terminal | Criar outra sessão |
+| `Alt+1`…`Alt+9` no painel | Selecionar sessão |
 | `<Space>qq` | Sair |
-| `:Lazy` / `:Mason` | Gerenciar plugins / ferramentas |
 
-Pressione Espaço e aguarde o which-key para consultar os demais atalhos.
+[Guia completo](docs/usage.md) · [Painel de terminais](docs/terminal-sessions.md)
+
+## Bom saber
+
+Esta é uma configuração pessoal, validada no Linux. Neovide e a extensão VSCode Neovim possuem ajustes próprios. SDKs, ferramentas externas e fontes não fazem parte do lockfile do Lazy.
+
+Em Razor, aguarde a solução carregar para obter completion completa. Emmet funciona independentemente do Roslyn: `span` pode expandir para `<span></span>`, e Enter entre as tags cria a linha interna indentada. Arquivos novos recebem o LSP após salvar. A gramática Razor ainda tem limites conhecidos; detalhes em [arquitetura](docs/architecture.md).
+
+Use `:Lazy restore` para restaurar os commits fixados, `:ConformInfo` para conferir formatadores e `:NvimDoctor` para diagnóstico. A instalação, validação e manutenção estão documentadas separadamente:
+
+- [Dependências e uso por linguagem](docs/usage.md)
+- [Arquitetura e decisões](docs/architecture.md)
+- [Atualização e diagnóstico Blazor](docs/updates-and-blazor.md)
+- [Ícones e fonte Symbols](docs/symbols.md)
 
 ## Verificação
 
 ```bash
 ./bin/check-nvim
+./bin/check-blazor
 ./bin/check-dotnet
 ```
 
-O primeiro testa a configuração usando os plugins já instalados. O segundo cria uma solução temporária .NET 10 com Blazor e xUnit, faz restore/build/test e verifica LSP Razor, completion C#/HTML, diagnóstico proposital, formatação, rename, ProjX e breakpoint C#. Requer os plugins/parsers/ferramentas previamente instalados e acesso ao NuGet na primeira execução. Não altera projetos existentes; informa a pasta temporária com as evidências. A abertura normal também não instala ferramentas/plugins. Os testes mantêm o lockfile e o estado isolados.
+`check-nvim` cobre configuração, templates, diagnósticos, ícones e terminais com plugins já instalados. `check-blazor` verifica Razor e Emmet localmente. `check-dotnet` cria uma solução temporária .NET 10 e verifica build, testes e integração LSP/debugger; requer SDK, ferramentas e acesso ao NuGet. Consulte o [guia de verificação](docs/usage.md#verificação).
 
-A configuração principal fica em `lua/core`, as ferramentas em `lua/configs/langs`, as specs em `lua/plugins` e o modo VSCode em `lua/vscode-nvim-config`. Neovide e VSCode possuem ajustes próprios; a integração gráfica não foi validada por testes headless.
+[Resultados e limites da última verificação](docs/validation.md).
 
-## Ícones Symbols
+## Créditos
 
-[Symbols do VSCode](docs/symbols.md): 348 desenhos originais e 1.479 associações, com fonte auxiliar colorida no Neovide e fallback Nerd Font em terminais. Integra explorador, abas, Telescope e autocomplete de caminhos. Use `:SymbolsIcons all` para o catálogo completo; `bin/install-symbols-font` reconstrói a fonte. Texto e atalhos permanecem iguais.
-
-## Painel de terminais
-
-[Sessões em um único painel](docs/terminal-sessions.md): Ctrl+T mostra/oculta e Ctrl+N cria outra sessão no modo terminal. Com vários shells, a lista à direita permite trocar por clique ou Enter, mantendo os processos ativos.
+Interface [Nightfly](https://github.com/bluz71/vim-nightfly-colors), paleta de sintaxe [Cyberdream](https://github.com/scottmckendry/cyberdream.nvim) e ícones [Symbols](https://github.com/miguelsolorio/symbols). Licenças dos recursos redistribuídos ficam em [`licenses/`](licenses/).

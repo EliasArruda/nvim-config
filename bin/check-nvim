@@ -11,3 +11,10 @@ nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.
   '+lua local ok, err = xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/regression.lua"); dofile(vim.env.NVIM_TEST_ROOT .. "/tests/architecture.lua"); dofile(vim.env.NVIM_TEST_ROOT .. "/tests/diagnostics.lua"); dofile(vim.env.NVIM_TEST_ROOT .. "/tests/icons.lua"); dofile(vim.env.NVIM_TEST_ROOT .. "/tests/terminals.lua") end, debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
 timeout 20 nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
   '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/terminal-numbers.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end'
+
+# Template unit tests must not start Roslyn against synthetic project files.
+for template_mode in native vscode; do
+  NVIM_TEMPLATE_MODE="$template_mode" nvim --headless -u NONE -i NONE \
+    --cmd 'lua vim.opt.rtp:prepend(vim.env.NVIM_TEST_ROOT)' \
+    '+lua local ok,err=xpcall(function() vim.g.vscode=vim.env.NVIM_TEMPLATE_MODE=="vscode"; require(vim.g.vscode and "vscode-nvim-config.templates" or "configs.templates"); dofile(vim.env.NVIM_TEST_ROOT .. "/tests/templates.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
+done

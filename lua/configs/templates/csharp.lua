@@ -57,8 +57,10 @@ local function apply_template(event)
 	if line_count > 1 or first_line ~= "" then
 		return
 	end
-	if not vim.bo.modifiable or (vim.bo.buftype ~= ""
-		and not (vim.g.vscode and vim.bo.buftype == "acwrite" and vim.b.vscode_controlled)) then
+	if
+		not vim.bo.modifiable
+		or (vim.bo.buftype ~= "" and not (vim.g.vscode and vim.bo.buftype == "acwrite" and vim.b.vscode_controlled))
+	then
 		return
 	end
 
@@ -239,7 +241,7 @@ local function apply_template(event)
 	end)
 end
 
-local events = vim.g.vscode and { "BufNewFile", "BufReadPost", "BufEnter" } or { "BufNewFile" }
+local events = { "BufNewFile", "BufReadPost", "BufEnter" }
 vim.api.nvim_create_autocmd(events, {
 	pattern = "*.cs",
 	group = template_group,
@@ -248,16 +250,15 @@ vim.api.nvim_create_autocmd(events, {
 		if vim.b[buf].csharp_template_applied then
 			return
 		end
-		if event.event ~= "BufNewFile" then
-			local stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(buf))
-			local age = stat and (os.time() - stat.mtime.sec)
-			if not stat or stat.type ~= "file" or stat.size ~= 0 or age < 0 or age > 10 then
-				return
-			end
+		if not require("configs.templates.common").eligible(event) then
+			return
 		end
 		local function run()
-			if not vim.api.nvim_buf_is_valid(buf) or vim.api.nvim_get_current_buf() ~= buf
-				or vim.b[buf].csharp_template_applied then
+			if
+				not vim.api.nvim_buf_is_valid(buf)
+				or vim.api.nvim_get_current_buf() ~= buf
+				or vim.b[buf].csharp_template_applied
+			then
 				return
 			end
 			apply_template(event)

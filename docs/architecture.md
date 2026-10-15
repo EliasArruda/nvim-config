@@ -28,7 +28,7 @@ As queries Razor corrigem regiões HTML combinadas e recuperam tags incompletas.
 
 ## Visual e desempenho
 
-Nightfly com fundo neutro é o padrão: cores consistentes, popups opacos e bordas discretas. Nightfly mantém a paleta de código com superfícies neutras e fundo #080c10, escolhido pelo usuário. Midnight, TokyoNight e Kanagawa foram removidos da configuração. Neovide conserva fonte/tamanho, com menos movimento e sem partículas. Lualine mostra projeto, arquivo, diagnósticos e clientes em telas largas. Telescope preserva atalhos e usa a raiz corrigida. Snacks fornece indentação, explorer e proteção de arquivos grandes. Diagnósticos nativos aparecem em linhas virtuais na linha atual; tiny-inline-diagnostic e hlchunk ficam desativados para evitar sobreposição de responsabilidades.
+Nightfly com fundo neutro é o padrão: cores consistentes, popups opacos e bordas discretas. A interface mantém superfícies neutras e fundo #080c10; `config/syntax.lua` aplica a paleta Cyberdream à sintaxe e aos tokens semânticos, sem trocar o tema da interface. Midnight, TokyoNight e Kanagawa foram removidos da configuração. Neovide conserva fonte/tamanho, com menos movimento e sem partículas. Lualine mostra projeto, arquivo, diagnósticos e clientes em telas largas. Telescope preserva atalhos e usa a raiz corrigida. Snacks fornece indentação, explorer e proteção de arquivos grandes. Diagnósticos nativos aparecem em linhas virtuais na linha atual; tiny-inline-diagnostic e hlchunk ficam desativados para evitar sobreposição de responsabilidades.
 
 Arquivos acima de 1 MiB evitam completion, formatação automática e Treesitter. Os servidores comuns também evitam esses buffers. Plugins especializados, como EasyDotnet/Rustacean, podem administrar seus próprios clientes. Tailwind só inicia quando o projeto contém configuração ou dependência Tailwind; não varre o HOME por engano.
 
@@ -72,3 +72,7 @@ Preferência final do usuário: toda a interface próxima do preto. Editor #080c
 O Roslyn publica o mesmo CS8618 em nove namespaces de diagnóstico no projeto real. `config/diagnostics.lua` reúne linhas virtuais de origens com opções compatíveis e remove somente duplicatas com range, severidade, código, mensagem e origem iguais. Formatação e current_line específicos de cada origem continuam respeitados. Reset, ocultar, reativar e mover cursor preservam o ciclo nativo. Contadores da barra e das abas contam mensagens únicas. Os caches originais dos servidores são preservados; não se filtra a origem de erros ou avisos distintos.
 
 Referência: [handlers e agregação de namespaces no Neovim](https://neovim.io/doc/user/diagnostic/). Verificação: `tests/diagnostics.lua` e UI embutida no projeto real, nove relatos CS8618 em cache e uma linha exibida.
+
+## Templates de arquivos
+
+`configs/templates` registra C#, Vue, Go e Razor. A elegibilidade compartilhada aceita buffers vazios novos e arquivos vazios modificados nos últimos dez segundos, cobrindo a criação pelo explorador. Os callbacks diferidos conferem o buffer ativo antes de editar ou posicionar o cursor. Arquivos com conteúdo, arquivos vazios antigos e buffers especiais ficam intactos. C# mantém as escolhas por nome e namespace; Go compartilha o mesmo módulo com VSCode. Razor gera um componente mínimo sem impor rotas. `_Imports.razor` não recebe template.

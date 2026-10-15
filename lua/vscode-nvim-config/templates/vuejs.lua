@@ -139,20 +139,11 @@ local function run_template(event)
 	end, delay)
 end
 
-local function is_recent_empty_file(args)
-	if args.event == "BufNewFile" then
-		return true
-	end
-
-	local stat = vim.uv.fs_stat(vim.api.nvim_buf_get_name(args.buf))
-	return stat ~= nil and stat.size == 0 and os.time() - stat.mtime.sec <= 10
-end
-
-vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost", "BufEnter" }, {
 	pattern = "*.vue",
 	group = template_group,
 	callback = function(args)
-		if is_recent_empty_file(args) then
+		if require("configs.templates.common").eligible(args) then
 			run_template(args)
 		end
 	end,
