@@ -1,30 +1,30 @@
 <div align="center">
   <h1>Neovim</h1>
-  <p><strong>Seu projeto. Seus atalhos. Menos distrações.</strong></p>
-  <p>Configuração pessoal para desenvolvimento com C#, Blazor e web.<br />Fundo escuro, sintaxe Cyberdream e ícones Symbols no Neovide.</p>
+  <p><strong>Your project. Your shortcuts. Fewer distractions.</strong></p>
+  <p>A personal configuration for C#, Blazor, and web development.<br />A dark workspace, Cyberdream syntax colors, and Symbols icons in Neovide.</p>
   <p>
-    <img src="https://img.shields.io/badge/Neovim-0.12%2B-5eff6c" alt="Neovim 0.12 ou superior" />
-    <img src="https://img.shields.io/badge/config-Lua-5ea1ff" alt="Configuração Lua" />
-    <img src="https://img.shields.io/badge/validado-Linux-ffbd5e" alt="Validado no Linux" />
+    <img src="https://img.shields.io/badge/Neovim-0.12%2B-5eff6c" alt="Neovim 0.12 or newer" />
+    <img src="https://img.shields.io/badge/config-Lua-5ea1ff" alt="Lua configuration" />
+    <img src="https://img.shields.io/badge/tested-Linux-ffbd5e" alt="Tested on Linux" />
   </p>
-  <p><a href="#o-que-você-encontra">Recursos</a> · <a href="#comece-a-usar">Instalação</a> · <a href="#arquivos-novos-com-templates">Templates</a> · <a href="#bom-saber">Bom saber</a></p>
+  <p><a href="#what-you-get">Features</a> · <a href="#getting-started">Installation</a> · <a href="#new-file-templates">Templates</a> · <a href="#good-to-know">Good to know</a></p>
 </div>
 
-## O que você encontra
+## What you get
 
-- **C# e Blazor no mesmo fluxo.** Roslyn e Razor pelo EasyDotnet, completion de componentes e atributos, Emmet, formatação, testes e depuração C#.
-- **Arquivos novos com uma base pronta.** Templates automáticos para C#, Vue, Go e componentes Razor, inclusive quando o explorador cria o arquivo antes de abri-lo.
-- **Seu projeto como ponto de partida.** Busca e ferramentas resolvem a raiz mais próxima pelo projeto ou pacote.
-- **Código com mais cor.** Sintaxe Cyberdream sobre uma interface Nightfly com fundo neutro. Abas, menus e painéis mantêm a mesma identidade.
-- **Ícones Symbols.** 348 desenhos e 1.479 associações de arquivos e pastas; fonte auxiliar colorida no Neovide e fallback Nerd Font no terminal.
-- **Vários shells, um painel.** Lista de sessões à direita, troca por Alt+1…9 e processos preservados ao ocultar. `exit` fecha somente a sessão atual.
-- **Instalação explícita.** Plugins fixados no lockfile; ferramentas, parsers e atualizações são operações manuais.
+- **C# and Blazor in one workflow.** Roslyn and Razor through EasyDotnet, component and attribute completion, Emmet, formatting, tests, and C# debugging.
+- **A starting point for new files.** Automatic templates for C#, Vue, Go, and Razor components, including files created on disk by the explorer before opening.
+- **Search within your project.** Search and tools resolve the nearest project or package root.
+- **More color in your code.** Cyberdream syntax colors over a neutral, dark Nightfly interface. Tabs, menus, and panels keep a consistent appearance.
+- **Symbols icons.** 348 designs and 1,479 file and folder associations, with a color companion font in Neovide and a Nerd Font fallback in terminals.
+- **Multiple shells, one panel.** A session list on the right, Alt+1…9 switching, and processes that stay alive when hidden. `exit` closes only the current session.
+- **Explicit installation.** Plugins are pinned in the lockfile; tools, parsers, and updates are managed manually.
 
-## Comece a usar
+## Getting started
 
-Requisitos: Neovim **0.12+**, Git, `ripgrep`, `fd`, Node.js/npm, compilador C, make e tree-sitter CLI compatível com nvim-treesitter. Use uma Nerd Font. Neovide é opcional.
+Requirements: Neovim **0.12+**, Git, `ripgrep`, `fd`, Node.js/npm, a C compiler, make, and a tree-sitter CLI compatible with nvim-treesitter. Use a Nerd Font. Neovide is optional.
 
-1. Com o editor fechado, coloque este repositório em `~/.config/nvim`. Se essa pasta já existe, mova sua configuração atual para um local escolhido por você antes de clonar.
+1. Close the editor and place this repository at `~/.config/nvim`. If that directory already exists, move your current configuration somewhere you choose before cloning.
 
    ```bash
    git clone https://github.com/EliasArruda/nvim-config.git ~/.config/nvim
@@ -32,58 +32,58 @@ Requisitos: Neovim **0.12+**, Git, `ripgrep`, `fd`, Node.js/npm, compilador C, m
    ./bin/bootstrap-nvim
    ```
 
-2. Abra `nvim` e execute `:NvimToolsInstall` e `:NvimParsersInstall`. A abertura normal não baixa plugins nem ferramentas.
-3. Instale os SDKs das linguagens que utiliza. Para C#/Blazor, consulte o [guia de dependências](docs/usage.md#dependências); o SDK .NET e o CLI EasyDotnet são externos ao Mason.
-4. Para ícones coloridos no Neovide, execute `./bin/install-symbols-font` e reinicie o Neovide. Veja os [requisitos da fonte Symbols](docs/symbols.md).
-5. Abra o editor na pasta do projeto. Use `:NvimDoctor` para conferir raiz, ferramentas e LSPs.
+2. Open `nvim` and run `:NvimToolsInstall` and `:NvimParsersInstall`. Normal startup does not download plugins or tools.
+3. Install the SDKs for the languages you use. For C#/Blazor, see the [dependency guide](docs/usage.md#dependências); the .NET SDK and EasyDotnet CLI are installed separately from Mason.
+4. For color icons in Neovide, run `./bin/install-symbols-font` and restart Neovide. See the [Symbols font requirements](docs/symbols.md).
+5. Open the editor in your project directory. Use `:NvimDoctor` to check the root, tools, and language servers.
 
-## Arquivos novos com templates
+## New file templates
 
-Crie e abra o arquivo pelo explorador ou use `:edit caminho/Arquivo.cs`. O conteúdo aparece no buffer e só vai ao disco quando você salvar.
+Create and open a file through the explorer, or use `:edit path/File.cs`. The template appears in the buffer and is written to disk only when you save.
 
-| Arquivo | Conteúdo inicial |
+| File | Initial content |
 | --- | --- |
-| `Customer.cs`, `IService.cs` | Classe ou interface com namespace derivado do `.csproj` e das pastas |
-| `OrderDto.cs`, `OrdersController.cs`, `OrderStatus.cs` | Record, controller ou enum conforme o nome |
-| `Counter.razor.cs` | Classe parcial para o code-behind do componente |
-| `Card.vue` | Bloco `<template>` pronto para editar |
-| `main.go`, outros `.go` | Declaração de pacote, reutilizando o pacote dos arquivos vizinhos |
-| `Card.razor` | Título do componente e bloco `@code` |
+| `Customer.cs`, `IService.cs` | A class or interface with a namespace derived from the `.csproj` and directory structure |
+| `OrderDto.cs`, `OrdersController.cs`, `OrderStatus.cs` | A record, controller, or enum based on the filename |
+| `Counter.razor.cs` | A partial class for the component's code-behind |
+| `Card.vue` | A `<template>` block ready to edit |
+| `main.go`, other `.go` files | A package declaration, reusing the package from neighboring files |
+| `Card.razor` | A component heading and an `@code` block |
 
-Arquivos com conteúdo e arquivos vazios antigos ficam intactos. Arquivos vazios já criados no disco são elegíveis por até **10 segundos** após a modificação. `_Imports.razor` e outros `.razor` iniciados por `_` ficam vazios. Um template Razor de componente não acrescenta rota automaticamente.
+Files with content and older empty files are left untouched. Empty files already created on disk are eligible for **10 seconds** after modification. `_Imports.razor` and other `.razor` files starting with `_` stay empty. Razor component templates do not add routes automatically.
 
-## Atalhos essenciais
+## Essential shortcuts
 
-O líder é **Espaço**. Pressione-o e aguarde para consultar o which-key.
+The leader key is **Space**. Press it and wait to browse which-key.
 
-| Atalho | Ação |
+| Shortcut | Action |
 | --- | --- |
-| `<Space>ff` / `<Space>fg` / `<Space>sg` | Arquivos / arquivos Git / busca por texto |
-| `gd` / `K` | Definição / documentação |
-| `<Space>ca` / `<Space>cr` / `<Space>cf` | Ações de código / renomear / formatar |
-| `<Space>nn` / `<Space>nf` | Criar projeto .NET / arquivo .NET |
-| `<Space>nb` / `<Space>nr` / `<Space>nt` | Build / executar / testes .NET |
-| `Ctrl+T` | Mostrar ou ocultar terminais |
-| `Ctrl+N` no terminal | Criar outra sessão |
-| `Alt+1`…`Alt+9` no painel | Selecionar sessão |
-| `<Space>qq` | Sair |
+| `<Space>ff` / `<Space>fg` / `<Space>sg` | Files / Git files / text search |
+| `gd` / `K` | Definition / documentation |
+| `<Space>ca` / `<Space>cr` / `<Space>cf` | Code actions / rename / format |
+| `<Space>nn` / `<Space>nf` | Create a .NET project / .NET file |
+| `<Space>nb` / `<Space>nr` / `<Space>nt` | Build / run / .NET tests |
+| `Ctrl+T` | Show or hide terminals |
+| `Ctrl+N` in a terminal | Create another session |
+| `Alt+1`…`Alt+9` in the panel | Select a session |
+| `<Space>qq` | Quit |
 
-[Guia completo](docs/usage.md) · [Painel de terminais](docs/terminal-sessions.md)
+[Full guide](docs/usage.md) · [Terminal panel](docs/terminal-sessions.md)
 
-## Bom saber
+## Good to know
 
-Esta é uma configuração pessoal, validada no Linux. Neovide e a extensão VSCode Neovim possuem ajustes próprios. SDKs, ferramentas externas e fontes não fazem parte do lockfile do Lazy.
+This is a personal configuration tested on Linux. Neovide and the VSCode Neovim extension have their own settings. SDKs, external tools, and fonts are not covered by the Lazy lockfile.
 
-Em Razor, aguarde a solução carregar para obter completion completa. Emmet funciona independentemente do Roslyn: `span` pode expandir para `<span></span>`, e Enter entre as tags cria a linha interna indentada. Arquivos novos recebem o LSP após salvar. A gramática Razor ainda tem limites conhecidos; detalhes em [arquitetura](docs/architecture.md).
+In Razor, wait for the solution to load for full completion. Emmet works independently of Roslyn: `span` can expand to `<span></span>`, and Enter between the tags creates an indented inner line. New files attach to the language server after saving. The Razor grammar still has known limitations; see [architecture](docs/architecture.md).
 
-Use `:Lazy restore` para restaurar os commits fixados, `:ConformInfo` para conferir formatadores e `:NvimDoctor` para diagnóstico. A instalação, validação e manutenção estão documentadas separadamente:
+Use `:Lazy restore` to restore pinned commits, `:ConformInfo` to inspect formatters, and `:NvimDoctor` for diagnostics. Installation, validation, and maintenance details are documented separately in Portuguese:
 
-- [Dependências e uso por linguagem](docs/usage.md)
-- [Arquitetura e decisões](docs/architecture.md)
-- [Atualização e diagnóstico Blazor](docs/updates-and-blazor.md)
-- [Ícones e fonte Symbols](docs/symbols.md)
+- [Dependencies and language workflows](docs/usage.md)
+- [Architecture and decisions](docs/architecture.md)
+- [Updates and Blazor diagnostics](docs/updates-and-blazor.md)
+- [Symbols icons and font](docs/symbols.md)
 
-## Verificação
+## Verification
 
 ```bash
 ./bin/check-nvim
@@ -91,10 +91,6 @@ Use `:Lazy restore` para restaurar os commits fixados, `:ConformInfo` para confe
 ./bin/check-dotnet
 ```
 
-`check-nvim` cobre configuração, templates, diagnósticos, ícones e terminais com plugins já instalados. `check-blazor` verifica Razor e Emmet localmente. `check-dotnet` cria uma solução temporária .NET 10 e verifica build, testes e integração LSP/debugger; requer SDK, ferramentas e acesso ao NuGet. Consulte o [guia de verificação](docs/usage.md#verificação).
+`check-nvim` covers configuration, templates, diagnostics, icons, and terminals using installed plugins. `check-blazor` checks Razor and Emmet locally. `check-dotnet` creates a temporary .NET 10 solution and checks builds, tests, and LSP/debugger integration; it requires the SDK, tools, and NuGet access. See the [verification guide](docs/usage.md#verificação).
 
-[Resultados e limites da última verificação](docs/validation.md).
-
-## Créditos
-
-Interface [Nightfly](https://github.com/bluz71/vim-nightfly-colors), paleta de sintaxe [Cyberdream](https://github.com/scottmckendry/cyberdream.nvim) e ícones [Symbols](https://github.com/miguelsolorio/symbols). Licenças dos recursos redistribuídos ficam em [`licenses/`](licenses/).
+[Latest verification results and limitations](docs/validation.md).
