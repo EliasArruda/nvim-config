@@ -22,21 +22,83 @@ return {
 		{ "<leader>fB", "<cmd>Telescope buffers<cr>", desc = "Buffers (all)" },
 
 		-- Find Files
-		{ "<leader><space>", "<cmd>Telescope find_files<cr>", desc = "Find Files (Root Dir)" },
-		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files (Root Dir)" },
-		{ "<leader>fF", "<cmd>Telescope find_files cwd=false<cr>", desc = "Find Files (cwd)" },
+		{
+			"<leader><space>",
+			function()
+				require("telescope.builtin").find_files({ cwd = require("core.project").root() })
+			end,
+			desc = "Find Files (Root Dir)",
+		},
+		{
+			"<leader>ff",
+			function()
+				require("telescope.builtin").find_files({ cwd = require("core.project").root() })
+			end,
+			desc = "Find Files (Root Dir)",
+		},
+		{
+			"<leader>fF",
+			function()
+				require("telescope.builtin").find_files({ cwd = vim.uv.cwd() })
+			end,
+			desc = "Find Files (cwd)",
+		},
 		{ "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" },
 		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-		{ "<leader>fR", "<cmd>Telescope oldfiles cwd=true<cr>", desc = "Recent (cwd)" },
+		{ "<leader>fR", "<cmd>Telescope oldfiles cwd_only=true<cr>", desc = "Recent (cwd)" },
 
 		-- Grep / Search
-		{ "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep (Root Dir)" },
-		{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep (Root Dir)" },
-		{ "<leader>sG", "<cmd>Telescope live_grep root=false<cr>", desc = "Grep (cwd)" },
-		{ "<leader>sw", "<cmd>Telescope grep_string<cr>", desc = "Word (Root Dir)" },
-		{ "<leader>sW", "<cmd>Telescope grep_string root=false<cr>", desc = "Word (cwd)" },
-		{ "<leader>sw", "<cmd>Telescope grep_string<cr>", mode = "x", desc = "Selection (Root Dir)" },
-		{ "<leader>sW", "<cmd>Telescope grep_string root=false<cr>", mode = "x", desc = "Selection (cwd)" },
+		{
+			"<leader>/",
+			function()
+				require("telescope.builtin").live_grep({ cwd = require("core.project").root() })
+			end,
+			desc = "Grep (Root Dir)",
+		},
+		{
+			"<leader>sg",
+			function()
+				require("telescope.builtin").live_grep({ cwd = require("core.project").root() })
+			end,
+			desc = "Grep (Root Dir)",
+		},
+		{
+			"<leader>sG",
+			function()
+				require("telescope.builtin").live_grep({ cwd = vim.uv.cwd() })
+			end,
+			desc = "Grep (cwd)",
+		},
+		{
+			"<leader>sw",
+			function()
+				require("telescope.builtin").grep_string({ cwd = require("core.project").root() })
+			end,
+			desc = "Word (Root Dir)",
+		},
+		{
+			"<leader>sW",
+			function()
+				require("telescope.builtin").grep_string({ cwd = vim.uv.cwd() })
+			end,
+			desc = "Word (cwd)",
+		},
+		{
+			"<leader>sw",
+			function()
+				require("telescope.builtin").grep_string({ cwd = require("core.project").root() })
+			end,
+			mode = "x",
+			desc = "Selection (Root Dir)",
+		},
+		{
+			"<leader>sW",
+			function()
+				require("telescope.builtin").grep_string({ cwd = vim.uv.cwd() })
+			end,
+			mode = "x",
+			desc = "Selection (cwd)",
+		},
 
 		-- Git
 		{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
@@ -95,22 +157,12 @@ return {
 			end
 		end
 
-		-- Função para detectar o melhor comando de busca disponível no sistema
-		local function find_command()
-			if vim.fn.executable("rg") == 1 then
-				return { "rg", "--files", "--color", "never", "-g", "!.git" }
-			elseif vim.fn.executable("fd") == 1 then
-				return { "fd", "--type", "f", "--color", "never", "-E", ".git" }
-			elseif vim.fn.executable("fdfind") == 1 then
-				return { "fdfind", "--type", "f", "--color", "never", "-E", ".git" }
-			elseif vim.fn.executable("find") == 1 and vim.fn.has("win32") == 0 then
-				return { "find", ".", "-type", "f" }
-			end
-		end
-
 		return {
 			defaults = {
 				prompt_prefix = " ",
+				path_display = { "smart" },
+				file_ignore_patterns = { "^%.git/", "/node_modules/", "/bin/", "/obj/", "/target/", "/%.venv/" },
+				layout_config = { width = 0.9, height = 0.85, horizontal = { preview_width = 0.55 } },
 				selection_caret = " ",
 				mappings = {
 					i = {
@@ -127,7 +179,6 @@ return {
 			},
 			pickers = {
 				find_files = {
-					find_command = find_command,
 					hidden = true,
 				},
 			},

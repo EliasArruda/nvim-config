@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Real SDK/LSP/DAP integration test. NuGet restore requires network on first run.
+set -euo pipefail
+config_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+check_root="$(mktemp -d "${TMPDIR:-/tmp}/nvim-dotnet-check.XXXXXX")"
+# Keep artifacts for diagnosis, including failures; never touch an existing project.
+printf 'Artifacts: %s\n' "$check_root"
+export NVIM_TEST_ROOT="$config_root"
+export NVIM_DOTNET_TEST_ROOT="$check_root/projects"
+export NVIM_DOTNET_TEST_OUTPUT="$check_root"
+export XDG_STATE_HOME="$check_root/state"
+export NVIM_LOG_FILE="$check_root/nvim.log"
+mkdir -p "$NVIM_DOTNET_TEST_ROOT"
+cd "$NVIM_DOTNET_TEST_ROOT"
+dotnet new blazor --name BlazorSmoke --interactivity Server --framework net10.0
+dotnet new xunit --name BlazorSmoke.Tests --framework net10.0
+dotnet add BlazorSmoke.Tests reference BlazorSmoke
+cp -R "$config_root/tests/dotnet/fixtures/." .
+# Register the service used by the Razor fixture without depending on template line numbers.
+sed -i '/var builder = /a builder.Services.AddScoped<BlazorSmoke.Services.GreetingService>();' BlazorSmoke/Program.cs
+dotnet new sln --name BlazorSmoke --format slnx
+dotnet sln BlazorSmoke.slnx add BlazorSmoke BlazorSmoke.Tests
+dotnet test BlazorSmoke.slnx --nologo
+for check_script in razor-features format-rename csproj-probe new-file debug-smoke; do
+  export NVIM_DOTNET_CHECK_SCRIPT="$config_root/tests/dotnet/$check_script.lua"
+  timeout 150 nvim --headless -i NONE \
+    --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
+    '+lua local ok, err = xpcall(function() dofile(vim.env.NVIM_DOTNET_CHECK_SCRIPT) end, debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
+done
+# This check drives Insert mode asynchronously and exits itself after the menu appears.
+export NVIM_DOTNET_CHECK_SCRIPT="$config_root/tests/dotnet/completion-ui.lua"
+timeout 90 nvim --headless -i NONE \
+  --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
+  '+lua local ok, err = xpcall(function() dofile(vim.env.NVIM_DOTNET_CHECK_SCRIPT) end, debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end'
+printf 'PASS: .NET build, unit test, Razor LSP, formatting, rename, completion resolve, ProjX and managed breakpoint.\nArtifacts: %s\n' "$check_root"

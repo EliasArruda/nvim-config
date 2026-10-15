@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+read -r project_toolchain _ <<< "$(rustup show active-toolchain)"
+exec rustup run "$project_toolchain" rust-analyzer "$@"

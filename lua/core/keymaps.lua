@@ -4,78 +4,11 @@ local map = vim.keymap.set
 -- 📟 TERMINAL
 -- ============================================================
 
-vim.api.nvim_create_autocmd({ "TermOpen", "BufWinEnter" }, {
-	pattern = "term://*",
-	callback = function()
-		local win = vim.api.nvim_get_current_win()
-		local total = vim.o.lines
-		local target = math.floor(total * 0.35)
-		vim.api.nvim_win_set_height(win, target)
-		vim.wo[win].winfixheight = true
-	end,
-})
-
-local terminal_layout = nil
 map({ "n", "t", "i" }, "<C-t>", function()
-	local terminals = {}
-	for count = 1, 10 do
-		local term = Snacks.terminal.get(nil, { count = count, create = false })
-		if term and term.win and vim.api.nvim_win_is_valid(term.win) then
-			table.insert(terminals, { count = count, win = term.win, buf = term.buf })
-		end
-	end
-
-	if vim.tbl_isempty(terminals) then
-		if terminal_layout then
-			for _, t in ipairs(terminal_layout) do
-				Snacks.terminal.toggle(nil, {
-					count = t.count,
-					win = t.win_opts,
-				})
-			end
-			terminal_layout = nil
-		else
-			Snacks.terminal.toggle(nil, {
-				count = 1,
-				win = { position = "bottom", height = 0.35 },
-			})
-		end
-	else
-		terminal_layout = {}
-		for _, t in ipairs(terminals) do
-			local w = t.win
-			local opts = {
-				position = "bottom",
-				height = vim.api.nvim_win_get_height(w) / vim.o.lines,
-				wo = { winfixwidth = vim.wo[w].winfixwidth },
-			}
-			local cfg = vim.api.nvim_win_get_config(w)
-			if cfg.split then
-				opts.split = cfg.split
-				opts.position = cfg.split == "vertical" and "right" or "bottom"
-			end
-			table.insert(terminal_layout, { count = t.count, win_opts = opts })
-		end
-
-		for i = #terminals, 1, -1 do
-			Snacks.terminal.toggle(nil, { count = terminals[i].count })
-		end
-	end
-end, { desc = "Toggle Terminal (Todos os Splits)" })
-
+	require("core.terminals").toggle()
+end, { desc = "Toggle Terminals" })
 map("t", "<C-n>", function()
-	local count = 2
-	while Snacks.terminal.get(nil, { count = count, create = false }) do
-		count = count + 1
-	end
-	Snacks.terminal.get(nil, {
-		count = count,
-		win = {
-			position = "bottom",
-			split = "vertical",
-			wo = { winfixwidth = true },
-		},
-	})
+	require("core.terminals").new_split()
 end, { desc = "New Terminal Split" })
 
 -- LazyVim: terminal focus
@@ -94,6 +27,29 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window W
 map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>|", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+
+map("n", "<leader>nu", function()
+	local ok_manager, manager = pcall(require, "easy-dotnet.terminal.manager")
+	if not ok_manager then
+		return
+	end
+
+	local server_tab = vim.iter(manager.get_all()):find(function(tab)
+		return tab.owned_by == "server"
+	end)
+	if not server_tab then
+		return
+	end
+
+	local panel_visible = manager.panel_win and vim.api.nvim_win_is_valid(manager.panel_win)
+	local terminal = require("easy-dotnet.terminal")
+	if panel_visible then
+		terminal.hide()
+	else
+		manager.set_active(server_tab.id)
+		terminal.show()
+	end
+end, { desc = ".NET Toggle run/watch/debug output" })
 
 -- ============================================================
 -- 📦 BUFFERS (LazyVim)
@@ -127,9 +83,7 @@ map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", {
 -- ============================================================
 map({ "n", "i", "v", "x" }, "<C-s>", "<Esc><Cmd>update<CR>", { desc = "Save", silent = true })
 
-map("n", "<C-x>", function()
-	vim.api.nvim_buf_delete(0, { force = true })
-end, { desc = "Close Buffer" })
+map("n", "<C-x>", "<Cmd>bdelete!<CR>", { desc = "Force Close Buffer" })
 
 -- Clear search on escape (LazyVim)
 map({ "i", "n", "s" }, "<esc>", function()
@@ -169,7 +123,11 @@ local diagnostic_goto = function(next, severity)
 		vim.diagnostic.jump({
 			count = (next and 1 or -1) * vim.v.count1,
 			severity = severity and vim.diagnostic.severity[severity] or nil,
-			float = true,
+			on_jump = function(diagnostic, bufnr)
+				if diagnostic then
+					vim.diagnostic.open_float(bufnr, { scope = "cursor" })
+				end
+			end,
 		})
 	end
 end
@@ -183,34 +141,6 @@ map("n", "[w", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 -- ============================================================
 -- ⚡ TOGGLES (LazyVim snacks)
 -- ============================================================
-pcall(function()
-	Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
-	Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
-	Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
-	Snacks.toggle.diagnostics():map("<leader>ud")
-	Snacks.toggle.line_number():map("<leader>ul")
-	Snacks.toggle.option("conceallevel", {
-		off = 0,
-		on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2,
-		name = "Conceal Level",
-	}):map("<leader>uc")
-	Snacks.toggle.option("showtabline", {
-		off = 0,
-		on = vim.o.showtabline > 0 and vim.o.showtabline or 2,
-		name = "Tabline",
-	}):map("<leader>uA")
-	Snacks.toggle.treesitter():map("<leader>uT")
-	Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
-	Snacks.toggle.dim():map("<leader>uD")
-	Snacks.toggle.animate():map("<leader>ua")
-	Snacks.toggle.scroll():map("<leader>uS")
-	Snacks.toggle.zoom():map("<leader>uZ")
-	Snacks.toggle.zen():map("<leader>uz")
-
-	if vim.lsp.inlay_hint then
-		Snacks.toggle.inlay_hints():map("<leader>uh")
-	end
-end)
 
 -- ============================================================
 -- 🔍 QUICKFIX / LOCATION (LazyVim)
@@ -245,7 +175,7 @@ map("n", "<leader>gx", function()
 	vim.notify("❌ No URL found", vim.log.levels.WARN)
 end, { desc = "Open URL" })
 
-map("n", "<leader>r", function()
+map("n", "<leader>uN", function()
 	if vim.wo.number then
 		vim.wo.number = false
 		vim.wo.relativenumber = false
@@ -259,4 +189,6 @@ end, { desc = "Toggle Line Numbers" })
 
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+if vim.show_pos then
+	map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+end

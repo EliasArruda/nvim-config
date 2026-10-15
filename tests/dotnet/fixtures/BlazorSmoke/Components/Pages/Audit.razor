@@ -1,0 +1,14 @@
+@page "/audit"
+@rendermode InteractiveServer
+@using BlazorSmoke.Services
+@inject GreetingService Greeter
+
+<h1>@Greeter.Greet("Blazor")</h1>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<p>@currentCount</p>
+
+@code {
+    private int currentCount = 0;
+    private string message = string.Empty;
+    private void IncrementCount() { currentCount++; }
+}

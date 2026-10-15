@@ -5,9 +5,7 @@ vim.g.mapleader = " "
 -- ─────────────────────────────────────────────
 vim.g.autoformat = true
 vim.g.snacks_animate = true
-vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
-vim.g.root_lsp_ignore = { "copilot" }
-vim.g.trouble_lualine = true
+-- vim.g.trouble_lualine = true
 
 -- ─────────────────────────────────────────────
 -- ✏️ EDITOR CORE BEHAVIOR
@@ -61,9 +59,8 @@ opt.grepformat = "%f:%l:%c:%m"
 -- ─────────────────────────────────────────────
 opt.number = false
 opt.relativenumber = false
-opt.signcolumn = "no"
+opt.signcolumn = "yes"
 opt.termguicolors = true
-opt.cursorline = true
 opt.laststatus = 3
 opt.showmode = false
 opt.ruler = false
@@ -90,6 +87,6 @@ opt.timeoutlen = 300
 opt.undofile = true
 opt.undolevels = 10000
 opt.updatetime = 200
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "folds" }
 
 vim.g.markdown_recommended_style = 0

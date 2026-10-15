@@ -1,0 +1,3241 @@
+{
+  "catalog": {
+    "angular": {
+      "codepoint": 999424,
+      "svg": "data/symbols-svg/angular.svg"
+    },
+    "angular-component": {
+      "codepoint": 999425,
+      "svg": "data/symbols-svg/angular-component.svg"
+    },
+    "angular-directive": {
+      "codepoint": 999426,
+      "svg": "data/symbols-svg/angular-directive.svg"
+    },
+    "angular-guard": {
+      "codepoint": 999427,
+      "svg": "data/symbols-svg/angular-guard.svg"
+    },
+    "angular-module": {
+      "codepoint": 999428,
+      "svg": "data/symbols-svg/angular-module.svg"
+    },
+    "angular-pipe": {
+      "codepoint": 999429,
+      "svg": "data/symbols-svg/angular-pipe.svg"
+    },
+    "angular-service": {
+      "codepoint": 999430,
+      "svg": "data/symbols-svg/angular-service.svg"
+    },
+    "animate": {
+      "codepoint": 999431,
+      "svg": "data/symbols-svg/animate.svg"
+    },
+    "astro": {
+      "codepoint": 999432,
+      "svg": "data/symbols-svg/astro.svg"
+    },
+    "audio": {
+      "codepoint": 999433,
+      "svg": "data/symbols-svg/audio.svg"
+    },
+    "babel": {
+      "codepoint": 999434,
+      "svg": "data/symbols-svg/babel.svg"
+    },
+    "biome": {
+      "codepoint": 999435,
+      "svg": "data/symbols-svg/biome.svg"
+    },
+    "brackets-blue": {
+      "codepoint": 999436,
+      "svg": "data/symbols-svg/brackets-blue.svg"
+    },
+    "brackets-gray": {
+      "codepoint": 999437,
+      "svg": "data/symbols-svg/brackets-gray.svg"
+    },
+    "brackets-green": {
+      "codepoint": 999438,
+      "svg": "data/symbols-svg/brackets-green.svg"
+    },
+    "brackets-orange": {
+      "codepoint": 999439,
+      "svg": "data/symbols-svg/brackets-orange.svg"
+    },
+    "brackets-pink": {
+      "codepoint": 999440,
+      "svg": "data/symbols-svg/brackets-pink.svg"
+    },
+    "brackets-purple": {
+      "codepoint": 999441,
+      "svg": "data/symbols-svg/brackets-purple.svg"
+    },
+    "brackets-red": {
+      "codepoint": 999442,
+      "svg": "data/symbols-svg/brackets-red.svg"
+    },
+    "brackets-sky": {
+      "codepoint": 999443,
+      "svg": "data/symbols-svg/brackets-sky.svg"
+    },
+    "brackets-yellow": {
+      "codepoint": 999444,
+      "svg": "data/symbols-svg/brackets-yellow.svg"
+    },
+    "browserslist": {
+      "codepoint": 999445,
+      "svg": "data/symbols-svg/browserslist.svg"
+    },
+    "bruno": {
+      "codepoint": 999446,
+      "svg": "data/symbols-svg/bruno.svg"
+    },
+    "bun": {
+      "codepoint": 999447,
+      "svg": "data/symbols-svg/bun.svg"
+    },
+    "c": {
+      "codepoint": 999448,
+      "svg": "data/symbols-svg/c.svg"
+    },
+    "caddy": {
+      "codepoint": 999449,
+      "svg": "data/symbols-svg/caddy.svg"
+    },
+    "capacitor": {
+      "codepoint": 999450,
+      "svg": "data/symbols-svg/capacitor.svg"
+    },
+    "clapper": {
+      "codepoint": 999451,
+      "svg": "data/symbols-svg/clapper.svg"
+    },
+    "claude": {
+      "codepoint": 999452,
+      "svg": "data/symbols-svg/claude.svg"
+    },
+    "clojure": {
+      "codepoint": 999453,
+      "svg": "data/symbols-svg/clojure.svg"
+    },
+    "cloudflare-workers": {
+      "codepoint": 999454,
+      "svg": "data/symbols-svg/cloudflare-workers.svg"
+    },
+    "cmake": {
+      "codepoint": 999455,
+      "svg": "data/symbols-svg/cmake.svg"
+    },
+    "code-blue": {
+      "codepoint": 999456,
+      "svg": "data/symbols-svg/code-blue.svg"
+    },
+    "code-gray": {
+      "codepoint": 999457,
+      "svg": "data/symbols-svg/code-gray.svg"
+    },
+    "code-green": {
+      "codepoint": 999458,
+      "svg": "data/symbols-svg/code-green.svg"
+    },
+    "code-orange": {
+      "codepoint": 999459,
+      "svg": "data/symbols-svg/code-orange.svg"
+    },
+    "code-pink": {
+      "codepoint": 999460,
+      "svg": "data/symbols-svg/code-pink.svg"
+    },
+    "code-purple": {
+      "codepoint": 999461,
+      "svg": "data/symbols-svg/code-purple.svg"
+    },
+    "code-red": {
+      "codepoint": 999462,
+      "svg": "data/symbols-svg/code-red.svg"
+    },
+    "code-sky": {
+      "codepoint": 999463,
+      "svg": "data/symbols-svg/code-sky.svg"
+    },
+    "code-yellow": {
+      "codepoint": 999464,
+      "svg": "data/symbols-svg/code-yellow.svg"
+    },
+    "coffeescript": {
+      "codepoint": 999465,
+      "svg": "data/symbols-svg/coffeescript.svg"
+    },
+    "coldfusion": {
+      "codepoint": 999466,
+      "svg": "data/symbols-svg/coldfusion.svg"
+    },
+    "compressed": {
+      "codepoint": 999467,
+      "svg": "data/symbols-svg/compressed.svg"
+    },
+    "contentlayer": {
+      "codepoint": 999468,
+      "svg": "data/symbols-svg/contentlayer.svg"
+    },
+    "cplus": {
+      "codepoint": 999469,
+      "svg": "data/symbols-svg/cplus.svg"
+    },
+    "crystal": {
+      "codepoint": 999470,
+      "svg": "data/symbols-svg/crystal.svg"
+    },
+    "csharp": {
+      "codepoint": 999471,
+      "svg": "data/symbols-svg/csharp.svg"
+    },
+    "csv": {
+      "codepoint": 999472,
+      "svg": "data/symbols-svg/csv.svg"
+    },
+    "cucumber": {
+      "codepoint": 999473,
+      "svg": "data/symbols-svg/cucumber.svg"
+    },
+    "cuda": {
+      "codepoint": 999474,
+      "svg": "data/symbols-svg/cuda.svg"
+    },
+    "cursor": {
+      "codepoint": 999475,
+      "svg": "data/symbols-svg/cursor.svg"
+    },
+    "cypress": {
+      "codepoint": 999476,
+      "svg": "data/symbols-svg/cypress.svg"
+    },
+    "dart": {
+      "codepoint": 999477,
+      "svg": "data/symbols-svg/dart.svg"
+    },
+    "database": {
+      "codepoint": 999478,
+      "svg": "data/symbols-svg/database.svg"
+    },
+    "deno": {
+      "codepoint": 999479,
+      "svg": "data/symbols-svg/deno.svg"
+    },
+    "docker": {
+      "codepoint": 999480,
+      "svg": "data/symbols-svg/docker.svg"
+    },
+    "docker-green": {
+      "codepoint": 999481,
+      "svg": "data/symbols-svg/docker-green.svg"
+    },
+    "docker-orange": {
+      "codepoint": 999482,
+      "svg": "data/symbols-svg/docker-orange.svg"
+    },
+    "docker-pink": {
+      "codepoint": 999483,
+      "svg": "data/symbols-svg/docker-pink.svg"
+    },
+    "docker-purple": {
+      "codepoint": 999484,
+      "svg": "data/symbols-svg/docker-purple.svg"
+    },
+    "docker-red": {
+      "codepoint": 999485,
+      "svg": "data/symbols-svg/docker-red.svg"
+    },
+    "docker-yellow": {
+      "codepoint": 999486,
+      "svg": "data/symbols-svg/docker-yellow.svg"
+    },
+    "document": {
+      "codepoint": 999487,
+      "svg": "data/symbols-svg/document.svg"
+    },
+    "docusaurus": {
+      "codepoint": 999488,
+      "svg": "data/symbols-svg/docusaurus.svg"
+    },
+    "drawio": {
+      "codepoint": 999489,
+      "svg": "data/symbols-svg/drawio.svg"
+    },
+    "drizzle": {
+      "codepoint": 999490,
+      "svg": "data/symbols-svg/drizzle.svg"
+    },
+    "dts": {
+      "codepoint": 999491,
+      "svg": "data/symbols-svg/dts.svg"
+    },
+    "dune": {
+      "codepoint": 999492,
+      "svg": "data/symbols-svg/dune.svg"
+    },
+    "earthfile": {
+      "codepoint": 999493,
+      "svg": "data/symbols-svg/earthfile.svg"
+    },
+    "editorconfig": {
+      "codepoint": 999494,
+      "svg": "data/symbols-svg/editorconfig.svg"
+    },
+    "elixir": {
+      "codepoint": 999495,
+      "svg": "data/symbols-svg/elixir.svg"
+    },
+    "erlang": {
+      "codepoint": 999496,
+      "svg": "data/symbols-svg/erlang.svg"
+    },
+    "eslint": {
+      "codepoint": 999497,
+      "svg": "data/symbols-svg/eslint.svg"
+    },
+    "exe": {
+      "codepoint": 999498,
+      "svg": "data/symbols-svg/exe.svg"
+    },
+    "expressive-code": {
+      "codepoint": 999499,
+      "svg": "data/symbols-svg/expressive-code.svg"
+    },
+    "firebase": {
+      "codepoint": 999500,
+      "svg": "data/symbols-svg/firebase.svg"
+    },
+    "folder": {
+      "codepoint": 999501,
+      "svg": "data/symbols-svg/folder.svg"
+    },
+    "folder-android": {
+      "codepoint": 999502,
+      "svg": "data/symbols-svg/folder-android.svg"
+    },
+    "folder-angular": {
+      "codepoint": 999503,
+      "svg": "data/symbols-svg/folder-angular.svg"
+    },
+    "folder-app": {
+      "codepoint": 999504,
+      "svg": "data/symbols-svg/folder-app.svg"
+    },
+    "folder-assets": {
+      "codepoint": 999505,
+      "svg": "data/symbols-svg/folder-assets.svg"
+    },
+    "folder-auth": {
+      "codepoint": 999506,
+      "svg": "data/symbols-svg/folder-auth.svg"
+    },
+    "folder-aws": {
+      "codepoint": 999507,
+      "svg": "data/symbols-svg/folder-aws.svg"
+    },
+    "folder-azure": {
+      "codepoint": 999508,
+      "svg": "data/symbols-svg/folder-azure.svg"
+    },
+    "folder-blue": {
+      "codepoint": 999509,
+      "svg": "data/symbols-svg/folder-blue.svg"
+    },
+    "folder-blue-code": {
+      "codepoint": 999510,
+      "svg": "data/symbols-svg/folder-blue-code.svg"
+    },
+    "folder-blue-outline": {
+      "codepoint": 999511,
+      "svg": "data/symbols-svg/folder-blue-outline.svg"
+    },
+    "folder-bruno": {
+      "codepoint": 999512,
+      "svg": "data/symbols-svg/folder-bruno.svg"
+    },
+    "folder-build": {
+      "codepoint": 999513,
+      "svg": "data/symbols-svg/folder-build.svg"
+    },
+    "folder-claude": {
+      "codepoint": 999514,
+      "svg": "data/symbols-svg/folder-claude.svg"
+    },
+    "folder-config": {
+      "codepoint": 999515,
+      "svg": "data/symbols-svg/folder-config.svg"
+    },
+    "folder-constants": {
+      "codepoint": 999516,
+      "svg": "data/symbols-svg/folder-constants.svg"
+    },
+    "folder-context": {
+      "codepoint": 999517,
+      "svg": "data/symbols-svg/folder-context.svg"
+    },
+    "folder-core": {
+      "codepoint": 999518,
+      "svg": "data/symbols-svg/folder-core.svg"
+    },
+    "folder-cursor": {
+      "codepoint": 999519,
+      "svg": "data/symbols-svg/folder-cursor.svg"
+    },
+    "folder-cypress": {
+      "codepoint": 999520,
+      "svg": "data/symbols-svg/folder-cypress.svg"
+    },
+    "folder-database": {
+      "codepoint": 999521,
+      "svg": "data/symbols-svg/folder-database.svg"
+    },
+    "folder-docker": {
+      "codepoint": 999522,
+      "svg": "data/symbols-svg/folder-docker.svg"
+    },
+    "folder-documents": {
+      "codepoint": 999523,
+      "svg": "data/symbols-svg/folder-documents.svg"
+    },
+    "folder-drizzle": {
+      "codepoint": 999524,
+      "svg": "data/symbols-svg/folder-drizzle.svg"
+    },
+    "folder-expo": {
+      "codepoint": 999525,
+      "svg": "data/symbols-svg/folder-expo.svg"
+    },
+    "folder-firebase": {
+      "codepoint": 999526,
+      "svg": "data/symbols-svg/folder-firebase.svg"
+    },
+    "folder-fonts": {
+      "codepoint": 999527,
+      "svg": "data/symbols-svg/folder-fonts.svg"
+    },
+    "folder-github": {
+      "codepoint": 999528,
+      "svg": "data/symbols-svg/folder-github.svg"
+    },
+    "folder-gitlab": {
+      "codepoint": 999529,
+      "svg": "data/symbols-svg/folder-gitlab.svg"
+    },
+    "folder-globe": {
+      "codepoint": 999530,
+      "svg": "data/symbols-svg/folder-globe.svg"
+    },
+    "folder-godot": {
+      "codepoint": 999531,
+      "svg": "data/symbols-svg/folder-godot.svg"
+    },
+    "folder-gradle": {
+      "codepoint": 999532,
+      "svg": "data/symbols-svg/folder-gradle.svg"
+    },
+    "folder-graphql": {
+      "codepoint": 999533,
+      "svg": "data/symbols-svg/folder-graphql.svg"
+    },
+    "folder-gray": {
+      "codepoint": 999534,
+      "svg": "data/symbols-svg/folder-gray.svg"
+    },
+    "folder-gray-code": {
+      "codepoint": 999535,
+      "svg": "data/symbols-svg/folder-gray-code.svg"
+    },
+    "folder-gray-outline": {
+      "codepoint": 999536,
+      "svg": "data/symbols-svg/folder-gray-outline.svg"
+    },
+    "folder-green": {
+      "codepoint": 999537,
+      "svg": "data/symbols-svg/folder-green.svg"
+    },
+    "folder-green-code": {
+      "codepoint": 999538,
+      "svg": "data/symbols-svg/folder-green-code.svg"
+    },
+    "folder-green-outline": {
+      "codepoint": 999539,
+      "svg": "data/symbols-svg/folder-green-outline.svg"
+    },
+    "folder-helpers": {
+      "codepoint": 999540,
+      "svg": "data/symbols-svg/folder-helpers.svg"
+    },
+    "folder-hooks": {
+      "codepoint": 999541,
+      "svg": "data/symbols-svg/folder-hooks.svg"
+    },
+    "folder-i18n": {
+      "codepoint": 999542,
+      "svg": "data/symbols-svg/folder-i18n.svg"
+    },
+    "folder-images": {
+      "codepoint": 999543,
+      "svg": "data/symbols-svg/folder-images.svg"
+    },
+    "folder-interceptors": {
+      "codepoint": 999544,
+      "svg": "data/symbols-svg/folder-interceptors.svg"
+    },
+    "folder-interfaces": {
+      "codepoint": 999545,
+      "svg": "data/symbols-svg/folder-interfaces.svg"
+    },
+    "folder-ios": {
+      "codepoint": 999546,
+      "svg": "data/symbols-svg/folder-ios.svg"
+    },
+    "folder-js": {
+      "codepoint": 999547,
+      "svg": "data/symbols-svg/folder-js.svg"
+    },
+    "folder-layout": {
+      "codepoint": 999548,
+      "svg": "data/symbols-svg/folder-layout.svg"
+    },
+    "folder-lock": {
+      "codepoint": 999549,
+      "svg": "data/symbols-svg/folder-lock.svg"
+    },
+    "folder-mail": {
+      "codepoint": 999550,
+      "svg": "data/symbols-svg/folder-mail.svg"
+    },
+    "folder-maven": {
+      "codepoint": 999551,
+      "svg": "data/symbols-svg/folder-maven.svg"
+    },
+    "folder-middleware": {
+      "codepoint": 999552,
+      "svg": "data/symbols-svg/folder-middleware.svg"
+    },
+    "folder-models": {
+      "codepoint": 999553,
+      "svg": "data/symbols-svg/folder-models.svg"
+    },
+    "folder-modules": {
+      "codepoint": 999554,
+      "svg": "data/symbols-svg/folder-modules.svg"
+    },
+    "folder-mongo": {
+      "codepoint": 999555,
+      "svg": "data/symbols-svg/folder-mongo.svg"
+    },
+    "folder-netlify": {
+      "codepoint": 999556,
+      "svg": "data/symbols-svg/folder-netlify.svg"
+    },
+    "folder-next": {
+      "codepoint": 999557,
+      "svg": "data/symbols-svg/folder-next.svg"
+    },
+    "folder-nginx": {
+      "codepoint": 999558,
+      "svg": "data/symbols-svg/folder-nginx.svg"
+    },
+    "folder-node-modules": {
+      "codepoint": 999559,
+      "svg": "data/symbols-svg/folder-node-modules.svg"
+    },
+    "folder-orange": {
+      "codepoint": 999560,
+      "svg": "data/symbols-svg/folder-orange.svg"
+    },
+    "folder-orange-code": {
+      "codepoint": 999561,
+      "svg": "data/symbols-svg/folder-orange-code.svg"
+    },
+    "folder-orange-outline": {
+      "codepoint": 999562,
+      "svg": "data/symbols-svg/folder-orange-outline.svg"
+    },
+    "folder-pink": {
+      "codepoint": 999563,
+      "svg": "data/symbols-svg/folder-pink.svg"
+    },
+    "folder-pink-code": {
+      "codepoint": 999564,
+      "svg": "data/symbols-svg/folder-pink-code.svg"
+    },
+    "folder-pink-outline": {
+      "codepoint": 999565,
+      "svg": "data/symbols-svg/folder-pink-outline.svg"
+    },
+    "folder-pipes": {
+      "codepoint": 999566,
+      "svg": "data/symbols-svg/folder-pipes.svg"
+    },
+    "folder-prisma": {
+      "codepoint": 999567,
+      "svg": "data/symbols-svg/folder-prisma.svg"
+    },
+    "folder-providers": {
+      "codepoint": 999568,
+      "svg": "data/symbols-svg/folder-providers.svg"
+    },
+    "folder-purple": {
+      "codepoint": 999569,
+      "svg": "data/symbols-svg/folder-purple.svg"
+    },
+    "folder-purple-code": {
+      "codepoint": 999570,
+      "svg": "data/symbols-svg/folder-purple-code.svg"
+    },
+    "folder-purple-outline": {
+      "codepoint": 999571,
+      "svg": "data/symbols-svg/folder-purple-outline.svg"
+    },
+    "folder-react": {
+      "codepoint": 999572,
+      "svg": "data/symbols-svg/folder-react.svg"
+    },
+    "folder-red": {
+      "codepoint": 999573,
+      "svg": "data/symbols-svg/folder-red.svg"
+    },
+    "folder-red-code": {
+      "codepoint": 999574,
+      "svg": "data/symbols-svg/folder-red-code.svg"
+    },
+    "folder-red-outline": {
+      "codepoint": 999575,
+      "svg": "data/symbols-svg/folder-red-outline.svg"
+    },
+    "folder-redis": {
+      "codepoint": 999576,
+      "svg": "data/symbols-svg/folder-redis.svg"
+    },
+    "folder-redux-actions": {
+      "codepoint": 999577,
+      "svg": "data/symbols-svg/folder-redux-actions.svg"
+    },
+    "folder-redux-effects": {
+      "codepoint": 999578,
+      "svg": "data/symbols-svg/folder-redux-effects.svg"
+    },
+    "folder-redux-facade": {
+      "codepoint": 999579,
+      "svg": "data/symbols-svg/folder-redux-facade.svg"
+    },
+    "folder-redux-reducer": {
+      "codepoint": 999580,
+      "svg": "data/symbols-svg/folder-redux-reducer.svg"
+    },
+    "folder-redux-selector": {
+      "codepoint": 999581,
+      "svg": "data/symbols-svg/folder-redux-selector.svg"
+    },
+    "folder-router": {
+      "codepoint": 999582,
+      "svg": "data/symbols-svg/folder-router.svg"
+    },
+    "folder-sass": {
+      "codepoint": 999583,
+      "svg": "data/symbols-svg/folder-sass.svg"
+    },
+    "folder-services": {
+      "codepoint": 999584,
+      "svg": "data/symbols-svg/folder-services.svg"
+    },
+    "folder-shared": {
+      "codepoint": 999585,
+      "svg": "data/symbols-svg/folder-shared.svg"
+    },
+    "folder-sky": {
+      "codepoint": 999586,
+      "svg": "data/symbols-svg/folder-sky.svg"
+    },
+    "folder-sky-code": {
+      "codepoint": 999587,
+      "svg": "data/symbols-svg/folder-sky-code.svg"
+    },
+    "folder-sky-outline": {
+      "codepoint": 999588,
+      "svg": "data/symbols-svg/folder-sky-outline.svg"
+    },
+    "folder-supabase": {
+      "codepoint": 999589,
+      "svg": "data/symbols-svg/folder-supabase.svg"
+    },
+    "folder-target": {
+      "codepoint": 999590,
+      "svg": "data/symbols-svg/folder-target.svg"
+    },
+    "folder-tauri": {
+      "codepoint": 999591,
+      "svg": "data/symbols-svg/folder-tauri.svg"
+    },
+    "folder-tina": {
+      "codepoint": 999592,
+      "svg": "data/symbols-svg/folder-tina.svg"
+    },
+    "folder-utils": {
+      "codepoint": 999593,
+      "svg": "data/symbols-svg/folder-utils.svg"
+    },
+    "folder-vercel": {
+      "codepoint": 999594,
+      "svg": "data/symbols-svg/folder-vercel.svg"
+    },
+    "folder-vscode": {
+      "codepoint": 999595,
+      "svg": "data/symbols-svg/folder-vscode.svg"
+    },
+    "folder-yellow": {
+      "codepoint": 999596,
+      "svg": "data/symbols-svg/folder-yellow.svg"
+    },
+    "folder-yellow-code": {
+      "codepoint": 999597,
+      "svg": "data/symbols-svg/folder-yellow-code.svg"
+    },
+    "folder-yellow-outline": {
+      "codepoint": 999598,
+      "svg": "data/symbols-svg/folder-yellow-outline.svg"
+    },
+    "folder-zed": {
+      "codepoint": 999599,
+      "svg": "data/symbols-svg/folder-zed.svg"
+    },
+    "font": {
+      "codepoint": 999600,
+      "svg": "data/symbols-svg/font.svg"
+    },
+    "fortran": {
+      "codepoint": 999601,
+      "svg": "data/symbols-svg/fortran.svg"
+    },
+    "fresh": {
+      "codepoint": 999602,
+      "svg": "data/symbols-svg/fresh.svg"
+    },
+    "fsharp": {
+      "codepoint": 999603,
+      "svg": "data/symbols-svg/fsharp.svg"
+    },
+    "func": {
+      "codepoint": 999604,
+      "svg": "data/symbols-svg/func.svg"
+    },
+    "gatsby": {
+      "codepoint": 999605,
+      "svg": "data/symbols-svg/gatsby.svg"
+    },
+    "gdextension": {
+      "codepoint": 999606,
+      "svg": "data/symbols-svg/gdextension.svg"
+    },
+    "gdignore": {
+      "codepoint": 999607,
+      "svg": "data/symbols-svg/gdignore.svg"
+    },
+    "gdproject": {
+      "codepoint": 999608,
+      "svg": "data/symbols-svg/gdproject.svg"
+    },
+    "gdscript": {
+      "codepoint": 999609,
+      "svg": "data/symbols-svg/gdscript.svg"
+    },
+    "gdshader": {
+      "codepoint": 999610,
+      "svg": "data/symbols-svg/gdshader.svg"
+    },
+    "gear": {
+      "codepoint": 999611,
+      "svg": "data/symbols-svg/gear.svg"
+    },
+    "gif": {
+      "codepoint": 999612,
+      "svg": "data/symbols-svg/gif.svg"
+    },
+    "git": {
+      "codepoint": 999613,
+      "svg": "data/symbols-svg/git.svg"
+    },
+    "github": {
+      "codepoint": 999614,
+      "svg": "data/symbols-svg/github.svg"
+    },
+    "gitlab": {
+      "codepoint": 999615,
+      "svg": "data/symbols-svg/gitlab.svg"
+    },
+    "gleam": {
+      "codepoint": 999616,
+      "svg": "data/symbols-svg/gleam.svg"
+    },
+    "globe": {
+      "codepoint": 999617,
+      "svg": "data/symbols-svg/globe.svg"
+    },
+    "go": {
+      "codepoint": 999618,
+      "svg": "data/symbols-svg/go.svg"
+    },
+    "go-green": {
+      "codepoint": 999619,
+      "svg": "data/symbols-svg/go-green.svg"
+    },
+    "go-mod": {
+      "codepoint": 999620,
+      "svg": "data/symbols-svg/go-mod.svg"
+    },
+    "go-orange": {
+      "codepoint": 999621,
+      "svg": "data/symbols-svg/go-orange.svg"
+    },
+    "go-pink": {
+      "codepoint": 999622,
+      "svg": "data/symbols-svg/go-pink.svg"
+    },
+    "go-purple": {
+      "codepoint": 999623,
+      "svg": "data/symbols-svg/go-purple.svg"
+    },
+    "go-red": {
+      "codepoint": 999624,
+      "svg": "data/symbols-svg/go-red.svg"
+    },
+    "go-yellow": {
+      "codepoint": 999625,
+      "svg": "data/symbols-svg/go-yellow.svg"
+    },
+    "gradle": {
+      "codepoint": 999626,
+      "svg": "data/symbols-svg/gradle.svg"
+    },
+    "graphql": {
+      "codepoint": 999627,
+      "svg": "data/symbols-svg/graphql.svg"
+    },
+    "gulp": {
+      "codepoint": 999628,
+      "svg": "data/symbols-svg/gulp.svg"
+    },
+    "h": {
+      "codepoint": 999629,
+      "svg": "data/symbols-svg/h.svg"
+    },
+    "haml": {
+      "codepoint": 999630,
+      "svg": "data/symbols-svg/haml.svg"
+    },
+    "haskell": {
+      "codepoint": 999631,
+      "svg": "data/symbols-svg/haskell.svg"
+    },
+    "http": {
+      "codepoint": 999632,
+      "svg": "data/symbols-svg/http.svg"
+    },
+    "hugo": {
+      "codepoint": 999633,
+      "svg": "data/symbols-svg/hugo.svg"
+    },
+    "i18n": {
+      "codepoint": 999634,
+      "svg": "data/symbols-svg/i18n.svg"
+    },
+    "ignore": {
+      "codepoint": 999635,
+      "svg": "data/symbols-svg/ignore.svg"
+    },
+    "illustrator": {
+      "codepoint": 999636,
+      "svg": "data/symbols-svg/illustrator.svg"
+    },
+    "image": {
+      "codepoint": 999637,
+      "svg": "data/symbols-svg/image.svg"
+    },
+    "ionic": {
+      "codepoint": 999638,
+      "svg": "data/symbols-svg/ionic.svg"
+    },
+    "java": {
+      "codepoint": 999639,
+      "svg": "data/symbols-svg/java.svg"
+    },
+    "jenkins": {
+      "codepoint": 999640,
+      "svg": "data/symbols-svg/jenkins.svg"
+    },
+    "jest": {
+      "codepoint": 999641,
+      "svg": "data/symbols-svg/jest.svg"
+    },
+    "js": {
+      "codepoint": 999642,
+      "svg": "data/symbols-svg/js.svg"
+    },
+    "js-test": {
+      "codepoint": 999643,
+      "svg": "data/symbols-svg/js-test.svg"
+    },
+    "julia": {
+      "codepoint": 999644,
+      "svg": "data/symbols-svg/julia.svg"
+    },
+    "julia-markdown": {
+      "codepoint": 999645,
+      "svg": "data/symbols-svg/julia-markdown.svg"
+    },
+    "keystatic": {
+      "codepoint": 999646,
+      "svg": "data/symbols-svg/keystatic.svg"
+    },
+    "knip": {
+      "codepoint": 999647,
+      "svg": "data/symbols-svg/knip.svg"
+    },
+    "kotlin": {
+      "codepoint": 999648,
+      "svg": "data/symbols-svg/kotlin.svg"
+    },
+    "kubb": {
+      "codepoint": 999649,
+      "svg": "data/symbols-svg/kubb.svg"
+    },
+    "laravel": {
+      "codepoint": 999650,
+      "svg": "data/symbols-svg/laravel.svg"
+    },
+    "license": {
+      "codepoint": 999651,
+      "svg": "data/symbols-svg/license.svg"
+    },
+    "link": {
+      "codepoint": 999652,
+      "svg": "data/symbols-svg/link.svg"
+    },
+    "liquid": {
+      "codepoint": 999653,
+      "svg": "data/symbols-svg/liquid.svg"
+    },
+    "lock": {
+      "codepoint": 999654,
+      "svg": "data/symbols-svg/lock.svg"
+    },
+    "lua": {
+      "codepoint": 999655,
+      "svg": "data/symbols-svg/lua.svg"
+    },
+    "luau": {
+      "codepoint": 999656,
+      "svg": "data/symbols-svg/luau.svg"
+    },
+    "lunaria": {
+      "codepoint": 999657,
+      "svg": "data/symbols-svg/lunaria.svg"
+    },
+    "markdoc": {
+      "codepoint": 999658,
+      "svg": "data/symbols-svg/markdoc.svg"
+    },
+    "markdown": {
+      "codepoint": 999659,
+      "svg": "data/symbols-svg/markdown.svg"
+    },
+    "maven": {
+      "codepoint": 999660,
+      "svg": "data/symbols-svg/maven.svg"
+    },
+    "mdx": {
+      "codepoint": 999661,
+      "svg": "data/symbols-svg/mdx.svg"
+    },
+    "minecraft": {
+      "codepoint": 999662,
+      "svg": "data/symbols-svg/minecraft.svg"
+    },
+    "mongo": {
+      "codepoint": 999663,
+      "svg": "data/symbols-svg/mongo.svg"
+    },
+    "nest": {
+      "codepoint": 999664,
+      "svg": "data/symbols-svg/nest.svg"
+    },
+    "nest-controller": {
+      "codepoint": 999665,
+      "svg": "data/symbols-svg/nest-controller.svg"
+    },
+    "nest-decorator": {
+      "codepoint": 999666,
+      "svg": "data/symbols-svg/nest-decorator.svg"
+    },
+    "nest-guard": {
+      "codepoint": 999667,
+      "svg": "data/symbols-svg/nest-guard.svg"
+    },
+    "nest-middleware": {
+      "codepoint": 999668,
+      "svg": "data/symbols-svg/nest-middleware.svg"
+    },
+    "nest-service": {
+      "codepoint": 999669,
+      "svg": "data/symbols-svg/nest-service.svg"
+    },
+    "netlify": {
+      "codepoint": 999670,
+      "svg": "data/symbols-svg/netlify.svg"
+    },
+    "next": {
+      "codepoint": 999671,
+      "svg": "data/symbols-svg/next.svg"
+    },
+    "nim": {
+      "codepoint": 999672,
+      "svg": "data/symbols-svg/nim.svg"
+    },
+    "nix": {
+      "codepoint": 999673,
+      "svg": "data/symbols-svg/nix.svg"
+    },
+    "node": {
+      "codepoint": 999674,
+      "svg": "data/symbols-svg/node.svg"
+    },
+    "nodemon": {
+      "codepoint": 999675,
+      "svg": "data/symbols-svg/nodemon.svg"
+    },
+    "notebook": {
+      "codepoint": 999676,
+      "svg": "data/symbols-svg/notebook.svg"
+    },
+    "npm": {
+      "codepoint": 999677,
+      "svg": "data/symbols-svg/npm.svg"
+    },
+    "nunjucks": {
+      "codepoint": 999678,
+      "svg": "data/symbols-svg/nunjucks.svg"
+    },
+    "nuxt": {
+      "codepoint": 999679,
+      "svg": "data/symbols-svg/nuxt.svg"
+    },
+    "nx": {
+      "codepoint": 999680,
+      "svg": "data/symbols-svg/nx.svg"
+    },
+    "ocaml": {
+      "codepoint": 999681,
+      "svg": "data/symbols-svg/ocaml.svg"
+    },
+    "orval": {
+      "codepoint": 999682,
+      "svg": "data/symbols-svg/orval.svg"
+    },
+    "oxc": {
+      "codepoint": 999683,
+      "svg": "data/symbols-svg/oxc.svg"
+    },
+    "panda": {
+      "codepoint": 999684,
+      "svg": "data/symbols-svg/panda.svg"
+    },
+    "patch": {
+      "codepoint": 999685,
+      "svg": "data/symbols-svg/patch.svg"
+    },
+    "pdf": {
+      "codepoint": 999686,
+      "svg": "data/symbols-svg/pdf.svg"
+    },
+    "perl": {
+      "codepoint": 999687,
+      "svg": "data/symbols-svg/perl.svg"
+    },
+    "photoshop": {
+      "codepoint": 999688,
+      "svg": "data/symbols-svg/photoshop.svg"
+    },
+    "php": {
+      "codepoint": 999689,
+      "svg": "data/symbols-svg/php.svg"
+    },
+    "pkl": {
+      "codepoint": 999690,
+      "svg": "data/symbols-svg/pkl.svg"
+    },
+    "pnpm": {
+      "codepoint": 999691,
+      "svg": "data/symbols-svg/pnpm.svg"
+    },
+    "postcss": {
+      "codepoint": 999692,
+      "svg": "data/symbols-svg/postcss.svg"
+    },
+    "prettier": {
+      "codepoint": 999693,
+      "svg": "data/symbols-svg/prettier.svg"
+    },
+    "prisma": {
+      "codepoint": 999694,
+      "svg": "data/symbols-svg/prisma.svg"
+    },
+    "proto": {
+      "codepoint": 999695,
+      "svg": "data/symbols-svg/proto.svg"
+    },
+    "pug": {
+      "codepoint": 999696,
+      "svg": "data/symbols-svg/pug.svg"
+    },
+    "pulumi": {
+      "codepoint": 999697,
+      "svg": "data/symbols-svg/pulumi.svg"
+    },
+    "puppeteer": {
+      "codepoint": 999698,
+      "svg": "data/symbols-svg/puppeteer.svg"
+    },
+    "puzzle": {
+      "codepoint": 999699,
+      "svg": "data/symbols-svg/puzzle.svg"
+    },
+    "python": {
+      "codepoint": 999700,
+      "svg": "data/symbols-svg/python.svg"
+    },
+    "r": {
+      "codepoint": 999701,
+      "svg": "data/symbols-svg/r.svg"
+    },
+    "razor": {
+      "codepoint": 999702,
+      "svg": "data/symbols-svg/razor.svg"
+    },
+    "react": {
+      "codepoint": 999703,
+      "svg": "data/symbols-svg/react.svg"
+    },
+    "react-test": {
+      "codepoint": 999704,
+      "svg": "data/symbols-svg/react-test.svg"
+    },
+    "react-ts": {
+      "codepoint": 999705,
+      "svg": "data/symbols-svg/react-ts.svg"
+    },
+    "redux-actions": {
+      "codepoint": 999706,
+      "svg": "data/symbols-svg/redux-actions.svg"
+    },
+    "redux-effects": {
+      "codepoint": 999707,
+      "svg": "data/symbols-svg/redux-effects.svg"
+    },
+    "redux-facade": {
+      "codepoint": 999708,
+      "svg": "data/symbols-svg/redux-facade.svg"
+    },
+    "redux-reducer": {
+      "codepoint": 999709,
+      "svg": "data/symbols-svg/redux-reducer.svg"
+    },
+    "redux-selector": {
+      "codepoint": 999710,
+      "svg": "data/symbols-svg/redux-selector.svg"
+    },
+    "rescript": {
+      "codepoint": 999711,
+      "svg": "data/symbols-svg/rescript.svg"
+    },
+    "rescript-interface": {
+      "codepoint": 999712,
+      "svg": "data/symbols-svg/rescript-interface.svg"
+    },
+    "resource": {
+      "codepoint": 999713,
+      "svg": "data/symbols-svg/resource.svg"
+    },
+    "robot": {
+      "codepoint": 999714,
+      "svg": "data/symbols-svg/robot.svg"
+    },
+    "rolldown": {
+      "codepoint": 999715,
+      "svg": "data/symbols-svg/rolldown.svg"
+    },
+    "rome": {
+      "codepoint": 999716,
+      "svg": "data/symbols-svg/rome.svg"
+    },
+    "rsbuild": {
+      "codepoint": 999717,
+      "svg": "data/symbols-svg/rsbuild.svg"
+    },
+    "rslib": {
+      "codepoint": 999718,
+      "svg": "data/symbols-svg/rslib.svg"
+    },
+    "rspack": {
+      "codepoint": 999719,
+      "svg": "data/symbols-svg/rspack.svg"
+    },
+    "ruby": {
+      "codepoint": 999720,
+      "svg": "data/symbols-svg/ruby.svg"
+    },
+    "rust": {
+      "codepoint": 999721,
+      "svg": "data/symbols-svg/rust.svg"
+    },
+    "sanity": {
+      "codepoint": 999722,
+      "svg": "data/symbols-svg/sanity.svg"
+    },
+    "sass": {
+      "codepoint": 999723,
+      "svg": "data/symbols-svg/sass.svg"
+    },
+    "sbt": {
+      "codepoint": 999724,
+      "svg": "data/symbols-svg/sbt.svg"
+    },
+    "scala": {
+      "codepoint": 999725,
+      "svg": "data/symbols-svg/scala.svg"
+    },
+    "severless": {
+      "codepoint": 999726,
+      "svg": "data/symbols-svg/severless.svg"
+    },
+    "shadcn": {
+      "codepoint": 999727,
+      "svg": "data/symbols-svg/shadcn.svg"
+    },
+    "shell": {
+      "codepoint": 999728,
+      "svg": "data/symbols-svg/shell.svg"
+    },
+    "slint": {
+      "codepoint": 999729,
+      "svg": "data/symbols-svg/slint.svg"
+    },
+    "solidity": {
+      "codepoint": 999730,
+      "svg": "data/symbols-svg/solidity.svg"
+    },
+    "statamic-antlers": {
+      "codepoint": 999731,
+      "svg": "data/symbols-svg/statamic-antlers.svg"
+    },
+    "storybook": {
+      "codepoint": 999732,
+      "svg": "data/symbols-svg/storybook.svg"
+    },
+    "stylelint": {
+      "codepoint": 999733,
+      "svg": "data/symbols-svg/stylelint.svg"
+    },
+    "stylus": {
+      "codepoint": 999734,
+      "svg": "data/symbols-svg/stylus.svg"
+    },
+    "supabase": {
+      "codepoint": 999735,
+      "svg": "data/symbols-svg/supabase.svg"
+    },
+    "svelte": {
+      "codepoint": 999736,
+      "svg": "data/symbols-svg/svelte.svg"
+    },
+    "svelte-service": {
+      "codepoint": 999737,
+      "svg": "data/symbols-svg/svelte-service.svg"
+    },
+    "svelte-ts": {
+      "codepoint": 999738,
+      "svg": "data/symbols-svg/svelte-ts.svg"
+    },
+    "svg": {
+      "codepoint": 999739,
+      "svg": "data/symbols-svg/svg.svg"
+    },
+    "svx": {
+      "codepoint": 999740,
+      "svg": "data/symbols-svg/svx.svg"
+    },
+    "swc": {
+      "codepoint": 999741,
+      "svg": "data/symbols-svg/swc.svg"
+    },
+    "swift": {
+      "codepoint": 999742,
+      "svg": "data/symbols-svg/swift.svg"
+    },
+    "tailwind": {
+      "codepoint": 999743,
+      "svg": "data/symbols-svg/tailwind.svg"
+    },
+    "taskfile": {
+      "codepoint": 999744,
+      "svg": "data/symbols-svg/taskfile.svg"
+    },
+    "tauri": {
+      "codepoint": 999745,
+      "svg": "data/symbols-svg/tauri.svg"
+    },
+    "terraform": {
+      "codepoint": 999746,
+      "svg": "data/symbols-svg/terraform.svg"
+    },
+    "tex": {
+      "codepoint": 999747,
+      "svg": "data/symbols-svg/tex.svg"
+    },
+    "text": {
+      "codepoint": 999748,
+      "svg": "data/symbols-svg/text.svg"
+    },
+    "ts": {
+      "codepoint": 999749,
+      "svg": "data/symbols-svg/ts.svg"
+    },
+    "ts-test": {
+      "codepoint": 999750,
+      "svg": "data/symbols-svg/ts-test.svg"
+    },
+    "ts-types": {
+      "codepoint": 999751,
+      "svg": "data/symbols-svg/ts-types.svg"
+    },
+    "tsconfig": {
+      "codepoint": 999752,
+      "svg": "data/symbols-svg/tsconfig.svg"
+    },
+    "turborepo": {
+      "codepoint": 999753,
+      "svg": "data/symbols-svg/turborepo.svg"
+    },
+    "twig": {
+      "codepoint": 999754,
+      "svg": "data/symbols-svg/twig.svg"
+    },
+    "unocss": {
+      "codepoint": 999755,
+      "svg": "data/symbols-svg/unocss.svg"
+    },
+    "uv": {
+      "codepoint": 999756,
+      "svg": "data/symbols-svg/uv.svg"
+    },
+    "v": {
+      "codepoint": 999757,
+      "svg": "data/symbols-svg/v.svg"
+    },
+    "vanilla-extract": {
+      "codepoint": 999758,
+      "svg": "data/symbols-svg/vanilla-extract.svg"
+    },
+    "vercel": {
+      "codepoint": 999759,
+      "svg": "data/symbols-svg/vercel.svg"
+    },
+    "video": {
+      "codepoint": 999760,
+      "svg": "data/symbols-svg/video.svg"
+    },
+    "visual-studio": {
+      "codepoint": 999761,
+      "svg": "data/symbols-svg/visual-studio.svg"
+    },
+    "vite": {
+      "codepoint": 999762,
+      "svg": "data/symbols-svg/vite.svg"
+    },
+    "vitest": {
+      "codepoint": 999763,
+      "svg": "data/symbols-svg/vitest.svg"
+    },
+    "vue": {
+      "codepoint": 999764,
+      "svg": "data/symbols-svg/vue.svg"
+    },
+    "webgpu": {
+      "codepoint": 999765,
+      "svg": "data/symbols-svg/webgpu.svg"
+    },
+    "webpack": {
+      "codepoint": 999766,
+      "svg": "data/symbols-svg/webpack.svg"
+    },
+    "xml": {
+      "codepoint": 999767,
+      "svg": "data/symbols-svg/xml.svg"
+    },
+    "yaml": {
+      "codepoint": 999768,
+      "svg": "data/symbols-svg/yaml.svg"
+    },
+    "yarn": {
+      "codepoint": 999769,
+      "svg": "data/symbols-svg/yarn.svg"
+    },
+    "yummacss": {
+      "codepoint": 999770,
+      "svg": "data/symbols-svg/yummacss.svg"
+    },
+    "zig": {
+      "codepoint": 999771,
+      "svg": "data/symbols-svg/zig.svg"
+    }
+  },
+  "colors": {
+    "angular": "#F87171",
+    "angular-component": "#60A5FA",
+    "angular-directive": "#16A34A",
+    "angular-guard": "#2563EB",
+    "angular-module": "#8B5CF6",
+    "angular-pipe": "#EA580C",
+    "angular-service": "#FBBF24",
+    "animate": "#C084FC",
+    "astro": "#EA580C",
+    "audio": "#64748B",
+    "babel": "#FDD835",
+    "biome": "#60A5FA",
+    "brackets-blue": "#2563EB",
+    "brackets-gray": "#71717A",
+    "brackets-green": "#16A34A",
+    "brackets-orange": "#EA580C",
+    "brackets-pink": "#F472B6",
+    "brackets-purple": "#8B5CF6",
+    "brackets-red": "#F87171",
+    "brackets-sky": "#0EA5E9",
+    "brackets-yellow": "#F59E0B",
+    "browserslist": "#FBBF24",
+    "bruno": "#F4AA41",
+    "bun": "#FEBBD0",
+    "c": "#60A5FA",
+    "caddy": "#60A5FA",
+    "capacitor": "#60A5FA",
+    "clapper": "#8B5CF6",
+    "claude": "#D97656",
+    "clojure": "#22C55E",
+    "cloudflare-workers": "#FEF3C7",
+    "cmake": "#60A5FA",
+    "code-blue": "#2563EB",
+    "code-gray": "#71717A",
+    "code-green": "#16A34A",
+    "code-orange": "#EA580C",
+    "code-pink": "#F472B6",
+    "code-purple": "#8B5CF6",
+    "code-red": "#F87171",
+    "code-sky": "#0EA5E9",
+    "code-yellow": "#F59E0B",
+    "coffeescript": "#EA580C",
+    "coldfusion": "#60A5FA",
+    "compressed": "#F59E0B",
+    "contentlayer": "#A855F7",
+    "cplus": "#60A5FA",
+    "crystal": "#64748B",
+    "csharp": "#14B8A6",
+    "csv": "#14B8A6",
+    "cucumber": "#22C55E",
+    "cuda": "#22C55E",
+    "cursor": "#A1A1AA",
+    "cypress": "#2DD4BF",
+    "dart": "#38BDF8",
+    "database": "#F472B6",
+    "deno": "#64748B",
+    "docker": "#60A5FA",
+    "docker-green": "#60A5FA",
+    "docker-orange": "#60A5FA",
+    "docker-pink": "#60A5FA",
+    "docker-purple": "#60A5FA",
+    "docker-red": "#60A5FA",
+    "docker-yellow": "#60A5FA",
+    "document": "#64748B",
+    "docusaurus": "#22C55E",
+    "drawio": "#F59E0B",
+    "drizzle": "#22C55E",
+    "dts": "#2563EB",
+    "dune": "#EA580C",
+    "earthfile": "#83FF50",
+    "editorconfig": "#FECACA",
+    "elixir": "#A855F7",
+    "erlang": "#F87171",
+    "eslint": "#A5B4FC",
+    "exe": "#64748B",
+    "expressive-code": "#363152",
+    "firebase": "#FF9100",
+    "folder": "#64748B",
+    "folder-android": "#4ADE80",
+    "folder-angular": "#F87171",
+    "folder-app": "#64748B",
+    "folder-assets": "#64748B",
+    "folder-auth": "#64748B",
+    "folder-aws": "#64748B",
+    "folder-azure": "#64748B",
+    "folder-blue": "#64748B",
+    "folder-blue-code": "#2563EB",
+    "folder-blue-outline": "#64748B",
+    "folder-bruno": "#64748B",
+    "folder-build": "#C084FC",
+    "folder-claude": "#64748B",
+    "folder-config": "#64748B",
+    "folder-constants": "#A1A1AA",
+    "folder-context": "#C084FC",
+    "folder-core": "#0EA5E9",
+    "folder-cursor": "#64748B",
+    "folder-cypress": "#69D3A7",
+    "folder-database": "#F472B6",
+    "folder-docker": "#60A5FA",
+    "folder-documents": "#64748B",
+    "folder-drizzle": "#4ADE80",
+    "folder-expo": "#64748B",
+    "folder-firebase": "#FF9100",
+    "folder-fonts": "#64748B",
+    "folder-github": "#A1A1AA",
+    "folder-gitlab": "#FC6D26",
+    "folder-globe": "#60A5FA",
+    "folder-godot": "#64748B",
+    "folder-gradle": "#64748B",
+    "folder-graphql": "#64748B",
+    "folder-gray": "#64748B",
+    "folder-gray-code": "#71717A",
+    "folder-gray-outline": "#64748B",
+    "folder-green": "#64748B",
+    "folder-green-code": "#16A34A",
+    "folder-green-outline": "#64748B",
+    "folder-helpers": "#F59E0B",
+    "folder-hooks": "#8B5CF6",
+    "folder-i18n": "#64748B",
+    "folder-images": "#C084FC",
+    "folder-interceptors": "#0EA5E9",
+    "folder-interfaces": "#2563EB",
+    "folder-ios": "#64748B",
+    "folder-js": "#64748B",
+    "folder-layout": "#64748B",
+    "folder-lock": "#64748B",
+    "folder-mail": "#64748B",
+    "folder-maven": "#DD552C",
+    "folder-middleware": "#64748B",
+    "folder-models": "#F87171",
+    "folder-modules": "#0EA5E9",
+    "folder-mongo": "#64748B",
+    "folder-netlify": "#2DD4BF",
+    "folder-next": "#64748B",
+    "folder-nginx": "#22C55E",
+    "folder-node-modules": "#64748B",
+    "folder-orange": "#64748B",
+    "folder-orange-code": "#EA580C",
+    "folder-orange-outline": "#64748B",
+    "folder-pink": "#64748B",
+    "folder-pink-code": "#F472B6",
+    "folder-pink-outline": "#64748B",
+    "folder-pipes": "#16A34A",
+    "folder-prisma": "#64748B",
+    "folder-providers": "#64748B",
+    "folder-purple": "#64748B",
+    "folder-purple-code": "#8B5CF6",
+    "folder-purple-outline": "#64748B",
+    "folder-react": "#2563EB",
+    "folder-red": "#64748B",
+    "folder-red-code": "#F87171",
+    "folder-red-outline": "#64748B",
+    "folder-redis": "#64748B",
+    "folder-redux-actions": "#8B5CF6",
+    "folder-redux-effects": "#16A34A",
+    "folder-redux-facade": "#F59E0B",
+    "folder-redux-reducer": "#EA580C",
+    "folder-redux-selector": "#F87171",
+    "folder-router": "#16A34A",
+    "folder-sass": "#64748B",
+    "folder-services": "#64748B",
+    "folder-shared": "#8B5CF6",
+    "folder-sky": "#64748B",
+    "folder-sky-code": "#0EA5E9",
+    "folder-sky-outline": "#64748B",
+    "folder-supabase": "#3ECF8E",
+    "folder-target": "#C084FC",
+    "folder-tauri": "#EAB308",
+    "folder-tina": "#EA580C",
+    "folder-utils": "#64748B",
+    "folder-vercel": "#64748B",
+    "folder-vscode": "#64748B",
+    "folder-yellow": "#64748B",
+    "folder-yellow-code": "#F59E0B",
+    "folder-yellow-outline": "#64748B",
+    "folder-zed": "#64748B",
+    "font": "#64748B",
+    "fortran": "#A855F7",
+    "fresh": "#FACC15",
+    "fsharp": "#14B8A6",
+    "func": "#2563EB",
+    "gatsby": "#A855F7",
+    "gdextension": "#2563EB",
+    "gdignore": "#64748B",
+    "gdproject": "#F87171",
+    "gdscript": "#0EA5E9",
+    "gdshader": "#14B8A6",
+    "gear": "#64748B",
+    "gif": "#C084FC",
+    "git": "#F87171",
+    "github": "#71717A",
+    "gitlab": "#FC6D26",
+    "gleam": "#151515",
+    "globe": "#60A5FA",
+    "go": "#60A5FA",
+    "go-green": "#22C55E",
+    "go-mod": "#F472B6",
+    "go-orange": "#EA580C",
+    "go-pink": "#F472B6",
+    "go-purple": "#8B5CF6",
+    "go-red": "#F87171",
+    "go-yellow": "#FDE047",
+    "gradle": "#2DD4BF",
+    "graphql": "#F472B6",
+    "gulp": "#F87171",
+    "h": "#60A5FA",
+    "haml": "#EA580C",
+    "haskell": "#A855F7",
+    "http": "#2563EB",
+    "hugo": "#DB2777",
+    "i18n": "#C084FC",
+    "ignore": "#64748B",
+    "illustrator": "#FB923C",
+    "image": "#C084FC",
+    "ionic": "#2563EB",
+    "java": "#F87171",
+    "jenkins": "#D33833",
+    "jest": "#F472B6",
+    "js": "#F59E0B",
+    "js-test": "#EA580C",
+    "julia": "#F87171",
+    "julia-markdown": "#60A5FA",
+    "keystatic": "#64748B",
+    "knip": "#FB923C",
+    "kotlin": "#A855F7",
+    "kubb": "#000000",
+    "laravel": "#EF4444",
+    "license": "#64748B",
+    "link": "#64748B",
+    "liquid": "#60A5FA",
+    "lock": "#64748B",
+    "lua": "#2563EB",
+    "luau": "#0EA5E9",
+    "lunaria": "#20103F",
+    "markdoc": "#FBBF24",
+    "markdown": "#60A5FA",
+    "maven": "#DD552C",
+    "mdx": "#60A5FA",
+    "minecraft": "#22C55E",
+    "mongo": "#22C55E",
+    "nest": "#F87171",
+    "nest-controller": "#60A5FA",
+    "nest-decorator": "#A855F7",
+    "nest-guard": "#22C55E",
+    "nest-middleware": "#4F46E5",
+    "nest-service": "#FBBF24",
+    "netlify": "#2DD4BF",
+    "next": "#64748B",
+    "nim": "#FBBF24",
+    "nix": "#60A5FA",
+    "node": "#2DD4BF",
+    "nodemon": "#14B8A6",
+    "notebook": "#60A5FA",
+    "npm": "#F87171",
+    "nunjucks": "#2DD4BF",
+    "nuxt": "#22C55E",
+    "nx": "#64748B",
+    "ocaml": "#EA580C",
+    "orval": "#9E60FC",
+    "oxc": "#14B8A6",
+    "panda": "#FBBF24",
+    "patch": "#F87171",
+    "pdf": "#F87171",
+    "perl": "#A855F7",
+    "photoshop": "#60A5FA",
+    "php": "#A855F7",
+    "pkl": "#2DD4BF",
+    "pnpm": "#F59E0B",
+    "postcss": "#F87171",
+    "prettier": "#FBBF24",
+    "prisma": "#14B8A6",
+    "proto": "#F87171",
+    "pug": "#FED7AA",
+    "pulumi": "#F87171",
+    "puppeteer": "#14B8A6",
+    "puzzle": "#60A5FA",
+    "python": "#14B8A6",
+    "r": "#71717A",
+    "razor": "#14B8A6",
+    "react": "#38BDF8",
+    "react-test": "#EA580C",
+    "react-ts": "#2563EB",
+    "redux-actions": "#8B5CF6",
+    "redux-effects": "#16A34A",
+    "redux-facade": "#F59E0B",
+    "redux-reducer": "#EA580C",
+    "redux-selector": "#F87171",
+    "rescript": "#F87171",
+    "rescript-interface": "#F87171",
+    "resource": "#F59E0B",
+    "robot": "#64748B",
+    "rolldown": "#F87171",
+    "rome": "#71717A",
+    "rsbuild": "#64748B",
+    "rslib": "#64748B",
+    "rspack": "#64748B",
+    "ruby": "#F87171",
+    "rust": "#EA580C",
+    "sanity": "#64748B",
+    "sass": "#F472B6",
+    "sbt": "#2563EB",
+    "scala": "#F87171",
+    "severless": "#F87171",
+    "shadcn": "#64748B",
+    "shell": "#14B8A6",
+    "slint": "#60A5FA",
+    "solidity": "#A855F7",
+    "statamic-antlers": "#DA2FB6",
+    "storybook": "#F472B6",
+    "stylelint": "#A855F7",
+    "stylus": "#14B8A6",
+    "supabase": "#3ECF8E",
+    "svelte": "#EA580C",
+    "svelte-service": "#FBBF24",
+    "svelte-ts": "#2563EB",
+    "svg": "#F472B6",
+    "svx": "#EA580C",
+    "swc": "#FFA888",
+    "swift": "#EA580C",
+    "tailwind": "#0EA5E9",
+    "taskfile": "#29BEB0",
+    "tauri": "#EAB308",
+    "terraform": "#A855F7",
+    "tex": "#2563EB",
+    "text": "#64748B",
+    "ts": "#2563EB",
+    "ts-test": "#EA580C",
+    "ts-types": "#16A34A",
+    "tsconfig": "#64748B",
+    "turborepo": "#E4E4E7",
+    "twig": "#22C55E",
+    "unocss": "#71717A",
+    "uv": "#A855F7",
+    "v": "#1D4ED8",
+    "vanilla-extract": "#F472B6",
+    "vercel": "#64748B",
+    "video": "#64748B",
+    "visual-studio": "#7E22CE",
+    "vite": "#8B5CF6",
+    "vitest": "#16A34A",
+    "vue": "#14B8A6",
+    "webgpu": "#0EA5E9",
+    "webpack": "#93C5FD",
+    "xml": "#EA580C",
+    "yaml": "#A78BFA",
+    "yarn": "#60A5FA",
+    "yummacss": "#413CB8",
+    "zig": "#FBBF24"
+  },
+  "default": {
+    "directory": "folder",
+    "file": "document",
+    "root": "folder-gray"
+  },
+  "directory": {
+    ".angular": "folder-angular",
+    ".azure": "folder-azure",
+    ".bru": "folder-bruno",
+    ".claude": "folder-claude",
+    ".claude-code": "folder-claude",
+    ".contentlayer": "folder-purple",
+    ".cursor": "folder-cursor",
+    ".docker": "folder-docker",
+    ".drizzle": "folder-drizzle",
+    ".expo": "folder-expo",
+    ".git": "folder-red",
+    ".github": "folder-github",
+    ".gitlab": "folder-gitlab",
+    ".godot": "folder-godot",
+    ".gradle": "folder-gradle",
+    ".mvn": "folder-maven",
+    ".netlify": "folder-netlify",
+    ".next": "folder-next",
+    ".nuxt": "folder-green",
+    ".nx": "folder-gray",
+    ".storybook": "folder-pink",
+    ".turbo": "folder-red",
+    ".venv": "folder-lock",
+    ".vercel": "folder-vercel",
+    ".vscode": "folder-vscode",
+    ".well-known": "folder-globe",
+    ".zed": "folder-zed",
+    "Assets": "folder-assets",
+    "Components": "folder-green-code",
+    "Data": "folder-database",
+    "Layout": "folder-layout",
+    "Layouts": "folder-layout",
+    "Models": "folder-models",
+    "Pages": "folder-sky-code",
+    "Properties": "folder-config",
+    "Resources": "folder-assets",
+    "Services": "folder-services",
+    "Tests": "folder-red-code",
+    "android": "folder-android",
+    "angular": "folder-angular",
+    "api": "folder-red",
+    "app": "folder-app",
+    "apps": "folder-app",
+    "assets": "folder-assets",
+    "auth": "folder-lock",
+    "aws": "folder-aws",
+    "bru": "folder-bruno",
+    "build": "folder-build",
+    "claude": "folder-claude",
+    "claude-config": "folder-claude",
+    "claude-prompts": "folder-claude",
+    "client": "folder-blue",
+    "components": "folder-green-code",
+    "config": "folder-config",
+    "constants": "folder-constants",
+    "context": "folder-context",
+    "contexts": "folder-context",
+    "core": "folder-core",
+    "css": "folder-purple-code",
+    "database": "folder-database",
+    "databases": "folder-database",
+    "db": "folder-database",
+    "dist": "folder-purple-outline",
+    "doc": "folder-documents",
+    "docker": "folder-docker",
+    "docker-compose": "folder-docker",
+    "dockerfiles": "folder-docker",
+    "docs": "folder-documents",
+    "documentation": "folder-documents",
+    "documents": "folder-documents",
+    "drizzle": "folder-drizzle",
+    "emails": "folder-mail",
+    "env": "folder-green",
+    "expo": "folder-expo",
+    "firebase": "folder-firebase",
+    "font": "folder-fonts",
+    "fonts": "folder-fonts",
+    "gql": "folder-graphql",
+    "gradle": "folder-gradle",
+    "graphql": "folder-graphql",
+    "helpers": "folder-helpers",
+    "hooks": "folder-hooks",
+    "i18n": "folder-i18n",
+    "image": "folder-images",
+    "images": "folder-images",
+    "interceptor": "folder-interceptors",
+    "interceptors": "folder-interceptors",
+    "interface": "folder-interfaces",
+    "interfaces": "folder-interfaces",
+    "intl": "folder-i18n",
+    "ios": "folder-ios",
+    "javascript": "folder-js",
+    "js": "folder-js",
+    "l10n": "folder-i18n",
+    "lang": "folder-i18n",
+    "langs": "folder-i18n",
+    "languages": "folder-i18n",
+    "layout": "folder-layout",
+    "layouts": "folder-layout",
+    "lib": "folder-utils",
+    "locale": "folder-i18n",
+    "locales": "folder-i18n",
+    "mail": "folder-mail",
+    "mailers": "folder-mail",
+    "mails": "folder-mail",
+    "maven": "folder-maven",
+    "middleware": "folder-middleware",
+    "middlewares": "folder-middleware",
+    "models": "folder-models",
+    "modules": "folder-modules",
+    "mongo": "folder-mongo",
+    "mongodb": "folder-mongo",
+    "netlify": "folder-netlify",
+    "nginx": "folder-nginx",
+    "node_modules": "folder-node-modules",
+    "out": "folder-purple-outline",
+    "pages": "folder-sky-code",
+    "pipe": "folder-pipes",
+    "pipes": "folder-pipes",
+    "prisma": "folder-prisma",
+    "provider": "folder-providers",
+    "providers": "folder-providers",
+    "public": "folder-purple-outline",
+    "react": "folder-react",
+    "resources": "folder-assets",
+    "router": "folder-router",
+    "routers": "folder-router",
+    "routes": "folder-router",
+    "sass": "folder-sass",
+    "screens": "folder-sky-code",
+    "scripts": "folder-red-code",
+    "scss": "folder-sass",
+    "server": "folder-orange",
+    "service": "folder-services",
+    "services": "folder-services",
+    "shared": "folder-shared",
+    "smtp": "folder-mail",
+    "source": "folder-orange-code",
+    "spec": "folder-red-code",
+    "specs": "folder-red-code",
+    "src": "folder-orange-code",
+    "src-tauri": "folder-tauri",
+    "static": "folder-assets",
+    "stories": "folder-pink-code",
+    "storybook": "folder-pink-outline",
+    "styles": "folder-purple-code",
+    "supabase": "folder-supabase",
+    "target": "folder-target",
+    "tauri": "folder-tauri",
+    "test": "folder-red-code",
+    "tests": "folder-red-code",
+    "tina": "folder-tina",
+    "tools": "folder-utils",
+    "translation": "folder-i18n",
+    "translations": "folder-i18n",
+    "types": "folder-blue-code",
+    "util": "folder-utils",
+    "utilities": "folder-utils",
+    "utility": "folder-utils",
+    "utils": "folder-utils",
+    "vercel": "folder-vercel",
+    "well-known": "folder-globe",
+    "wwwroot": "folder-purple-outline"
+  },
+  "extension": {
+    "7z": "compressed",
+    "YAML-tmLanguage": "yaml",
+    "accdb": "database",
+    "actions.ts": "redux-actions",
+    "afphoto": "image",
+    "ai": "illustrator",
+    "aiff": "audio",
+    "al": "code-green",
+    "ami": "image",
+    "an": "animate",
+    "antlers.html": "statamic-antlers",
+    "apx": "image",
+    "arb": "i18n",
+    "ase": "image",
+    "aseprite": "image",
+    "astro": "astro",
+    "avi": "video",
+    "avif": "image",
+    "awk": "shell",
+    "bash": "shell",
+    "bat": "shell",
+    "blade.php": "laravel",
+    "bmap": "font",
+    "bmp": "image",
+    "bpg": "image",
+    "brk": "image",
+    "bru": "http",
+    "c": "c",
+    "c++": "cplus",
+    "cc": "cplus",
+    "cfc": "coldfusion",
+    "cfm": "coldfusion",
+    "cfml": "coldfusion",
+    "cjs": "js",
+    "clip": "image",
+    "cls": "code-blue",
+    "cmake": "cmake",
+    "cmd": "shell",
+    "cmx": "ocaml",
+    "component.dart": "angular-component",
+    "component.js": "angular-component",
+    "component.ts": "angular-component",
+    "containerignore": "docker",
+    "cp": "cplus",
+    "cpp": "cplus",
+    "cpt": "image",
+    "cr": "crystal",
+    "cs": "csharp",
+    "csh": "shell",
+    "cshtml": "razor",
+    "csproj": "visual-studio",
+    "css": "brackets-purple",
+    "csv": "csv",
+    "csx": "csharp",
+    "cu": "cuda",
+    "cuh": "cuda",
+    "cur": "image",
+    "cxx": "cplus",
+    "d.cts": "ts-types",
+    "d.mts": "ts-types",
+    "d.ts": "ts-types",
+    "dart": "dart",
+    "db": "database",
+    "db3": "database",
+    "dds": "image",
+    "deb": "compressed",
+    "deno": "deno",
+    "dio": "drawio",
+    "directive.dart": "angular-directive",
+    "directive.js": "angular-directive",
+    "directive.ts": "angular-directive",
+    "dmg": "compressed",
+    "dmn": "xml",
+    "dng": "image",
+    "dockerfile": "docker",
+    "dockerignore": "docker",
+    "drawio": "drawio",
+    "dtd": "xml",
+    "dtx": "tex",
+    "earthlyignore": "earthfile",
+    "edge": "animate",
+    "editorconfig": "editorconfig",
+    "eex": "elixir",
+    "effects.ts": "redux-effects",
+    "env": "gear",
+    "env.example": "gear",
+    "eot": "font",
+    "eps": "image",
+    "erb": "ruby",
+    "erl": "erlang",
+    "ex": "elixir",
+    "exe": "exe",
+    "exp": "shell",
+    "exr": "image",
+    "exs": "elixir",
+    "f": "fortran",
+    "f03": "fortran",
+    "f90": "fortran",
+    "f95": "fortran",
+    "facade.ts": "redux-facade",
+    "fc": "func",
+    "fish": "shell",
+    "fla": "animate",
+    "flac": "audio",
+    "flv": "video",
+    "fnt": "font",
+    "font": "font",
+    "fonts": "font",
+    "for": "fortran",
+    "fpx": "image",
+    "freezed.dart": "dart",
+    "fs": "fsharp",
+    "fsi": "fsharp",
+    "fsproj": "fsharp",
+    "fsx": "fsharp",
+    "ftl": "i18n",
+    "g.dart": "dart",
+    "gbr": "image",
+    "gd": "gdscript",
+    "gd.uid": "link",
+    "gdextension": "gdextension",
+    "gdshader": "gdshader",
+    "gdshader.uid": "link",
+    "gif": "gif",
+    "gifv": "video",
+    "gleam": "gleam",
+    "go": "go",
+    "go.mod": "go-mod",
+    "godot": "gdproject",
+    "gql": "graphql",
+    "gradle": "gradle",
+    "graphql": "graphql",
+    "guard.dart": "angular-guard",
+    "guard.js": "angular-guard",
+    "guard.ts": "angular-guard",
+    "gz": "compressed",
+    "h": "h",
+    "haml": "haml",
+    "heex": "elixir",
+    "heic": "image",
+    "heif": "image",
+    "hrl": "erlang",
+    "hs": "haskell",
+    "htaccess": "document",
+    "htm": "code-orange",
+    "html": "code-orange",
+    "html.twig": "twig",
+    "http": "http",
+    "i": "c",
+    "ico": "image",
+    "ii": "cplus",
+    "img": "image",
+    "iml": "xml",
+    "import": "gear",
+    "ipynb": "notebook",
+    "iso": "compressed",
+    "jade": "pug",
+    "java": "java",
+    "jb2": "image",
+    "jbig2": "image",
+    "jenkins": "jenkins",
+    "jenkinsfile": "jenkins",
+    "jfif": "image",
+    "jl": "julia",
+    "jng": "image",
+    "jpeg": "image",
+    "jpg": "image",
+    "js": "js",
+    "json": "brackets-yellow",
+    "json5": "brackets-yellow",
+    "jsonc": "brackets-yellow",
+    "jsp": "java",
+    "jsx": "react",
+    "jxr": "image",
+    "kra": "image",
+    "ksh": "shell",
+    "kt": "kotlin",
+    "kts": "kotlin",
+    "lang": "i18n",
+    "leex": "elixir",
+    "less": "code-blue",
+    "liquid": "liquid",
+    "lock": "lock",
+    "ltx": "tex",
+    "lua": "lua",
+    "luau": "luau",
+    "lucee": "coldfusion",
+    "m2v": "video",
+    "m4a": "audio",
+    "m4v": "video",
+    "manifest": "xml",
+    "mcaddon": "minecraft",
+    "mcfunction": "minecraft",
+    "mcmeta": "minecraft",
+    "mcpack": "minecraft",
+    "mcstructure": "minecraft",
+    "mcworld": "minecraft",
+    "md": "markdown",
+    "mdb": "database",
+    "mdc": "cursor",
+    "mdoc": "markdoc",
+    "mdp": "image",
+    "mdx": "mdx",
+    "mi": "c",
+    "mii": "cplus",
+    "mjs": "js",
+    "mkv": "video",
+    "ml": "ocaml",
+    "mli": "ocaml",
+    "mm": "cplus",
+    "mo": "i18n",
+    "module.dart": "angular-module",
+    "module.js": "angular-module",
+    "module.ts": "angular-module",
+    "mongodb": "mongo",
+    "mov": "video",
+    "mp2": "video",
+    "mp3": "audio",
+    "mp4": "video",
+    "mpe": "video",
+    "mpeg": "video",
+    "mpg": "video",
+    "mpv": "video",
+    "mrf": "font",
+    "msi": "exe",
+    "netlify": "netlify",
+    "nim": "nim",
+    "nix": "nix",
+    "njk": "nunjucks",
+    "ntf": "font",
+    "nu": "shell",
+    "nunjucks": "nunjucks",
+    "ods": "csv",
+    "odttf": "font",
+    "ogg": "video",
+    "ogv": "video",
+    "ora": "image",
+    "orval": "orval",
+    "otf": "font",
+    "patch": "patch",
+    "pbm": "image",
+    "pcss": "postcss",
+    "pdb": "database",
+    "pdf": "pdf",
+    "pdn": "image",
+    "pgf": "image",
+    "pgm": "image",
+    "pgsql": "database",
+    "pic": "image",
+    "pipe.dart": "angular-pipe",
+    "pipe.js": "angular-pipe",
+    "pipe.ts": "angular-pipe",
+    "pkb": "database",
+    "pkl": "pkl",
+    "pks": "database",
+    "plist": "xml",
+    "png": "image",
+    "pnm": "image",
+    "po": "i18n",
+    "postgres": "database",
+    "pot": "i18n",
+    "ppm": "image",
+    "prisma": "prisma",
+    "project": "xml",
+    "proto": "proto",
+    "ps1": "shell",
+    "ps1xml": "shell",
+    "psb": "photoshop",
+    "psc1": "shell",
+    "psd": "photoshop",
+    "psd1": "shell",
+    "psm1": "shell",
+    "psql": "database",
+    "pssc": "shell",
+    "psv": "csv",
+    "pug": "pug",
+    "pulumi": "pulumi",
+    "puppeteer": "puppeteer",
+    "py": "python",
+    "python": "python",
+    "qt": "video",
+    "r": "r",
+    "rar": "compressed",
+    "raw": "image",
+    "razor": "razor",
+    "rb": "ruby",
+    "reb": "image",
+    "reducer.ts": "redux-reducer",
+    "res": "rescript",
+    "resi": "rescript-interface",
+    "rest": "http",
+    "resw": "i18n",
+    "resx": "i18n",
+    "rm": "video",
+    "rmd": "r",
+    "rmvb": "video",
+    "ron": "rust",
+    "rpm": "compressed",
+    "rs": "rust",
+    "ruleset": "visual-studio",
+    "sai": "image",
+    "sass": "sass",
+    "sbt": "sbt",
+    "sc": "scala",
+    "scala": "scala",
+    "scn": "clapper",
+    "scss": "sass",
+    "selector.ts": "redux-selector",
+    "selectors.ts": "redux-selector",
+    "service.dart": "angular-service",
+    "service.js": "angular-service",
+    "service.svelte.ts": "svelte-service",
+    "service.ts": "angular-service",
+    "sh": "shell",
+    "shtml": "code-orange",
+    "slint": "slint",
+    "sln": "visual-studio",
+    "slnx": "visual-studio",
+    "sol": "solidity",
+    "spec.js": "js-test",
+    "spec.jsx": "react-test",
+    "spec.mjs": "js-test",
+    "spec.ts": "ts-test",
+    "spec.tsx": "react-test",
+    "sql": "database",
+    "sqlite": "database",
+    "sqlite3": "database",
+    "ssh_config": "shell",
+    "sss": "postcss",
+    "stories.js": "storybook",
+    "stories.jsx": "storybook",
+    "stories.mdx": "storybook",
+    "stories.svelte": "storybook",
+    "stories.ts": "storybook",
+    "stories.tsx": "storybook",
+    "story.js": "storybook",
+    "story.jsx": "storybook",
+    "story.mdx": "storybook",
+    "story.ts": "storybook",
+    "story.tsx": "storybook",
+    "strings": "i18n",
+    "stringsdict": "i18n",
+    "sty": "tex",
+    "styl": "stylus",
+    "stylelint": "stylelint",
+    "sui": "font",
+    "suit": "font",
+    "suo": "visual-studio",
+    "svelte": "svelte",
+    "svelte.ts": "svelte-ts",
+    "svg": "svg",
+    "svgx": "image",
+    "svx": "svx",
+    "swift": "swift",
+    "tar": "compressed",
+    "tar.bz2": "compressed",
+    "tar.gz": "compressed",
+    "tcsh": "shell",
+    "test": "code-orange",
+    "test.js": "js-test",
+    "test.jsx": "react-test",
+    "test.mjs": "js-test",
+    "test.ts": "ts-test",
+    "test.tsx": "react-test",
+    "tex": "tex",
+    "tf": "terraform",
+    "tf.json": "terraform",
+    "tfstate": "terraform",
+    "tfvars": "terraform",
+    "tga": "image",
+    "tif": "image",
+    "tiff": "image",
+    "tmLanguage": "xml",
+    "toml": "gear",
+    "tres": "resource",
+    "ts": "ts",
+    "tscn": "clapper",
+    "tsconfig.json": "tsconfig",
+    "tsv": "csv",
+    "tsx": "react-ts",
+    "ttc": "font",
+    "ttf": "font",
+    "twig": "twig",
+    "txt": "text",
+    "url": "globe",
+    "v": "v",
+    "vb": "visual-studio",
+    "vbs": "visual-studio",
+    "vcxitems": "visual-studio",
+    "vcxitems.filters": "visual-studio",
+    "vcxproj": "visual-studio",
+    "vcxproj.filters": "visual-studio",
+    "vercel": "vercel",
+    "vob": "video",
+    "vsix": "puzzle",
+    "vsixmanifest": "puzzle",
+    "vue": "vue",
+    "wav": "audio",
+    "webloc": "globe",
+    "webm": "video",
+    "webp": "image",
+    "wgsl": "webgpu",
+    "wma": "audio",
+    "wmv": "video",
+    "woff": "font",
+    "woff2": "font",
+    "xcf": "image",
+    "xlf": "i18n",
+    "xliff": "i18n",
+    "xls": "csv",
+    "xlsm": "csv",
+    "xlsx": "csv",
+    "xml": "xml",
+    "xml.dist": "xml",
+    "xml.dist.sample": "xml",
+    "xquery": "xml",
+    "xsd": "xml",
+    "xsl": "xml",
+    "xslt": "xml",
+    "yaml": "yaml",
+    "yaml.dist": "yaml",
+    "yml": "yaml",
+    "yml.dist": "yaml",
+    "yuv": "video",
+    "zig": "zig",
+    "zip": "compressed",
+    "zsh": "shell"
+  },
+  "file": {
+    ".Rhistory": "r",
+    ".angular-cli.json": "angular",
+    ".babelrc": "babel",
+    ".babelrc.cjs": "babel",
+    ".babelrc.cts": "babel",
+    ".babelrc.js": "babel",
+    ".babelrc.json": "babel",
+    ".babelrc.mjs": "babel",
+    ".browserslist": "browserslist",
+    ".caddyfile": "caddy",
+    ".claude": "claude",
+    ".claude.md": "claude",
+    ".claudeignore": "claude",
+    ".clauderc": "claude",
+    ".cursorignore": "cursor",
+    ".cursorindexingignore": "cursor",
+    ".cursorrules": "cursor",
+    ".d.ts": "dts",
+    ".direnv": "gear",
+    ".editorconfig": "editorconfig",
+    ".env": "gear",
+    ".env.dev": "gear",
+    ".env.development": "gear",
+    ".env.local": "gear",
+    ".env.prod": "gear",
+    ".env.production": "gear",
+    ".env.test": "gear",
+    ".eslintcache": "eslint",
+    ".eslintignore": "eslint",
+    ".eslintrc": "eslint",
+    ".eslintrc-jsdoc.js": "eslint",
+    ".eslintrc-md.js": "eslint",
+    ".eslintrc.cjs": "eslint",
+    ".eslintrc.js": "eslint",
+    ".eslintrc.json": "eslint",
+    ".eslintrc.yaml": "eslint",
+    ".eslintrc.yml": "eslint",
+    ".esmrc": "node",
+    ".feature": "cucumber",
+    ".firebaserc": "firebase",
+    ".gdignore": "gdignore",
+    ".git-blame-ignore": "git",
+    ".gitattributes": "git",
+    ".gitconfig": "git",
+    ".gitignore": "git",
+    ".gitignore-global": "git",
+    ".gitignore_global": "git",
+    ".gitinclude": "git",
+    ".gitkeep": "git",
+    ".gitlab-ci.yml": "gitlab",
+    ".gitmodules": "git",
+    ".graphqlconfig": "graphql",
+    ".graphqlrc": "graphql",
+    ".graphqlrc.cjs": "graphql",
+    ".graphqlrc.js": "graphql",
+    ".graphqlrc.json": "graphql",
+    ".graphqlrc.toml": "graphql",
+    ".graphqlrc.ts": "graphql",
+    ".graphqlrc.yaml": "graphql",
+    ".graphqlrc.yml": "graphql",
+    ".hugo_build.lock": "hugo",
+    ".io-config.json": "ionic",
+    ".jestrc": "jest",
+    ".jestrc.js": "jest",
+    ".jestrc.json": "jest",
+    ".knip.json": "knip",
+    ".knip.jsonc": "knip",
+    ".luacheckrc": "lua",
+    ".mcattributes": "minecraft",
+    ".mcdefinitions": "minecraft",
+    ".mcignore": "minecraft",
+    ".nest-cli.json": "nest",
+    ".nestconfig.json": "nest",
+    ".node-version": "node",
+    ".nowignore": "vercel",
+    ".npmignore": "npm",
+    ".npmrc": "npm",
+    ".nuxtignore": "nuxt",
+    ".nuxtrc": "nuxt",
+    ".nvmrc": "node",
+    ".nxignore": "nx",
+    ".orvalrc": "orval",
+    ".orvalrc.js": "orval",
+    ".orvalrc.json": "orval",
+    ".orvalrc.ts": "orval",
+    ".orvalrc.yaml": "orval",
+    ".orvalrc.yml": "orval",
+    ".oxfmtrc.json": "oxc",
+    ".oxfmtrc.jsonc": "oxc",
+    ".oxlintignore": "oxc",
+    ".oxlintrc.json": "oxc",
+    ".perl": "perl",
+    ".pnpmfile.cjs": "pnpm",
+    ".postcssrc": "postcss",
+    ".postcssrc.cjs": "postcss",
+    ".postcssrc.cts": "postcss",
+    ".postcssrc.js": "postcss",
+    ".postcssrc.json": "postcss",
+    ".postcssrc.ts": "postcss",
+    ".postcssrc.yaml": "postcss",
+    ".postcssrc.yml": "postcss",
+    ".prettierignore": "prettier",
+    ".prettierrc": "prettier",
+    ".prettierrc.cjs": "prettier",
+    ".prettierrc.cts": "prettier",
+    ".prettierrc.js": "prettier",
+    ".prettierrc.json": "prettier",
+    ".prettierrc.json5": "prettier",
+    ".prettierrc.mjs": "prettier",
+    ".prettierrc.mts": "prettier",
+    ".prettierrc.toml": "prettier",
+    ".prettierrc.ts": "prettier",
+    ".prettierrc.yaml": "prettier",
+    ".prettierrc.yml": "prettier",
+    ".pubignore": "dart",
+    ".pug-lintrc": "pug",
+    ".pug-lintrc.js": "pug",
+    ".pug-lintrc.json": "pug",
+    ".puppeteerrc": "puppeteer",
+    ".puppeteerrc.cjs": "puppeteer",
+    ".puppeteerrc.js": "puppeteer",
+    ".puppeteerrc.json": "puppeteer",
+    ".puppeteerrc.yaml": "puppeteer",
+    ".puppeteerrc.yml": "puppeteer",
+    ".pylintrc": "python",
+    ".python-version": "python",
+    ".styl": "stylus",
+    ".stylelintcache": "stylelint",
+    ".stylelintignore": "stylelint",
+    ".stylelintrc": "stylelint",
+    ".stylelintrc.cjs": "stylelint",
+    ".stylelintrc.js": "stylelint",
+    ".stylelintrc.json": "stylelint",
+    ".stylelintrc.yaml": "stylelint",
+    ".stylelintrc.yml": "stylelint",
+    ".swcrc": "swc",
+    ".vercel": "vercel",
+    ".vercelignore": "vercel",
+    ".vscodeignore": "ignore",
+    "CLAUDE.md": "claude",
+    "CNAME": "globe",
+    "Caddyfile": "caddy",
+    "Caddyfile.dev": "caddy",
+    "Caddyfile.prod": "caddy",
+    "Caddyfile.staging": "caddy",
+    "Taskfile.dist.yaml": "taskfile",
+    "Taskfile.dist.yml": "taskfile",
+    "Taskfile.yaml": "taskfile",
+    "Taskfile.yml": "taskfile",
+    "ads.txt": "globe",
+    "angular-cli.json": "angular",
+    "angular.json": "angular",
+    "astro.config.cjs": "astro",
+    "astro.config.cts": "astro",
+    "astro.config.js": "astro",
+    "astro.config.mjs": "astro",
+    "astro.config.mts": "astro",
+    "astro.config.ts": "astro",
+    "babel.config.cjs": "babel",
+    "babel.config.cts": "babel",
+    "babel.config.js": "babel",
+    "babel.config.json": "babel",
+    "babel.config.mjs": "babel",
+    "babel.config.ts": "babel",
+    "biome.json": "biome",
+    "biome.jsonc": "biome",
+    "bruno.json": "bruno",
+    "bun.lock": "bun",
+    "bun.lockb": "bun",
+    "bunfig.toml": "bun",
+    "capacitor.config.json": "capacitor",
+    "capacitor.config.ts": "capacitor",
+    "claude-prompt.md": "claude",
+    "claude.json": "claude",
+    "claude.yaml": "claude",
+    "claude.yml": "claude",
+    "cmakecache.txt": "cmake",
+    "cmakelists.txt": "cmake",
+    "commit-msg": "shell",
+    "components.json": "shadcn",
+    "compose.alpha.yaml": "docker-pink",
+    "compose.alpha.yml": "docker-pink",
+    "compose.beta.yaml": "docker-pink",
+    "compose.beta.yml": "docker-pink",
+    "compose.ci.yaml": "docker-pink",
+    "compose.ci.yml": "docker-pink",
+    "compose.dev.yaml": "docker-pink",
+    "compose.dev.yml": "docker-pink",
+    "compose.development.yaml": "docker-pink",
+    "compose.development.yml": "docker-pink",
+    "compose.local.yaml": "docker-pink",
+    "compose.local.yml": "docker-pink",
+    "compose.override.yaml": "docker-pink",
+    "compose.override.yml": "docker-pink",
+    "compose.prod.yaml": "docker-pink",
+    "compose.prod.yml": "docker-pink",
+    "compose.production.yaml": "docker-pink",
+    "compose.production.yml": "docker-pink",
+    "compose.stage.yaml": "docker-pink",
+    "compose.stage.yml": "docker-pink",
+    "compose.staging.yaml": "docker-pink",
+    "compose.staging.yml": "docker-pink",
+    "compose.test.yaml": "docker-pink",
+    "compose.test.yml": "docker-pink",
+    "compose.testing.yaml": "docker-pink",
+    "compose.testing.yml": "docker-pink",
+    "compose.web.yaml": "docker-pink",
+    "compose.web.yml": "docker-pink",
+    "compose.worker.yaml": "docker-pink",
+    "compose.worker.yml": "docker-pink",
+    "compose.yaml": "docker-pink",
+    "compose.yml": "docker-pink",
+    "contentlayer.config.js": "contentlayer",
+    "contentlayer.config.ts": "contentlayer",
+    "css.ts": "vanilla-extract",
+    "cypress.config.cjs": "cypress",
+    "cypress.config.js": "cypress",
+    "cypress.config.mjs": "cypress",
+    "cypress.config.ts": "cypress",
+    "cypress.env.json": "cypress",
+    "cypress.json": "cypress",
+    "deno.json": "deno",
+    "deno.jsonc": "deno",
+    "dev.vars": "cloudflare-workers",
+    "docker-compose.alpha.yaml": "docker-pink",
+    "docker-compose.alpha.yml": "docker-pink",
+    "docker-compose.beta.yaml": "docker-pink",
+    "docker-compose.beta.yml": "docker-pink",
+    "docker-compose.ci.yaml": "docker-pink",
+    "docker-compose.ci.yml": "docker-pink",
+    "docker-compose.dev.yaml": "docker-pink",
+    "docker-compose.dev.yml": "docker-pink",
+    "docker-compose.development.yaml": "docker-pink",
+    "docker-compose.development.yml": "docker-pink",
+    "docker-compose.local.yaml": "docker-pink",
+    "docker-compose.local.yml": "docker-pink",
+    "docker-compose.override.yaml": "docker-pink",
+    "docker-compose.override.yml": "docker-pink",
+    "docker-compose.prod.yaml": "docker-pink",
+    "docker-compose.prod.yml": "docker-pink",
+    "docker-compose.production.yaml": "docker-pink",
+    "docker-compose.production.yml": "docker-pink",
+    "docker-compose.stage.yaml": "docker-pink",
+    "docker-compose.stage.yml": "docker-pink",
+    "docker-compose.staging.yaml": "docker-pink",
+    "docker-compose.staging.yml": "docker-pink",
+    "docker-compose.test.yaml": "docker-pink",
+    "docker-compose.test.yml": "docker-pink",
+    "docker-compose.testing.yaml": "docker-pink",
+    "docker-compose.testing.yml": "docker-pink",
+    "docker-compose.web.yaml": "docker-pink",
+    "docker-compose.web.yml": "docker-pink",
+    "docker-compose.worker.yaml": "docker-pink",
+    "docker-compose.worker.yml": "docker-pink",
+    "docker-compose.yaml": "docker-pink",
+    "docker-compose.yml": "docker-pink",
+    "docker-healthcheck": "docker-green",
+    "docker-healthcheck.alpha": "docker-green",
+    "docker-healthcheck.beta": "docker-green",
+    "docker-healthcheck.ci": "docker-green",
+    "docker-healthcheck.dev": "docker-green",
+    "docker-healthcheck.development": "docker-green",
+    "docker-healthcheck.local": "docker-green",
+    "docker-healthcheck.prod": "docker-green",
+    "docker-healthcheck.production": "docker-green",
+    "docker-healthcheck.stage": "docker-green",
+    "docker-healthcheck.staging": "docker-green",
+    "docker-healthcheck.test": "docker-green",
+    "docker-healthcheck.testing": "docker-green",
+    "docker-healthcheck.web": "docker-green",
+    "docker-healthcheck.worker": "docker-green",
+    "dockerfile": "docker",
+    "dockerfile.alpha": "docker",
+    "dockerfile.beta": "docker",
+    "dockerfile.ci": "docker",
+    "dockerfile.dev": "docker",
+    "dockerfile.development": "docker",
+    "dockerfile.local": "docker",
+    "dockerfile.prod": "docker",
+    "dockerfile.production": "docker",
+    "dockerfile.stage": "docker",
+    "dockerfile.staging": "docker",
+    "dockerfile.test": "docker",
+    "dockerfile.testing": "docker",
+    "dockerfile.web": "docker",
+    "dockerfile.worker": "docker",
+    "docusaurus.config.js": "docusaurus",
+    "docusaurus.config.ts": "docusaurus",
+    "drizzle.config.ts": "drizzle",
+    "dune": "dune",
+    "dune-project": "dune",
+    "dune-workspace": "dune",
+    "dune-workspace.dev": "dune",
+    "ec.config.mjs": "expressive-code",
+    "eslint.config.cjs": "eslint",
+    "eslint.config.cts": "eslint",
+    "eslint.config.js": "eslint",
+    "eslint.config.mjs": "eslint",
+    "eslint.config.mts": "eslint",
+    "eslint.config.ts": "eslint",
+    "file.config": "gear",
+    "firebase.json": "firebase",
+    "firestore.indexes.json": "firebase",
+    "firestore.rules": "firebase",
+    "fresh.config.js": "fresh",
+    "fresh.config.mjs": "fresh",
+    "fresh.config.mts": "fresh",
+    "fresh.config.ts": "fresh",
+    "gatsby-browser.js": "gatsby",
+    "gatsby-browser.tsx": "gatsby",
+    "gatsby-config.js": "gatsby",
+    "gatsby-config.mjs": "gatsby",
+    "gatsby-config.ts": "gatsby",
+    "gatsby-node.js": "gatsby",
+    "gatsby-node.mjs": "gatsby",
+    "gatsby-node.ts": "gatsby",
+    "gatsby-ssr.js": "gatsby",
+    "gatsby-ssr.tsx": "gatsby",
+    "git-history": "git",
+    "go.mod": "go-mod",
+    "go.sum": "go-mod",
+    "go.work": "go-mod",
+    "go.work.sum": "go-mod",
+    "gradle-wrapper.properties": "gradle",
+    "gradle.properties": "gradle",
+    "gradlew": "gradle",
+    "graphql.config.js": "graphql",
+    "graphql.config.json": "graphql",
+    "graphql.config.toml": "graphql",
+    "graphql.config.ts": "graphql",
+    "graphql.config.yaml": "graphql",
+    "graphql.config.yml": "graphql",
+    "gulp.config.json": "gulp",
+    "gulpfile.babel.js": "gulp",
+    "gulpfile.cts": "gulp",
+    "gulpfile.js": "gulp",
+    "gulpfile.mjs": "gulp",
+    "gulpfile.mts": "gulp",
+    "gulpfile.ts": "gulp",
+    "ionic.config.json": "ionic",
+    "jenkinsfile": "jenkins",
+    "jest-e2e.config.cjs": "jest",
+    "jest-e2e.config.cts": "jest",
+    "jest-e2e.config.js": "jest",
+    "jest-e2e.config.json": "jest",
+    "jest-e2e.config.mjs": "jest",
+    "jest-e2e.config.mts": "jest",
+    "jest-e2e.config.ts": "jest",
+    "jest-e2e.json": "jest",
+    "jest-github-actions-reporter.js": "jest",
+    "jest-unit.config.js": "jest",
+    "jest.config.cjs": "jest",
+    "jest.config.cts": "jest",
+    "jest.config.js": "jest",
+    "jest.config.json": "jest",
+    "jest.config.mjs": "jest",
+    "jest.config.mts": "jest",
+    "jest.config.ts": "jest",
+    "jest.e2e.config.cjs": "jest",
+    "jest.e2e.config.cts": "jest",
+    "jest.e2e.config.js": "jest",
+    "jest.e2e.config.json": "jest",
+    "jest.e2e.config.mjs": "jest",
+    "jest.e2e.config.mts": "jest",
+    "jest.e2e.config.ts": "jest",
+    "jest.e2e.json": "jest",
+    "jest.json": "jest",
+    "jest.setup.js": "jest",
+    "jest.setup.ts": "jest",
+    "jest.teardown.js": "jest",
+    "keystatic.config.ts": "keystatic",
+    "keystatic.page.ts": "keystatic",
+    "knip.config.js": "knip",
+    "knip.config.ts": "knip",
+    "knip.js": "knip",
+    "knip.json": "knip",
+    "knip.jsonc": "knip",
+    "knip.ts": "knip",
+    "kubb.config.ts": "kubb",
+    "license": "license",
+    "license-agpl": "license",
+    "license-apache": "license",
+    "license-bsd": "license",
+    "license-gpl": "license",
+    "license-lgpl": "license",
+    "license-mit": "license",
+    "license.md": "license",
+    "license.rst": "license",
+    "license.txt": "license",
+    "lunaria.config.json": "lunaria",
+    "manifest.in": "python",
+    "markdoc.config.ts": "markdoc",
+    "maven-wrapper.properties": "maven",
+    "maven.config": "maven",
+    "mvnw": "maven",
+    "mvnw.cmd": "maven",
+    "nest-cli.json": "nest",
+    "nestconfig.json": "nest",
+    "netlify.json": "netlify",
+    "netlify.toml": "netlify",
+    "netlify.yaml": "netlify",
+    "netlify.yml": "netlify",
+    "next.config.js": "next",
+    "next.config.mjs": "next",
+    "next.config.mts": "next",
+    "next.config.ts": "next",
+    "nodemon-debug.json": "nodemon",
+    "nodemon.json": "nodemon",
+    "now.json": "vercel",
+    "nuxt.config.js": "nuxt",
+    "nuxt.config.mjs": "nuxt",
+    "nuxt.config.mts": "nuxt",
+    "nuxt.config.ts": "nuxt",
+    "nx.json": "nx",
+    "orval.config.cjs": "orval",
+    "orval.config.cts": "orval",
+    "orval.config.js": "orval",
+    "orval.config.mjs": "orval",
+    "orval.config.mts": "orval",
+    "orval.config.ts": "orval",
+    "oxfmt.config.cjs": "oxc",
+    "oxfmt.config.cts": "oxc",
+    "oxfmt.config.js": "oxc",
+    "oxfmt.config.mjs": "oxc",
+    "oxfmt.config.mts": "oxc",
+    "oxfmt.config.ts": "oxc",
+    "oxlint.config.cjs": "oxc",
+    "oxlint.config.cts": "oxc",
+    "oxlint.config.js": "oxc",
+    "oxlint.config.mjs": "oxc",
+    "oxlint.config.mts": "oxc",
+    "oxlint.config.ts": "oxc",
+    "package-lock.json": "node",
+    "package.json": "node",
+    "panda.config.ts": "panda",
+    "pipfile": "python",
+    "pnpm-lock.yaml": "pnpm",
+    "pnpm-workspace.yaml": "pnpm",
+    "pom.properties": "maven",
+    "pom.xml": "maven",
+    "post-merge": "shell",
+    "postcss.config.cjs": "postcss",
+    "postcss.config.cts": "postcss",
+    "postcss.config.js": "postcss",
+    "postcss.config.mjs": "postcss",
+    "postcss.config.mts": "postcss",
+    "postcss.config.ts": "postcss",
+    "pre-commit": "shell",
+    "pre-push": "shell",
+    "prettier.config.cjs": "prettier",
+    "prettier.config.cts": "prettier",
+    "prettier.config.js": "prettier",
+    "prettier.config.mjs": "prettier",
+    "prettier.config.mts": "prettier",
+    "prettier.config.ts": "prettier",
+    "prisma.yml": "prisma",
+    "project.godot": "gdproject",
+    "pulumi.yaml": "pulumi",
+    "puppeteer.config.cjs": "puppeteer",
+    "puppeteer.config.js": "puppeteer",
+    "puppeteer.config.mjs": "puppeteer",
+    "puppeteer.config.ts": "puppeteer",
+    "pylintrc": "python",
+    "pyproject.toml": "gear",
+    "requirements.txt": "python",
+    "robots.txt": "text",
+    "rolldown.config.cjs": "rolldown",
+    "rolldown.config.cts": "rolldown",
+    "rolldown.config.js": "rolldown",
+    "rolldown.config.mjs": "rolldown",
+    "rolldown.config.mts": "rolldown",
+    "rolldown.config.ts": "rolldown",
+    "rome.json": "rome",
+    "rsbuild.config.cjs": "rsbuild",
+    "rsbuild.config.cts": "rsbuild",
+    "rsbuild.config.js": "rsbuild",
+    "rsbuild.config.mjs": "rsbuild",
+    "rsbuild.config.mts": "rsbuild",
+    "rsbuild.config.ts": "rsbuild",
+    "rslib.config.cjs": "rslib",
+    "rslib.config.cts": "rslib",
+    "rslib.config.js": "rslib",
+    "rslib.config.mjs": "rslib",
+    "rslib.config.mts": "rslib",
+    "rslib.config.ts": "rslib",
+    "rspack.config.cjs": "rspack",
+    "rspack.config.js": "rspack",
+    "rspack.config.mjs": "rspack",
+    "rspack.config.ts": "rspack",
+    "sanity.cli.ts": "sanity",
+    "sanity.config.ts": "sanity",
+    "sanity.theme.mjs": "sanity",
+    "security.txt": "globe",
+    "serverless.yml": "severless",
+    "setup.cfg": "python",
+    "sitemap.xml": "globe",
+    "sitemap_index.xml": "globe",
+    "stylelint.config.cjs": "stylelint",
+    "stylelint.config.js": "stylelint",
+    "svelte.config.cjs": "svelte",
+    "svelte.config.cts": "svelte-ts",
+    "svelte.config.js": "svelte",
+    "svelte.config.ts": "svelte-ts",
+    "svelte.ts": "svelte-ts",
+    "tailwind.config.cjs": "tailwind",
+    "tailwind.config.cts": "tailwind",
+    "tailwind.config.js": "tailwind",
+    "tailwind.config.mjs": "tailwind",
+    "tailwind.config.mts": "tailwind",
+    "tailwind.config.ts": "tailwind",
+    "tailwind.js": "tailwind",
+    "tailwind.ts": "tailwind",
+    "taskfile.yaml": "taskfile",
+    "taskfile.yml": "taskfile",
+    "tauri.android.json": "tauri",
+    "tauri.android.toml": "tauri",
+    "tauri.conf.json": "tauri",
+    "tauri.conf.toml": "tauri",
+    "tauri.ios.json": "tauri",
+    "tauri.ios.toml": "tauri",
+    "tauri.linux.json": "tauri",
+    "tauri.linux.toml": "tauri",
+    "tauri.macos.json": "tauri",
+    "tauri.macos.toml": "tauri",
+    "tauri.windows.json": "tauri",
+    "tauri.windows.toml": "tauri",
+    "test.js": "js-test",
+    "test.ts": "ts-test",
+    "tsconfig.app.json": "tsconfig",
+    "tsconfig.base.json": "tsconfig",
+    "tsconfig.build.json": "tsconfig",
+    "tsconfig.cjs.json": "tsconfig",
+    "tsconfig.config.json": "tsconfig",
+    "tsconfig.e2e.json": "tsconfig",
+    "tsconfig.editor.json": "tsconfig",
+    "tsconfig.eslint.json": "tsconfig",
+    "tsconfig.esm.json": "tsconfig",
+    "tsconfig.json": "tsconfig",
+    "tsconfig.lib.json": "tsconfig",
+    "tsconfig.mjs.json": "tsconfig",
+    "tsconfig.node.json": "tsconfig",
+    "tsconfig.spec.json": "tsconfig",
+    "tsconfig.test.json": "ts-test",
+    "tsconfig.vitest.json": "tsconfig",
+    "tsconfig.web.json": "tsconfig",
+    "tsconfig.webworker.json": "tsconfig",
+    "turbo.json": "turborepo",
+    "uno.config.js": "unocss",
+    "uno.config.mjs": "unocss",
+    "uno.config.mts": "unocss",
+    "uno.config.ts": "unocss",
+    "unocss.config.js": "unocss",
+    "unocss.config.mjs": "unocss",
+    "unocss.config.mts": "unocss",
+    "unocss.config.ts": "unocss",
+    "uv.lock": "uv",
+    "uv.toml": "uv",
+    "vercel.json": "vercel",
+    "vite.base.config.cjs": "vite",
+    "vite.base.config.cts": "vite",
+    "vite.base.config.js": "vite",
+    "vite.base.config.mjs": "vite",
+    "vite.base.config.mts": "vite",
+    "vite.base.config.ts": "vite",
+    "vite.config.cjs": "vite",
+    "vite.config.cts": "vite",
+    "vite.config.electron.cjs": "vite",
+    "vite.config.electron.cts": "vite",
+    "vite.config.electron.js": "vite",
+    "vite.config.electron.mjs": "vite",
+    "vite.config.electron.mts": "vite",
+    "vite.config.electron.ts": "vite",
+    "vite.config.js": "vite",
+    "vite.config.mjs": "vite",
+    "vite.config.mts": "vite",
+    "vite.config.ts": "vite",
+    "vite.main.config.cjs": "vite",
+    "vite.main.config.cts": "vite",
+    "vite.main.config.js": "vite",
+    "vite.main.config.mjs": "vite",
+    "vite.main.config.mts": "vite",
+    "vite.main.config.ts": "vite",
+    "vite.preload.config.cjs": "vite",
+    "vite.preload.config.cts": "vite",
+    "vite.preload.config.js": "vite",
+    "vite.preload.config.mjs": "vite",
+    "vite.preload.config.mts": "vite",
+    "vite.preload.config.ts": "vite",
+    "vite.renderer.config.cjs": "vite",
+    "vite.renderer.config.cts": "vite",
+    "vite.renderer.config.js": "vite",
+    "vite.renderer.config.mjs": "vite",
+    "vite.renderer.config.mts": "vite",
+    "vite.renderer.config.ts": "vite",
+    "vitest.config.cjs": "vitest",
+    "vitest.config.cts": "vitest",
+    "vitest.config.js": "vitest",
+    "vitest.config.mjs": "vitest",
+    "vitest.config.mts": "vitest",
+    "vitest.config.ts": "vitest",
+    "webpack.base.cjs": "webpack",
+    "webpack.base.cts": "webpack",
+    "webpack.base.js": "webpack",
+    "webpack.base.mjs": "webpack",
+    "webpack.base.mts": "webpack",
+    "webpack.base.ts": "webpack",
+    "webpack.cjs": "webpack",
+    "webpack.client.cjs": "webpack",
+    "webpack.client.cts": "webpack",
+    "webpack.client.js": "webpack",
+    "webpack.client.mjs": "webpack",
+    "webpack.client.mts": "webpack",
+    "webpack.client.ts": "webpack",
+    "webpack.common.cjs": "webpack",
+    "webpack.common.cts": "webpack",
+    "webpack.common.js": "webpack",
+    "webpack.common.mjs": "webpack",
+    "webpack.common.mts": "webpack",
+    "webpack.common.ts": "webpack",
+    "webpack.config.babel.js": "webpack",
+    "webpack.config.babel.ts": "webpack",
+    "webpack.config.base.babel.js": "webpack",
+    "webpack.config.base.babel.ts": "webpack",
+    "webpack.config.base.cjs": "webpack",
+    "webpack.config.base.cts": "webpack",
+    "webpack.config.base.js": "webpack",
+    "webpack.config.base.mjs": "webpack",
+    "webpack.config.base.mts": "webpack",
+    "webpack.config.base.ts": "webpack",
+    "webpack.config.cjs": "webpack",
+    "webpack.config.client.cjs": "webpack",
+    "webpack.config.client.cts": "webpack",
+    "webpack.config.client.js": "webpack",
+    "webpack.config.client.mjs": "webpack",
+    "webpack.config.client.mts": "webpack",
+    "webpack.config.client.ts": "webpack",
+    "webpack.config.coffee": "webpack",
+    "webpack.config.common.babel.js": "webpack",
+    "webpack.config.common.babel.ts": "webpack",
+    "webpack.config.common.cjs": "webpack",
+    "webpack.config.common.cts": "webpack",
+    "webpack.config.common.js": "webpack",
+    "webpack.config.common.mjs": "webpack",
+    "webpack.config.common.mts": "webpack",
+    "webpack.config.common.ts": "webpack",
+    "webpack.config.cts": "webpack",
+    "webpack.config.dev.babel.js": "webpack",
+    "webpack.config.dev.babel.ts": "webpack",
+    "webpack.config.dev.cjs": "webpack",
+    "webpack.config.dev.cts": "webpack",
+    "webpack.config.dev.js": "webpack",
+    "webpack.config.dev.mjs": "webpack",
+    "webpack.config.dev.mts": "webpack",
+    "webpack.config.dev.ts": "webpack",
+    "webpack.config.js": "webpack",
+    "webpack.config.mjs": "webpack",
+    "webpack.config.mts": "webpack",
+    "webpack.config.prod.babel.cjs": "webpack",
+    "webpack.config.prod.babel.cts": "webpack",
+    "webpack.config.prod.babel.js": "webpack",
+    "webpack.config.prod.babel.mjs": "webpack",
+    "webpack.config.prod.babel.mts": "webpack",
+    "webpack.config.prod.babel.ts": "webpack",
+    "webpack.config.prod.cjs": "webpack",
+    "webpack.config.prod.cts": "webpack",
+    "webpack.config.prod.js": "webpack",
+    "webpack.config.prod.mjs": "webpack",
+    "webpack.config.prod.mts": "webpack",
+    "webpack.config.prod.ts": "webpack",
+    "webpack.config.production.babel.js": "webpack",
+    "webpack.config.production.babel.ts": "webpack",
+    "webpack.config.production.cjs": "webpack",
+    "webpack.config.production.cts": "webpack",
+    "webpack.config.production.js": "webpack",
+    "webpack.config.production.mjs": "webpack",
+    "webpack.config.production.mts": "webpack",
+    "webpack.config.production.ts": "webpack",
+    "webpack.config.server.cjs": "webpack",
+    "webpack.config.server.cts": "webpack",
+    "webpack.config.server.js": "webpack",
+    "webpack.config.server.mjs": "webpack",
+    "webpack.config.server.mts": "webpack",
+    "webpack.config.server.ts": "webpack",
+    "webpack.config.staging.babel.js": "webpack",
+    "webpack.config.staging.babel.ts": "webpack",
+    "webpack.config.staging.cjs": "webpack",
+    "webpack.config.staging.cts": "webpack",
+    "webpack.config.staging.js": "webpack",
+    "webpack.config.staging.mjs": "webpack",
+    "webpack.config.staging.mts": "webpack",
+    "webpack.config.staging.ts": "webpack",
+    "webpack.config.test.cjs": "webpack",
+    "webpack.config.test.cts": "webpack",
+    "webpack.config.test.js": "webpack",
+    "webpack.config.test.mjs": "webpack",
+    "webpack.config.test.mts": "webpack",
+    "webpack.config.test.ts": "webpack",
+    "webpack.config.ts": "webpack",
+    "webpack.config.vendor.cjs": "webpack",
+    "webpack.config.vendor.cts": "webpack",
+    "webpack.config.vendor.js": "webpack",
+    "webpack.config.vendor.mjs": "webpack",
+    "webpack.config.vendor.mts": "webpack",
+    "webpack.config.vendor.production.cjs": "webpack",
+    "webpack.config.vendor.production.cts": "webpack",
+    "webpack.config.vendor.production.js": "webpack",
+    "webpack.config.vendor.production.mjs": "webpack",
+    "webpack.config.vendor.production.mts": "webpack",
+    "webpack.config.vendor.production.ts": "webpack",
+    "webpack.config.vendor.ts": "webpack",
+    "webpack.cts": "webpack",
+    "webpack.dev.cjs": "webpack",
+    "webpack.dev.cts": "webpack",
+    "webpack.dev.js": "webpack",
+    "webpack.dev.mjs": "webpack",
+    "webpack.dev.mts": "webpack",
+    "webpack.dev.ts": "webpack",
+    "webpack.development.cjs": "webpack",
+    "webpack.development.cts": "webpack",
+    "webpack.development.js": "webpack",
+    "webpack.development.mjs": "webpack",
+    "webpack.development.mts": "webpack",
+    "webpack.development.ts": "webpack",
+    "webpack.dist.cjs": "webpack",
+    "webpack.dist.cts": "webpack",
+    "webpack.dist.js": "webpack",
+    "webpack.dist.mjs": "webpack",
+    "webpack.dist.mts": "webpack",
+    "webpack.dist.ts": "webpack",
+    "webpack.js": "webpack",
+    "webpack.mix.cjs": "webpack",
+    "webpack.mix.cts": "webpack",
+    "webpack.mix.js": "webpack",
+    "webpack.mix.mjs": "webpack",
+    "webpack.mix.mts": "webpack",
+    "webpack.mix.ts": "webpack",
+    "webpack.mjs": "webpack",
+    "webpack.mts": "webpack",
+    "webpack.prod.cjs": "webpack",
+    "webpack.prod.config.cjs": "webpack",
+    "webpack.prod.config.cts": "webpack",
+    "webpack.prod.config.js": "webpack",
+    "webpack.prod.config.mjs": "webpack",
+    "webpack.prod.config.mts": "webpack",
+    "webpack.prod.config.ts": "webpack",
+    "webpack.prod.cts": "webpack",
+    "webpack.prod.js": "webpack",
+    "webpack.prod.mjs": "webpack",
+    "webpack.prod.mts": "webpack",
+    "webpack.prod.ts": "webpack",
+    "webpack.production.cjs": "webpack",
+    "webpack.production.cts": "webpack",
+    "webpack.production.js": "webpack",
+    "webpack.production.mjs": "webpack",
+    "webpack.production.mts": "webpack",
+    "webpack.production.ts": "webpack",
+    "webpack.server.cjs": "webpack",
+    "webpack.server.cts": "webpack",
+    "webpack.server.js": "webpack",
+    "webpack.server.mjs": "webpack",
+    "webpack.server.mts": "webpack",
+    "webpack.server.ts": "webpack",
+    "webpack.test.cjs": "webpack",
+    "webpack.test.cts": "webpack",
+    "webpack.test.js": "webpack",
+    "webpack.test.mjs": "webpack",
+    "webpack.test.mts": "webpack",
+    "webpack.test.ts": "webpack",
+    "webpack.ts": "webpack",
+    "webpackfile.cjs": "webpack",
+    "webpackfile.cts": "webpack",
+    "webpackfile.js": "webpack",
+    "webpackfile.mjs": "webpack",
+    "webpackfile.mts": "webpack",
+    "webpackfile.ts": "webpack",
+    "yarn": "yarn",
+    "yarn.lock": "yarn",
+    "yumma.config.cjs": "yummacss",
+    "yumma.config.js": "yummacss",
+    "yumma.config.mjs": "yummacss",
+    "yumma.config.ts": "yummacss",
+    "yumma.css": "yummacss",
+    "yummacss.css": "yummacss"
+  },
+  "filetype": {
+    "awk": "shell",
+    "c": "c",
+    "clojure": "clojure",
+    "coffeescript": "coffeescript",
+    "cpp": "cplus",
+    "crystal": "crystal",
+    "cs": "csharp",
+    "css": "brackets-sky",
+    "csv": "csv",
+    "dart": "dart",
+    "dockercompose": "docker",
+    "dockerfile": "docker",
+    "doctex": "tex",
+    "dosbatch": "shell",
+    "earthfile": "earthfile",
+    "editorconfig": "editorconfig",
+    "elixir": "elixir",
+    "erlang": "erlang",
+    "excel": "csv",
+    "fsharp": "fsharp",
+    "func": "func",
+    "gdresource": "resource",
+    "gdscene": "clapper",
+    "gdscript": "gdscript",
+    "gdshader": "gdshader",
+    "gherkin": "cucumber",
+    "gitcommit": "git",
+    "github-issues": "github",
+    "gitignore": "ignore",
+    "gitrebase": "git",
+    "go": "go",
+    "graphql": "graphql",
+    "haml": "haml",
+    "handlebars": "brackets-orange",
+    "haskell": "haskell",
+    "hlsl": "brackets-purple",
+    "html": "brackets-orange",
+    "jade": "pug",
+    "java": "java",
+    "javascript": "js",
+    "javascriptreact": "react",
+    "jinja": "brackets-red",
+    "json": "brackets-yellow",
+    "jsonc": "brackets-yellow",
+    "julia": "julia",
+    "juliamarkdown": "julia-markdown",
+    "jupyter": "notebook",
+    "lang-cfml": "coldfusion",
+    "latex": "tex",
+    "latex-expl3": "tex",
+    "less": "brackets-sky",
+    "lua": "lua",
+    "makefile": "gear",
+    "markdown": "markdown",
+    "mdx": "mdx",
+    "ng-template": "angular",
+    "nix": "nix",
+    "nunjucks": "nunjucks",
+    "objective-c": "c",
+    "objective-cpp": "c",
+    "pdf": "pdf",
+    "perl": "perl",
+    "php": "php",
+    "pip-requirements": "python",
+    "postcss": "postcss",
+    "properties": "gear",
+    "ps1": "shell",
+    "psv": "csv",
+    "pug": "pug",
+    "python": "python",
+    "r": "r",
+    "razor": "razor",
+    "rescript": "rescript",
+    "rescript-interface": "rescript-interface",
+    "rsweave": "r",
+    "ruby": "ruby",
+    "rust": "rust",
+    "sass": "sass",
+    "sass.hover": "sass",
+    "scala": "scala",
+    "scss": "sass",
+    "sh": "shell",
+    "slint": "slint",
+    "sql": "database",
+    "ssh_config": "shell",
+    "styl": "stylus",
+    "svelte": "svelte",
+    "svg": "svg",
+    "swift": "swift",
+    "terraform": "terraform",
+    "testOutput": "visual-studio",
+    "tex": "tex",
+    "text": "document",
+    "tsv": "csv",
+    "twig": "twig",
+    "typescript": "ts",
+    "typescriptreact": "react-ts",
+    "vb": "visual-studio",
+    "vue": "vue",
+    "vue-html": "vue",
+    "vue-postcss": "vue",
+    "xml": "xml",
+    "xquery": "xml",
+    "xsl": "xml",
+    "yaml": "yaml",
+    "yml": "yaml"
+  },
+  "font_signature": "c9355bdef2a5b3707d20a3791f201fb8b4abf26ebaa38466c4a860d75b8f4d20",
+  "upstream": "https://github.com/miguelsolorio/vscode-symbols",
+  "version": "0.0.26"
+}

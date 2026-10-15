@@ -3,15 +3,8 @@ return {
 	event = "VeryLazy",
 
 	init = function()
-		-- Define a statusline global para evitar repetição em cada janela
 		vim.opt.laststatus = 3
 		vim.g.lualine_laststatus = 3
-
-		if vim.fn.argc(-1) > 0 then
-			vim.o.statusline = " "
-		else
-			vim.o.laststatus = 0
-		end
 	end,
 
 	config = function()
@@ -19,8 +12,23 @@ return {
 
 		lualine.setup({
 			options = {
-				theme = "auto",
-				globalstatus = true, -- Ativa a barra única na parte inferior
+				theme = (function()
+					local theme = vim.deepcopy(require("lualine.themes.nightfly"))
+					for _, mode in pairs(theme) do
+						for section, hl in pairs(mode) do
+							if section == "a" then
+								hl.fg = hl.bg
+								hl.bg = "#080c10"
+							elseif section == "b" then
+								hl.bg = "#101419"
+							else
+								hl.bg = "#0a0c10"
+							end
+						end
+					end
+					return theme
+				end)(),
+				globalstatus = true,
 			},
 
 			sections = {
@@ -28,32 +36,44 @@ return {
 				lualine_b = { "branch" },
 
 				lualine_c = {
-					{ "diagnostics" },
+					{ "diagnostics", sources = {
+						function()
+							return require("config.diagnostics").counts()
+						end,
+					} },
 					{
 						"filename",
 						path = 1,
-						-- FUNÇÃO PARA LIMPAR O [No Name] E O [-]
 						fmt = function(str)
-							-- Se for um buffer sem nome, retorna vazio
 							if str:find("%[No Name%]") then
 								return ""
 							end
-							-- Remove o indicador de modificado [ - ] ou [ + ] do final da string
 							return str:gsub("%s%[%s?[-+]%s?%]$", "")
 						end,
 					},
 				},
 
 				lualine_x = {
-					"encoding",
-					"fileformat",
+					{
+						function()
+							local clients = vim.lsp.get_clients({ bufnr = 0 })
+							local names = {}
+							for _, client in ipairs(clients) do
+								names[#names + 1] = client.name
+							end
+							return table.concat(names, " · ")
+						end,
+						cond = function()
+							return vim.o.columns > 140
+						end,
+					},
 					"filetype",
 				},
 
 				lualine_y = { "progress" },
 				lualine_z = {
 					function()
-						return " " .. os.date("%R")
+						return vim.fn.fnamemodify(require("core.project").root(), ":t")
 					end,
 				},
 			},

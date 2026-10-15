@@ -3,7 +3,12 @@ return {
 	event = "VeryLazy",
 	dependencies = {
 		"MunifTanjim/nui.nvim",
-		"rcarriga/nvim-notify", -- integração explícita
+		{
+			"rcarriga/nvim-notify",
+			opts = {
+				background_colour = "#000000",
+			},
+		},
 	},
 	opts = {
 		throttle = 1000 / 60,
@@ -18,7 +23,6 @@ return {
 			override = {
 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 				["vim.lsp.util.stylize_markdown"] = true,
-				["cmp.entry.get_documentation"] = true,
 			},
 			hover = {
 				enabled = true,
@@ -110,7 +114,7 @@ return {
 				size = { width = 60, height = "auto" },
 				border = { style = "rounded", text = { top = "CmdLine" } },
 				win_options = {
-					winblend = 40,
+					winblend = 0,
 					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
 				},
 			},
@@ -124,7 +128,7 @@ return {
 					text = { top = " " },
 				},
 				win_options = {
-					winblend = 40,
+					winblend = 0,
 					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
 				},
 			},
@@ -133,7 +137,7 @@ return {
 				position = { row = -2, col = "100%" },
 				border = { style = "rounded" },
 				win_options = {
-					winblend = 40,
+					winblend = 0,
 					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
 				},
 			},
@@ -142,7 +146,7 @@ return {
 				border = { style = "rounded" },
 				size = { max_width = 80 },
 				win_options = {
-					winblend = 40,
+					winblend = 0,
 					winhighlight = "Normal:NoiceTransparent,FloatBorder:NoiceBorder",
 				},
 			},
@@ -234,10 +238,6 @@ return {
 
 		require("noice").setup(opts)
 
-		vim.api.nvim_set_hl(0, "NoiceTransparent", { bg = "NONE", fg = "NONE" })
-		vim.api.nvim_set_hl(0, "NoiceBorder", { bg = "NONE", fg = "#565f89" })
-		vim.api.nvim_set_hl(0, "NoiceCmdlinePopupTitle", { bg = "NONE", fg = "NONE" })
-		vim.api.nvim_set_hl(0, "NoiceCmdlineIcon", { bg = "NONE", fg = "NONE" })
-		vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+		require("config.ui").apply()
 	end,
 }

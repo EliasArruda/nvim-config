@@ -1,2 +1,27 @@
-# Neovim specific
-*.json
+# Generated runtime, secrets and local evidence
+*.log
+.codex/
+audit/
+zed/
+.env
+.env.*
+!.env.example
+node_modules/
+**/bin/Debug/
+**/bin/Release/
+**/obj/
+*.dll
+*.exe
+*.so
+*.spl
+*.sug
+*.png
+*.ttf
+
+# Disposable editor and language-server state
+.ruby-lsp/
+backup/
+backups/
+*.bak
+*.orig
+*~

@@ -11,6 +11,10 @@ local function to_pascal_case(str)
 	return str
 end
 
+local function to_kebab_case(str)
+	return str:gsub("%.vue$", ""):gsub("_", "-"):gsub("(%l)(%u)", "%1-%2"):lower()
+end
+
 local function is_buffer_empty()
 	local line_count = vim.api.nvim_buf_line_count(0)
 	if line_count > 1 then
@@ -21,10 +25,14 @@ local function is_buffer_empty()
 end
 
 local function apply_template(template, cursor_line, cursor_col)
+	local buf = vim.api.nvim_get_current_buf()
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, template)
 
 	vim.defer_fn(function()
-		local line_count = vim.api.nvim_buf_line_count(0)
+		if not vim.api.nvim_buf_is_valid(buf) or vim.api.nvim_get_current_buf() ~= buf then
+			return
+		end
+		local line_count = vim.api.nvim_buf_line_count(buf)
 		local safe_line = math.min(cursor_line, line_count)
 		vim.api.nvim_win_set_cursor(0, { safe_line, cursor_col })
 		if vim.g.vscode then
@@ -35,10 +43,14 @@ local function apply_template(template, cursor_line, cursor_col)
 	end, vim.g.vscode and 150 or 0)
 end
 
-local function run_template()
+local function run_template(event)
+	local buf = event.buf
 	local delay = vim.g.vscode and 200 or 0
 
 	vim.defer_fn(function()
+		if not vim.api.nvim_buf_is_valid(buf) or vim.api.nvim_get_current_buf() ~= buf then
+			return
+		end
 		local filename = vim.fn.expand("%:t")
 		local filepath = vim.fn.expand("%:p:h")
 
@@ -50,6 +62,7 @@ local function run_template()
 		end
 
 		local component_name = to_pascal_case(filename)
+		local css_class = to_kebab_case(filename)
 
 		-- Detecta o tipo baseado na pasta (pages, layouts, components)
 		local is_page = filepath:match("[/\\]pages") or filepath:match("[/\\]views")
@@ -86,9 +99,7 @@ local function run_template()
 			-- Template para Pages (geralmente com Head/Meta se usar Nuxt ou similar)
 			template = {
 				'<script setup lang="ts">',
-				"definePageMeta({",
-				'  layout: "default"',
-				"})",
+				"// Page setup",
 				"",
 				"</script>",
 				"",
@@ -104,20 +115,14 @@ local function run_template()
 			}
 			cursor_line = 5
 		else
-			-- Template para Componentes padrão (SFC - Script Setup)
+			-- Componente SFC mínimo: não cria props/emits não utilizados pelo LSP.
 			template = {
 				'<script setup lang="ts">',
-				"interface Props {",
-				"  modelValue?: string",
-				"}",
-				"",
-				"const props = defineProps<Props>()",
-				'const emit = defineEmits(["update:modelValue"])',
 				"",
 				"</script>",
 				"",
 				"<template>",
-				'  <div class="' .. component_name:lower() .. '">',
+				'  <div class="' .. css_class .. '">',
 				"    ",
 				"  </div>",
 				"</template>",
@@ -126,7 +131,7 @@ local function run_template()
 				"",
 				"</style>",
 			}
-			cursor_line = 13
+			cursor_line = 7
 			cursor_col = 4
 		end
 
@@ -134,8 +139,12 @@ local function run_template()
 	end, delay)
 end
 
-vim.api.nvim_create_autocmd("BufNewFile", {
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost", "BufEnter" }, {
 	pattern = "*.vue",
 	group = template_group,
-	callback = run_template,
+	callback = function(args)
+		if require("configs.templates.common").eligible(args) then
+			run_template(args)
+		end
+	end,
 })

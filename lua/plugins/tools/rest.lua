@@ -1,6 +1,5 @@
 return {
   "mistweaverco/kulala.nvim",
-  commit = "b92e6e962fc84a0e6b82d4c8e25c1f460f08289f",
   ft = { "http", "rest" },
 
   keys = {

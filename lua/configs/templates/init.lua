@@ -1,2 +1,4 @@
 require("configs.templates.csharp")
 require("configs.templates.vuejs")
+require("configs.templates.golang")
+require("configs.templates.razor")

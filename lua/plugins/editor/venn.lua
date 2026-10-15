@@ -8,6 +8,13 @@ return {
 			if not venn_enabled then
 				-- Ativa o modo venn
 				vim.b.venn_enabled = true
+				vim.b.venn_saved_virtualedit = vim.wo.virtualedit
+				local saved = {}
+				for _, key in ipairs({ "J", "K", "L", "H" }) do
+					saved[key] = vim.fn.maparg(key, "n", false, true)
+				end
+				saved.f = vim.fn.maparg("f", "v", false, true)
+				vim.b.venn_saved_maps = saved
 				print("Venn mode ativado!") -- mensagem ao ativar
 				vim.opt_local.virtualedit = "all" -- cursor livre
 
@@ -19,21 +26,29 @@ return {
 
 				-- Desenha uma box com seleção visual + tecla "f"
 				vim.keymap.set("v", "f", ":VBox<CR>", { buffer = 0, noremap = true, silent = true })
-				else
+			else
 				-- Desativa o modo venn
 				vim.b.venn_enabled = nil
 				print("Venn mode desativado!")
-				vim.opt_local.virtualedit = ""
+				vim.opt_local.virtualedit = vim.b.venn_saved_virtualedit or ""
 				vim.keymap.del("n", "J", { buffer = 0 })
 				vim.keymap.del("n", "K", { buffer = 0 })
 				vim.keymap.del("n", "L", { buffer = 0 })
 				vim.keymap.del("n", "H", { buffer = 0 })
 				vim.keymap.del("v", "f", { buffer = 0 })
+				for key, mapping in pairs(vim.b.venn_saved_maps or {}) do
+					if mapping.buffer == 1 then
+						vim.fn.mapset(key == "f" and "v" or "n", false, mapping)
+					end
 				end
+				vim.b.venn_saved_maps = nil
+			end
 		end
 
 		-- Atalho global para ativar/desativar venn.nvim
 		-- Pressione <leader>v no modo normal
-		vim.keymap.set("n", "<leader>v", function() _G.Toggle_venn() end, { desc = "Toggle Venn Diagram" })
+		vim.keymap.set("n", "<leader>v", function()
+			_G.Toggle_venn()
+		end, { desc = "Toggle Venn Diagram" })
 	end,
 }
