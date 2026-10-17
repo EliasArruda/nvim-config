@@ -46,7 +46,7 @@ Open `nvim` in the project and edit a `.cpp`, `.cc`, `.cxx`, `.hpp` or `.h` file
 - Completion uses Blink with clangd snippets and member information.
 - `gd`, `gD`, `gr`, `gI`, `gy` and `K` keep their existing navigation/documentation actions.
 - `<Space>ca` opens code actions; `<Space>cr` renames symbols.
-- `<Space>cf` formats with clang-format, respecting the nearest `.clang-format`. Formatting on save follows the existing autoformat setting; `<Space>uf` toggles it.
+- `<Space>cf` formats with clang-format, respecting the nearest `.clang-format`. Short functions and blocks always expand over multiple lines, overriding those two project style options while inheriting the remaining settings. Formatting on save follows the existing autoformat setting; `<Space>uf` toggles it.
 - Native diagnostics and semantic highlighting use the existing UI. Inlay hints are enabled where the server supports them.
 - Background indexing and clang-tidy diagnostics are enabled. Project `.clangd`, `.clang-tidy` and `.clang-format` settings remain authoritative.
 - `:LspClangdSwitchSourceHeader` switches between implementation and header. `:LspClangdShowSymbolInfo` shows symbol details.

@@ -58,6 +58,11 @@ return {
 		sql = { lsp_format = "never" },
 	},
 	formatters = {
+		clang_format = {
+			prepend_args = {
+				"--style={BasedOnStyle: InheritParentConfig, AllowShortFunctionsOnASingleLine: None, AllowShortBlocksOnASingleLine: Never}",
+			},
+		},
 		injected = {
 			options = { ignore_errors = true },
 		},
