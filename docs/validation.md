@@ -20,3 +20,7 @@ Backups e instalações duplicadas usados na reforma foram removidos a pedido do
 ## Templates de arquivos
 
 A revisão identificou que o suporte C++ não incluía templates; agora C/C++ compartilha a proteção dos templates existentes e funciona nos modos nativo e VSCode. Passaram 43 verificações em cada modo (nativo e VSCode), além das regressões gerais e da integração C++. A suíte verifica criação pelo editor e leitura de arquivos recém-criados no disco, variantes C#, pacote Go, headers e fontes C/C++, conteúdo existente, arquivos vazios antigos e buffers especiais. A integração C++ também verifica com o compilador os arquivos gerados pelos templates.
+
+## F5 C/C++
+
+F5 agora salva o arquivo atual e inicia build/debug assíncrono: CMake usa file API para localizar executáveis; arquivos avulsos usam cc/c++ com -g -O0. A verificação dirige o F5 real em sessões novas, incluindo escolha entre múltiplos targets e falha de compilação com aborto do launch e saída no quickfix. Headers e arquivos dependentes modificados em outros buffers precisam ser salvos pelo usuário. Presets CMake e compilação cruzada ficam fora deste fluxo automático.

@@ -37,7 +37,7 @@ target_include_directories(my_app PRIVATE include)
 
 Clangd reads the resulting flags, including per-file differences. Standalone files work with its fallback flags, but do not describe complex dependencies. For small projects without a build system, a `compile_flags.txt` can specify one compiler flag per line. See [clangd project setup](https://clangd.llvm.org/installation#project-setup).
 
-Project roots recognize CMake, compilation databases, `.clangd`, Makefiles and Meson projects. The editor does not automatically configure or build your project, and does not run project executables on startup.
+Project roots recognize CMake, compilation databases, `.clangd`, Makefiles and Meson projects. The editor does not build or run project executables on startup. F5 explicitly triggers the build-and-debug workflow described below.
 
 ## Editing
 
@@ -61,7 +61,13 @@ Templates apply to new empty buffers and empty files modified within the last te
 
 ## Debugging
 
-Build with debug symbols, then set a breakpoint with `<Space>db` and press `F5`. Select **Launch executable (C/C++)** and enter the compiled executable path. The working directory defaults to the current project root. This launches the existing binary; rebuild after changing source files.
+Press **F5** in a C/C++ buffer to save the current file, build and launch the debugger. Set a breakpoint with `<Space>db` first if you want execution to pause. F5 continues execution when a debug session is already active.
+
+- **CMake project:** configure `build/` in Debug mode, discover executable targets through CMake's file API, and build the chosen target. A single executable launches directly; projects with several executable targets show a target picker. Existing CMake cache/toolchain settings remain, but `CMAKE_BUILD_TYPE` is set to Debug. Multi-config generators build their Debug configuration.
+- **Standalone source:** compile the current `.c` or C++ source with `cc`/`c++`, `-g` and `-O0`, placing the binary in Neovim's cache. This is for a self-contained source file; multi-file projects or custom include/link flags should use CMake or the manual configuration.
+- **Build failure:** show compiler output in quickfix, preserve the full output in `:lua print(vim.fn.stdpath("state") .. "/cpp-build.log")`, and abort the debugger launch. No old binary is launched after a failed build.
+
+F5 saves the current buffer, not every modified buffer. Save edits in other source/header buffers before building. Configuration and compilation run asynchronously. The working directory defaults to the project root. Projects that require CMake presets, a custom build directory or non-CMake build commands can use **Launch executable (C/C++)** through `:DapContinue` to pick an already-built binary. Automatic builds use the standard `build/` directory and do not resolve presets.
 
 Use `F10`, `F11`, `F12` to step and `Ctrl+F5` to stop. The existing DAP UI supports variables, watches and evaluation. **Attach to process (C/C++)** uses the process picker; attaching may require additional OS permissions.
 
@@ -73,4 +79,4 @@ Use `:NvimDoctor`, `:LspInfo`, `:LspLog` and `:ConformInfo` to inspect tool disc
 ./bin/check-cpp
 ```
 
-This creates a temporary CMake C++20 project, builds and runs it, then verifies clangd attachment/root, parsing, hover, header definition, STL completion, an intentional diagnostic, rename, buffer formatting, and a CodeLLDB breakpoint/evaluation. Artifacts are kept at the printed temporary path for diagnosis. Requires the compiler, CMake, Ninja, clangd, clang-format, C++ parser and CodeLLDB. The test uses a native Linux executable; cross-compilation and remote debugging are not covered.
+This creates a temporary CMake C++20 project, builds and runs it, then verifies clangd attachment/root, parsing, hover, header definition, STL completion, an intentional diagnostic, rename, buffer formatting, and a CodeLLDB breakpoint/evaluation. Artifacts are kept at the printed temporary path for diagnosis. Requires the compiler, CMake, Ninja, clangd, clang-format, C++ parser and CodeLLDB. It also drives the actual F5 mapping in fresh sessions for CMake, standalone code, multiple executable targets and a failed compilation. The test uses a native Linux executable; cross-compilation and remote debugging are not covered.

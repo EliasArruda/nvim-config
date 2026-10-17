@@ -56,6 +56,25 @@ function M.setup()
 	}
 	for _, language in ipairs({ "c", "cpp" }) do
 		dap.configurations[language] = {
+			setmetatable({
+				name = "Build and debug (C/C++)",
+				type = "codelldb",
+				request = "launch",
+				program = function()
+					return require("config.cpp-debug").program()
+				end,
+				stopOnEntry = false,
+			}, {
+				__call = function(config)
+					-- Resolve the context before DAP evaluates asynchronous options.
+					local resolved = setmetatable(vim.deepcopy(config), nil)
+					resolved.cwd = resolved.cwd or require("core.project").root()
+					if type(resolved.program) == "function" then
+						resolved.program = resolved.program()
+					end
+					return resolved
+				end,
+			}),
 			{
 				name = "Launch executable (C/C++)",
 				type = "codelldb",

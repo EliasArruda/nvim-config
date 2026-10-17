@@ -13,7 +13,7 @@
 ## What you get
 
 - **C# and Blazor in one workflow.** Roslyn and Razor through EasyDotnet, component and attribute completion, Emmet, formatting, tests, and C# debugging.
-- **C++ with project-aware tooling.** Clangd completion, diagnostics, navigation, refactoring and inlay hints; clang-format, Treesitter highlighting, and CodeLLDB debugging. See the [C++ guide](docs/cpp.md).
+- **C++ with project-aware tooling.** Clangd completion, diagnostics, navigation, refactoring and inlay hints; clang-format, Treesitter highlighting, and CodeLLDB debugging with F5 build-and-launch for CMake projects and standalone files. See the [C++ guide](docs/cpp.md).
 - **A starting point for new files.** Automatic templates for C/C++, C#, Vue, Go, and Razor components, including files created on disk by the explorer before opening.
 - **Search within your project.** Search and tools resolve the nearest project or package root.
 - **More color in your code.** Cyberdream syntax colors over a neutral, dark Nightfly interface. Tabs, menus, and panels keep a consistent appearance.

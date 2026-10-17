@@ -2,7 +2,7 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		cmd = { "DapContinue", "DapToggleBreakpoint", "DapToggleRepl" },
-		keys = {},
+		keys = { "<F5>" },
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
 			"nvim-neotest/nvim-nio",
@@ -47,7 +47,12 @@ return {
 
 			-- ⌨️ Ergonomic Keymaps (Modo Normal apenas para evitar conflitos com Terminal)
 			vim.keymap.set("n", "<F5>", function()
-				dap.continue()
+				local ft = vim.bo.filetype
+				if (ft == "cpp" or ft == "c") and not dap.session() then
+					dap.run(dap.configurations[ft][1])
+				else
+					dap.continue()
+				end
 			end, { desc = "DAP Continue" })
 			vim.keymap.set("n", "<C-F5>", function()
 				dap.terminate()
