@@ -17,6 +17,18 @@ local vue_plugin = {
 local ruby_lsp_wrapper = vim.fn.stdpath("config") .. "/bin/ruby-lsp"
 
 return {
+	clangd = {
+		cmd = {
+			"clangd",
+			"--background-index",
+			"--clang-tidy",
+			"--completion-style=detailed",
+			"--header-insertion=iwyu",
+		},
+		root_dir = function(buf, on_dir)
+			on_dir(require("core.project").root(buf, { ".clangd", "compile_commands.json", "compile_flags.txt", "Makefile", "meson.build" }))
+		end,
+	},
 	sqls = {},
 	bicep = { cmd = { "bicep-lsp" } },
 	svelte = {},

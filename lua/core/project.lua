@@ -13,6 +13,8 @@ local markers = {
 	["CMakeLists.txt"] = true,
 }
 function M.root(source, extra_markers)
+	source = source or vim.api.nvim_get_current_buf()
+	local filetype = type(source) == "number" and vim.bo[source].filetype or vim.filetype.match({ filename = source })
 	local effective = vim.tbl_extend("force", {}, markers)
 	local function add(values)
 		for _, value in ipairs(values or {}) do
@@ -24,7 +26,9 @@ function M.root(source, extra_markers)
 		end
 	end
 	add(extra_markers)
-	source = source or vim.api.nvim_get_current_buf()
+	if filetype == "c" or filetype == "cpp" then
+		add({ "compile_commands.json", "compile_flags.txt", ".clangd", "Makefile", "meson.build" })
+	end
 	if type(source) == "number" then
 		local name = vim.api.nvim_buf_get_name(source)
 		source = name ~= "" and vim.bo[source].buftype == "" and name or vim.fn.getcwd()
