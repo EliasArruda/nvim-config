@@ -61,7 +61,7 @@ Templates apply to new empty buffers and empty files modified within the last te
 
 ## Debugging
 
-Press **F5** in a C/C++ buffer to save the current file, build and launch the debugger. Set a breakpoint with `<Space>db` first if you want execution to pause. F5 continues execution when a debug session is already active.
+Press **F5** in a C/C++ buffer to save the current file, build and launch the debugger. The debugger pauses in `main` even without a user breakpoint, so the variables, stack, watches and console panels remain visible. A temporary one-shot LLDB breakpoint implements this pause without stopping in the loader. Set additional breakpoints with `<Space>db`. F5 continues execution when a debug session is already active.
 
 - **CMake project:** configure `build/` in Debug mode, discover executable targets through CMake's file API, and build the chosen target. A single executable launches directly; projects with several executable targets show a target picker. Existing CMake cache/toolchain settings remain, but `CMAKE_BUILD_TYPE` is set to Debug. Multi-config generators build their Debug configuration.
 - **Standalone source:** compile the current `.c` or C++ source with `cc`/`c++`, `-g` and `-O0`, placing the binary in Neovim's cache. This is for a self-contained source file; multi-file projects or custom include/link flags should use CMake or the manual configuration.
@@ -69,7 +69,7 @@ Press **F5** in a C/C++ buffer to save the current file, build and launch the de
 
 F5 saves the current buffer, not every modified buffer. Save edits in other source/header buffers before building. Configuration and compilation run asynchronously. The working directory defaults to the project root. Projects that require CMake presets, a custom build directory or non-CMake build commands can use **Launch executable (C/C++)** through `:DapContinue` to pick an already-built binary. Automatic builds use the standard `build/` directory and do not resolve presets.
 
-Use `F10`, `F11`, `F12` to step and `Ctrl+F5` to stop. The existing DAP UI supports variables, watches and evaluation. **Attach to process (C/C++)** uses the process picker; attaching may require additional OS permissions.
+Use `F10`, `F11`, `F12` to step and `Ctrl+F5` to stop. The debug UI includes clickable controls; `<Space>du` toggles its panels manually. The existing DAP UI supports variables, watches and evaluation. **Attach to process (C/C++)** uses the process picker; attaching may require additional OS permissions.
 
 ## Diagnostics and verification
 
@@ -79,4 +79,4 @@ Use `:NvimDoctor`, `:LspInfo`, `:LspLog` and `:ConformInfo` to inspect tool disc
 ./bin/check-cpp
 ```
 
-This creates a temporary CMake C++20 project, builds and runs it, then verifies clangd attachment/root, parsing, hover, header definition, STL completion, an intentional diagnostic, rename, buffer formatting, and a CodeLLDB breakpoint/evaluation. Artifacts are kept at the printed temporary path for diagnosis. Requires the compiler, CMake, Ninja, clangd, clang-format, C++ parser and CodeLLDB. It also drives the actual F5 mapping in fresh sessions for CMake, standalone code, multiple executable targets and a failed compilation. The test uses a native Linux executable; cross-compilation and remote debugging are not covered.
+This creates a temporary CMake C++20 project, builds and runs it, then verifies clangd attachment/root, parsing, hover, header definition, STL completion, an intentional diagnostic, rename, buffer formatting, and a CodeLLDB breakpoint/evaluation. Artifacts are kept at the printed temporary path for diagnosis. Requires the compiler, CMake, Ninja, clangd, clang-format, C++ parser and CodeLLDB. It also drives the actual F5 mapping in fresh sessions for CMake, standalone code, multiple executable targets, switching projects during compilation, pausing in main without user breakpoints with visible debug panels, and a failed compilation. The test uses a native Linux executable; cross-compilation and remote debugging are not covered.

@@ -84,6 +84,8 @@ local dap = require("dap")
 vim.api.nvim_win_set_cursor(0, { 6, 0 })
 dap.toggle_breakpoint()
 local config = vim.deepcopy(dap.configurations.cpp[1])
+config.stopOnEntry = false
+config.preRunCommands = {}
 config.program = root .. "/build/cpp-smoke"
 config.cwd = root
 local stopped = false

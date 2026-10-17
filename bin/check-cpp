@@ -14,7 +14,7 @@ export XDG_STATE_HOME="$check_root/state"
 export NVIM_LOG_FILE="$check_root/nvim.log"
 timeout 90 nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
   '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/cpp/integration.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
-for debug_mode in cmake standalone multiple switch error; do
+for debug_mode in cmake standalone multiple switch ui error; do
   NVIM_CPP_F5_MODE="$debug_mode" timeout 60 nvim --headless -i NONE \
     --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
     '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/cpp/f5.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end'

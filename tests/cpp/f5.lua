@@ -1,6 +1,6 @@
 local root = assert(vim.env.NVIM_CPP_TEST_ROOT)
 local mode = vim.env.NVIM_CPP_F5_MODE
-local standalone = mode == "standalone" or mode == "error"
+local standalone = mode == "standalone" or mode == "error" or mode == "ui"
 local multiple = mode == "multiple"
 local build_failed = false
 if mode == "error" then
@@ -54,6 +54,8 @@ assert(not package.loaded.dap or not package.loaded.dap.session(), "Debug sessio
 vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<F5>", true, false, true), "m", false)
 local deadline = vim.uv.hrtime() + 45e9
 local configured = false
+local reason
+local resumed_start = false
 local function poll()
 	local ok, err = pcall(function()
 		local dap = package.loaded.dap
@@ -67,7 +69,12 @@ local function poll()
 		if dap and not configured then
 			configured = true
 			local line = standalone and 3 or 6
-			require("dap.breakpoints").set({}, vim.fn.bufnr(file), line)
+			dap.listeners.after.event_stopped.cpp_f5 = function(_, event)
+				reason = event.reason
+			end
+			if mode ~= "ui" then
+				require("dap.breakpoints").set({}, vim.fn.bufnr(file), line)
+			end
 			if mode == "switch" then
 				vim.fn.mkdir(root .. "-other", "p")
 				vim.fn.writefile({ "all:" }, root .. "-other/Makefile")
@@ -75,8 +82,33 @@ local function poll()
 				vim.cmd.edit(root .. "-other/other.cpp")
 			end
 		end
-		if dap and dap.session() and dap.session().current_frame then
+		if dap and dap.session() and dap.session().current_frame and reason and dap.session().stopped_thread_id then
 			local session = dap.session()
+			if mode == "ui" then
+				local panels = {}
+				for _, win in ipairs(vim.api.nvim_list_wins()) do
+					panels[vim.bo[vim.api.nvim_win_get_buf(win)].filetype] = true
+				end
+				assert(
+					panels.dapui_scopes and panels.dapui_watches and panels.dapui_stacks and panels.dapui_breakpoints,
+					"Debug panels missing at entry"
+				)
+				assert(session.stopped_thread_id, "Program did not pause on entry")
+				assert(session.current_frame.source.path == file, "Initial pause is outside user source")
+				dap.terminate()
+				vim.defer_fn(function()
+					io.stdout:write("PASS: F5 without breakpoints pauses at entry and opens debug panels\n")
+					vim.cmd("qa!")
+				end, 300)
+				return
+			end
+			if not resumed_start then
+				resumed_start = true
+				reason = nil
+				dap.continue()
+				vim.defer_fn(poll, 50)
+				return
+			end
 			assert(session.config.cwd == root, "Debug cwd changed while building")
 			session:request(
 				"evaluate",

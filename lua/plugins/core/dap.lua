@@ -29,7 +29,7 @@ return {
 			-- 🛠️ Balanced UI Setup (Full Layout)
 			dapui.setup({
 				expand_lines = true,
-				controls = { enabled = false },
+				controls = { enabled = true },
 				floating = { border = "rounded" },
 				render = { max_type_length = 60, max_value_lines = 200 },
 			})
@@ -38,6 +38,7 @@ return {
 			dap.listeners.after.event_initialized["dapui_config"] = function()
 				dapui.open()
 			end
+			dap.listeners.after.event_stopped["dapui_config"] = dap.listeners.after.event_initialized["dapui_config"]
 			dap.listeners.before.event_terminated["dapui_config"] = function()
 				dapui.close()
 			end

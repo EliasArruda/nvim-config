@@ -24,3 +24,7 @@ A revisão identificou que o suporte C++ não incluía templates; agora C/C++ co
 ## F5 C/C++
 
 F5 agora salva o arquivo atual e inicia build/debug assíncrono: CMake usa file API para localizar executáveis; arquivos avulsos usam cc/c++ com -g -O0. A verificação dirige o F5 real em sessões novas, incluindo escolha entre múltiplos targets e falha de compilação com aborto do launch e saída no quickfix. Headers e arquivos dependentes modificados em outros buffers precisam ser salvos pelo usuário. Presets CMake e compilação cruzada ficam fora deste fluxo automático.
+
+## Interface de depuração C++
+
+Reprodução: programa curto sem breakpoint inicializava e encerrava a sessão antes de o usuário conseguir inspecionar a UI. O fluxo automático agora cria um breakpoint temporário em main; os controles visuais estão ativos e os painéis são abertos ao inicializar/parar. O teste F5 sem breakpoint verifica pausa em código do usuário e os quatro painéis laterais. A interface também foi conferida no Neovide, em compositor Wayland isolado: variáveis (answer=42, vector e string), breakpoint, pilha, watches e botões do console. O aviso de console em commands mode é informativo; expressões LLDB podem ser avaliadas com o prefixo ?.

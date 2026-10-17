@@ -64,6 +64,7 @@ function M.setup()
 					return require("config.cpp-debug").program()
 				end,
 				stopOnEntry = false,
+				preRunCommands = { "breakpoint set --name main --one-shot true" },
 			}, {
 				__call = function(config)
 					-- Resolve the context before DAP evaluates asynchronous options.
