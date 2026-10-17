@@ -1,6 +1,6 @@
 # Verificação
 
-Última execução local: 15/10/2026, Linux, Neovim 0.12.
+Verificação de base: 15/10/2026, Linux, Neovim 0.12.
 
 - `bin/check-nvim`: 157 checks gerais, 16 de arquitetura, 13 de templates em cada modo (nativo e VSCode), 13 de diagnósticos, 16 de ícones e 29 de terminais; entrada real Alt+1/Alt+2 também verificada.
 - `bin/check-blazor`: 41 regressões, quatro casos com Enter real entre tags e exclusão de strings C#.
@@ -12,3 +12,7 @@ Os testes de templates cobrem criação pelo editor e leitura de arquivos vazios
 O teste .NET pode registrar `dotnet server exited with code 143` no encerramento do Neovim, após terminar os cenários; o código corresponde ao encerramento do processo por SIGTERM. Resultados dos cenários são conferidos separadamente.
 
 Backups e instalações duplicadas usados na reforma foram removidos a pedido do usuário. Código, testes, lockfile, fontes instaladas e ferramentas ativas permanecem; versões publicadas podem ser recuperadas pelo Git. Artefatos de diagnóstico de uma execução .NET ficam na pasta temporária informada pelo comando.
+
+## C/C++ — 17/10/2026
+
+`bin/check-cpp` passou com um projeto CMake C++20: build e execução, clangd com includes/macros do compilation database, parser, hover, definição em header, completion STL, diagnóstico proposital, rename, formatação do buffer e CodeLLDB com breakpoint e leitura de variável. `bin/check-nvim` foi repetido; a arquitetura inclui proteção contra marcadores C++ alterarem raízes de arquivos TypeScript. Atalhos centrais seguem intactos. Cross-compilation, attach a processos existentes e interface gráfica não foram validados nesta etapa.

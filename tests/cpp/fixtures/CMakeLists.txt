@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.20)
+project(NvimCppSmoke LANGUAGES CXX)
+add_executable(cpp-smoke main.cpp)
+target_compile_features(cpp-smoke PRIVATE cxx_std_20)
+target_include_directories(cpp-smoke PRIVATE include)
+target_compile_definitions(cpp-smoke PRIVATE FROM_COMPDB=42)

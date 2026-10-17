@@ -1,6 +1,7 @@
 return {
 	"bash",
 	"c",
+	"cpp",
 	"diff",
 	"html",
 	"http",

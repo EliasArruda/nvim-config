@@ -13,6 +13,7 @@
 ## What you get
 
 - **C# and Blazor in one workflow.** Roslyn and Razor through EasyDotnet, component and attribute completion, Emmet, formatting, tests, and C# debugging.
+- **C++ with project-aware tooling.** Clangd completion, diagnostics, navigation, refactoring and inlay hints; clang-format, Treesitter highlighting, and CodeLLDB debugging. See the [C++ guide](docs/cpp.md).
 - **A starting point for new files.** Automatic templates for C#, Vue, Go, and Razor components, including files created on disk by the explorer before opening.
 - **Search within your project.** Search and tools resolve the nearest project or package root.
 - **More color in your code.** Cyberdream syntax colors over a neutral, dark Nightfly interface. Tabs, menus, and panels keep a consistent appearance.
@@ -89,6 +90,7 @@ Use `:Lazy restore` to restore pinned commits, `:ConformInfo` to inspect formatt
 ./bin/check-nvim
 ./bin/check-blazor
 ./bin/check-dotnet
+./bin/check-cpp
 ```
 
 `check-nvim` covers configuration, templates, diagnostics, icons, and terminals using installed plugins. `check-blazor` checks Razor and Emmet locally. `check-dotnet` creates a temporary .NET 10 solution and checks builds, tests, and LSP/debugger integration; it requires the SDK, tools, and NuGet access. See the [verification guide](docs/usage.md#verificação).

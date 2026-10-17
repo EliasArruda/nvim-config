@@ -23,6 +23,9 @@ return {
 		fish = { "fish_indent" },
 		sh = { "shfmt" },
 		python = { "ruff_organize_imports", "ruff_format" },
+		-- C / C++: clang-format discovers the project .clang-format.
+		c = { "clang_format" },
+		cpp = { "clang_format" },
 		-- Web
 		css = web_formatters,
 		html = { "prettier" },
