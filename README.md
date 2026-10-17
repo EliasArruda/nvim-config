@@ -14,7 +14,7 @@
 
 - **C# and Blazor in one workflow.** Roslyn and Razor through EasyDotnet, component and attribute completion, Emmet, formatting, tests, and C# debugging.
 - **C++ with project-aware tooling.** Clangd completion, diagnostics, navigation, refactoring and inlay hints; clang-format, Treesitter highlighting, and CodeLLDB debugging. See the [C++ guide](docs/cpp.md).
-- **A starting point for new files.** Automatic templates for C#, Vue, Go, and Razor components, including files created on disk by the explorer before opening.
+- **A starting point for new files.** Automatic templates for C/C++, C#, Vue, Go, and Razor components, including files created on disk by the explorer before opening.
 - **Search within your project.** Search and tools resolve the nearest project or package root.
 - **More color in your code.** Cyberdream syntax colors over a neutral, dark Nightfly interface. Tabs, menus, and panels keep a consistent appearance.
 - **Symbols icons.** 348 designs and 1,479 file and folder associations, with a color companion font in Neovide and a Nerd Font fallback in terminals.
@@ -44,6 +44,9 @@ Create and open a file through the explorer, or use `:edit path/File.cs`. The te
 
 | File | Initial content |
 | --- | --- |
+| `main.cpp`, `main.cc`, `main.c` | A console entry point with the appropriate standard include |
+| Other C/C++ sources | Matching header include when it exists; otherwise a standard include, without another `main` |
+| `.h`, `.hpp`, `.hh`, `.hxx`, `.H` | `#pragma once` and an empty editing area |
 | `Customer.cs`, `IService.cs` | A class or interface with a namespace derived from the `.csproj` and directory structure |
 | `OrderDto.cs`, `OrdersController.cs`, `OrderStatus.cs` | A record, controller, or enum based on the filename |
 | `Counter.razor.cs` | A partial class for the component's code-behind |
@@ -51,7 +54,7 @@ Create and open a file through the explorer, or use `:edit path/File.cs`. The te
 | `main.go`, other `.go` files | A package declaration, reusing the package from neighboring files |
 | `Card.razor` | A component heading and an `@code` block |
 
-Files with content and older empty files are left untouched. Empty files already created on disk are eligible for **10 seconds** after modification. `_Imports.razor` and other `.razor` files starting with `_` stay empty. Razor component templates do not add routes automatically.
+Files with content and older empty files are left untouched. Empty files already created on disk are eligible for **10 seconds** after modification. `_Imports.razor` and other `.razor` files starting with `_` stay empty. Razor component templates do not add routes automatically. Automatic file templates currently cover C/C++, C#, Vue, Go, and Razor; language-server support for another language does not imply an automatic file template.
 
 ## Essential shortcuts
 

@@ -53,6 +53,12 @@ Open `nvim` in the project and edit a `.cpp`, `.cc`, `.cxx`, `.hpp` or `.h` file
 
 If headers or libraries appear missing, check `compile_commands.json` and the compiler command it contains. A language server cannot supply an SDK or library missing from the build environment. No wildcard compiler-execution permissions (`--query-driver`) are enabled globally.
 
+## New file templates
+
+New C/C++ files receive templates in native Neovim and the VSCode Neovim integration. `main.cpp`, `main.cc`, `main.cxx`, `main.C` and `main.c` get a console entry point. Headers (`.h`, `.hpp`, `.hh`, `.hxx`, `.H`) start with `#pragma once`. Other source files include their matching header from the same directory when it exists; otherwise they start with a standard include. They do not define another `main`.
+
+Templates apply to new empty buffers and empty files modified within the last ten seconds, covering immediate creation/opening by the explorer. Existing content and older empty files are preserved. Generated content is not saved automatically. Other languages with configured automatic templates are C#, Vue, Go, and Razor; these are tested separately from the language servers.
+
 ## Debugging
 
 Build with debug symbols, then set a breakpoint with `<Space>db` and press `F5`. Select **Launch executable (C/C++)** and enter the compiled executable path. The working directory defaults to the current project root. This launches the existing binary; rebuild after changing source files.

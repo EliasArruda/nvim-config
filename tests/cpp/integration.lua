@@ -119,6 +119,23 @@ assert(
 	end, 50),
 	"Debugger did not terminate"
 )
+vim.fn.mkdir(root .. "/templates", "p")
+for _, name in ipairs({ "main.cpp", "Shape.hpp", "Shape.cpp" }) do
+	local path = root .. "/templates/" .. name
+	vim.cmd.edit(path)
+	assert(
+		vim.wait(1000, function()
+			return vim.api.nvim_buf_line_count(0) > 1
+		end, 20),
+		"Generated C++ template missing: " .. name
+	)
+	vim.cmd.stopinsert()
+	vim.cmd.write()
+	if name:match("%.cpp$") then
+		local compile = vim.system({ "c++", "-fsyntax-only", path }, { text = true }):wait(10000)
+		assert(compile.code == 0, compile.stderr)
+	end
+end
 io.stdout:write(
-	"PASS: C++ build/run, clangd root, parser, hover, header definition, STL completion, diagnostics, rename, formatter and native breakpoint/evaluate\n"
+	"PASS: C++ build/run, clangd root, parser, hover, header definition, STL completion, diagnostics, rename, formatter and native breakpoint/evaluate and compiled generated templates\n"
 )

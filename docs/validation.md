@@ -16,3 +16,7 @@ Backups e instalações duplicadas usados na reforma foram removidos a pedido do
 ## C/C++ — 17/10/2026
 
 `bin/check-cpp` passou com um projeto CMake C++20: build e execução, clangd com includes/macros do compilation database, parser, hover, definição em header, completion STL, diagnóstico proposital, rename, formatação do buffer e CodeLLDB com breakpoint e leitura de variável. `bin/check-nvim` foi repetido; a arquitetura inclui proteção contra marcadores C++ alterarem raízes de arquivos TypeScript. Atalhos centrais seguem intactos. Cross-compilation, attach a processos existentes e interface gráfica não foram validados nesta etapa.
+
+## Templates de arquivos
+
+A revisão identificou que o suporte C++ não incluía templates; agora C/C++ compartilha a proteção dos templates existentes e funciona nos modos nativo e VSCode. Passaram 43 verificações em cada modo (nativo e VSCode), além das regressões gerais e da integração C++. A suíte verifica criação pelo editor e leitura de arquivos recém-criados no disco, variantes C#, pacote Go, headers e fontes C/C++, conteúdo existente, arquivos vazios antigos e buffers especiais. A integração C++ também verifica com o compilador os arquivos gerados pelos templates.
