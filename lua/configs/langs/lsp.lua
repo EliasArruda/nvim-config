@@ -30,6 +30,7 @@ return {
 		end,
 	},
 	sqls = {},
+	taplo = {},
 	bicep = { cmd = { "bicep-lsp" } },
 	svelte = {},
 	vue_ls = {

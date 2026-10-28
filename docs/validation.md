@@ -32,3 +32,9 @@ Reprodução: programa curto sem breakpoint inicializava e encerrava a sessão a
 ## Execução normal C/C++
 
 `:CppRun` reutiliza o build assíncrono e abre um terminal persistente sem iniciar DAP. O F5 continua depurando. A suíte verifica execução normal em CMake e arquivo avulso, saída do programa preservada, ausência de sessão de debug e aborto após erro de compilação.
+
+## Rust — 28/10/2026
+
+Rustaceanvim usa um único rust-analyzer iniciado na raiz Cargo, preservando a seleção rustup do projeto. As capabilities Blink agora são uma tabela mesclada aos defaults do plugin, mantendo notificações de prontidão e as extensões Rust. Features Cargo não são mais forçadas globalmente. Rustfmt roda pelo LSP; Taplo fornece LSP e formatter TOML. F5 salva e depura via Cargo; CargoRun/CargoTest salvam e executam no terminal, sem conflitar com os comandos nativos RustRun/RustTest. Não há build de todos os targets de debug na simples abertura do editor.
+
+`bin/check-rust` passou: cargo test offline, Clippy sem warnings e cargo fmt; completion, definição, parser, formatação Rust e Cargo.toml; F5 real com seleção do target, breakpoint e avaliação de variável alterada no buffer (84), comprovando o salvamento antes do build; execução e testes Cargo em terminal persistente sem DAP, também com prova de salvamento. Os testes dirigem o picker real do Snacks em processos headless. Templates Rust são verificados nos modos nativo e VSCode, sem sobrescrever conteúdo ou arquivos vazios antigos. A interface gráfica Rust e projetos do usuário não foram testados; o projeto de teste usa Rust estável e não baixa crates de terceiros.

@@ -29,6 +29,16 @@ function M.setup()
 	vim.api.nvim_create_user_command("CppRun", function()
 		require("config.cpp-debug").run()
 	end, { desc = "Build and run C/C++ without a debugger", force = true })
+	for command, action in pairs({ CargoRun = "runnables", CargoTest = "testables" }) do
+		vim.api.nvim_create_user_command(command, function()
+			if vim.fn.exists(":RustLsp") == 2 then
+				vim.cmd("silent update")
+				vim.cmd("RustLsp " .. action)
+			else
+				vim.notify("Open a Rust file and wait for rust-analyzer", vim.log.levels.WARN)
+			end
+		end, { desc = "Rust " .. action, force = true })
+	end
 end
 
 return M
