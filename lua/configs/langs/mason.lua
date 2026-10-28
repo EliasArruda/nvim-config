@@ -1,5 +1,6 @@
 return {
 	ensure_installed = {
+		"taplo",
 		"clangd",
 		"clang-format",
 		"lua-language-server",

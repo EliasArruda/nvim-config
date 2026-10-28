@@ -51,6 +51,13 @@ return {
 				local ft = vim.bo.filetype
 				if (ft == "cpp" or ft == "c") and not dap.session() then
 					dap.run(dap.configurations[ft][1])
+				elseif ft == "rust" and not dap.session() then
+					if vim.fn.exists(":RustLsp") == 2 then
+						vim.cmd("silent update")
+						vim.cmd("RustLsp debuggables")
+					else
+						vim.notify("Wait for rust-analyzer to initialize", vim.log.levels.WARN)
+					end
 				else
 					dap.continue()
 				end

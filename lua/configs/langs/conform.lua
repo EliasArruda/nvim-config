@@ -49,7 +49,8 @@ return {
 		caddy = { "caddy" },
 		-- Go
 		go = { "gofumpt", "goimports" },
-		rust = { "rustfmt", lsp_format = "fallback" },
+		toml = { "taplo" },
+		rust = { lsp_format = "first", name = "rust-analyzer" },
 		-- Ruby / Rails
 		-- Ruby LSP selects the formatter from the project bundle (RuboCop or
 		-- Standard), so formatting never silently uses a global version.

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+config_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+check_root="$(mktemp -d "${TMPDIR:-/tmp}/nvim-rust-check.XXXXXX")"
+printf 'Artifacts: %s\n' "$check_root"
+cp -R "$config_root/tests/rust/fixtures/." "$check_root/"
+cd "$check_root"
+cargo test --offline
+cargo clippy --offline --all-targets -- -D warnings
+cargo fmt --check
+export NVIM_TEST_ROOT="$config_root"
+export NVIM_RUST_TEST_ROOT="$check_root"
+export XDG_STATE_HOME="$check_root/state"
+export NVIM_LOG_FILE="$check_root/nvim.log"
+for rust_check in integration debug run test; do
+  NVIM_RUST_CHECK="$rust_check" NVIM_RUST_RUN_MODE="$rust_check" timeout -k 3 120 nvim --headless -i NONE \
+    --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
+    '+lua vim.api.nvim_create_autocmd("VimEnter",{once=true,callback=function() vim.schedule(function() local mode=vim.env.NVIM_RUST_CHECK;local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/rust/" .. ((mode=="integration" or mode=="debug") and mode or "run") .. ".lua") end,debug.traceback);if not ok then io.stderr:write(err .. "\n");vim.cmd("cquit 1") elseif mode=="integration" then vim.cmd("qa!") end end) end})'
+done

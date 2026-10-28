@@ -91,6 +91,11 @@ check(
 	"Unmodifiable buffer accepted"
 )
 vim.api.nvim_buf_delete(readonly, { force = true })
+check(open("main.rs", nil):find("fn main()", 1, true), "Rust main template missing")
+check(open("lib.rs", nil):find("//! Library", 1, true), "Rust library template missing")
+check(open("module.rs", {}):find("//! Module", 1, true), "Rust disk module template missing")
+check(open("Old.rs", {}, true) == "", "Old Rust file changed")
+check(open("Existing.rs", { "// keep" }) == "// keep", "Existing Rust changed")
 check(open("Existing.cs", { "// Keep my code" }) == "// Keep my code", "Existing content overwritten")
 check(open("Old.cs", {}, true) == "", "Old empty file changed")
 check(open("Old.vue", {}, true) == "", "Old empty Vue changed")
