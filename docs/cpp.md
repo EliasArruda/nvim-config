@@ -59,6 +59,12 @@ New C/C++ files receive templates in native Neovim and the VSCode Neovim integra
 
 Templates apply to new empty buffers and empty files modified within the last ten seconds, covering immediate creation/opening by the explorer. Existing content and older empty files are preserved. Generated content is not saved automatically. Other languages with configured automatic templates are C#, Vue, Go, and Razor; these are tested separately from the language servers.
 
+## Run without debugging
+
+Use **`:CppRun`** to save the current file, compile and run normally in a bottom terminal. It uses the same CMake target discovery or standalone-file build as F5, but does not launch CodeLLDB, pause in main, or open debug panels. Build settings remain the same; this is normal execution of the binary, not a separate Release build.
+
+The terminal supports keyboard input and stays open after the program exits so its output remains visible. Compiler failures appear in quickfix and do not launch the program. Existing keyboard shortcuts are unchanged: F5 debugs; Ctrl+F5 stops a debug session.
+
 ## Debugging
 
 Press **F5** in a C/C++ buffer to save the current file, build and launch the debugger. The debugger pauses in `main` even without a user breakpoint, so the variables, stack, watches and console panels remain visible. A temporary one-shot LLDB breakpoint implements this pause without stopping in the loader. Set additional breakpoints with `<Space>db`. F5 continues execution when a debug session is already active.

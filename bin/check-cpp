@@ -19,3 +19,8 @@ for debug_mode in cmake standalone multiple switch ui error; do
     --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
     '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/cpp/f5.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end'
 done
+for run_mode in cmake standalone error; do
+  NVIM_CPP_RUN_MODE="$run_mode" timeout 45 nvim --headless -i NONE \
+    --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
+    '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/cpp/run.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end'
+done

@@ -109,6 +109,10 @@ local function poll()
 				vim.defer_fn(poll, 50)
 				return
 			end
+			if session.current_frame.line ~= (standalone and 3 or 6) then
+				vim.defer_fn(poll, 50)
+				return
+			end
 			assert(session.config.cwd == root, "Debug cwd changed while building")
 			session:request(
 				"evaluate",

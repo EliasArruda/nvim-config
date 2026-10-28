@@ -26,6 +26,9 @@ function M.setup()
 	require("config.ui").setup()
 	require("config.health").setup()
 	require("config.tools").setup()
+	vim.api.nvim_create_user_command("CppRun", function()
+		require("config.cpp-debug").run()
+	end, { desc = "Build and run C/C++ without a debugger", force = true })
 end
 
 return M

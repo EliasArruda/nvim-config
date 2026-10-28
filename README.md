@@ -67,6 +67,7 @@ The leader key is **Space**. Press it and wait to browse which-key.
 | `<Space>ca` / `<Space>cr` / `<Space>cf` | Code actions / rename / format |
 | `<Space>nn` / `<Space>nf` | Create a .NET project / .NET file |
 | `<Space>nb` / `<Space>nr` / `<Space>nt` | Build / run / .NET tests |
+| `F5` / `:CppRun` in C/C++ | Build and debug / build and run normally |
 | `Ctrl+T` | Show or hide terminals |
 | `Ctrl+N` in a terminal | Create another session |
 | `Alt+1`…`Alt+9` in the panel | Select a session |

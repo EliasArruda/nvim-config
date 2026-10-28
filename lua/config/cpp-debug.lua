@@ -54,7 +54,7 @@ local function cmake_program(root)
 	if not target then
 		local thread = coroutine.running()
 		vim.ui.select(targets, {
-			prompt = "C++ debug target",
+			prompt = "C/C++ executable",
 			format_item = function(item)
 				return item.name
 			end,
@@ -88,7 +88,7 @@ function M.program()
 			vim.api.nvim_buf_call(buf, function()
 				vim.cmd("silent update")
 			end)
-			vim.notify("Building C/C++ for debugging…")
+			vim.notify("Building C/C++…")
 			if vim.uv.fs_stat(root .. "/CMakeLists.txt") then
 				return cmake_program(root)
 			end
@@ -110,6 +110,23 @@ function M.program()
 		end
 		coroutine.resume(dap_thread, program)
 	end)
+end
+
+function M.run()
+	local root = require("core.project").root()
+	local receiver = coroutine.create(function()
+		local program = coroutine.yield()
+		if program == require("dap").ABORT then
+			return
+		end
+		Snacks.terminal.open({ program }, {
+			cwd = root,
+			auto_close = false,
+			win = { position = "bottom", height = 0.35 },
+		})
+	end)
+	coroutine.resume(receiver)
+	coroutine.resume(M.program(), receiver)
 end
 
 return M

@@ -28,3 +28,7 @@ F5 agora salva o arquivo atual e inicia build/debug assíncrono: CMake usa file 
 ## Interface de depuração C++
 
 Reprodução: programa curto sem breakpoint inicializava e encerrava a sessão antes de o usuário conseguir inspecionar a UI. O fluxo automático agora cria um breakpoint temporário em main; os controles visuais estão ativos e os painéis são abertos ao inicializar/parar. O teste F5 sem breakpoint verifica pausa em código do usuário e os quatro painéis laterais. A interface também foi conferida no Neovide, em compositor Wayland isolado: variáveis (answer=42, vector e string), breakpoint, pilha, watches e botões do console. O aviso de console em commands mode é informativo; expressões LLDB podem ser avaliadas com o prefixo ?.
+
+## Execução normal C/C++
+
+`:CppRun` reutiliza o build assíncrono e abre um terminal persistente sem iniciar DAP. O F5 continua depurando. A suíte verifica execução normal em CMake e arquivo avulso, saída do programa preservada, ausência de sessão de debug e aborto após erro de compilação.
