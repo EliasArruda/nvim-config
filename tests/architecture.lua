@@ -36,6 +36,15 @@ check(
 	project.root(dir .. "/repo/native/src/a.cpp", { { "compile_commands.json" }, ".git" }) == dir .. "/repo/native",
 	"Nested server markers preserved"
 )
+vim.fn.writefile({ "all:" }, dir .. "/repo/apps/web/src/Makefile")
+check(
+	project.root(dir .. "/repo/apps/web/src/file.ts") == dir .. "/repo/apps/web",
+	"C++ markers do not narrow TypeScript roots"
+)
+vim.fn.mkdir(dir .. "/repo/make/src", "p")
+vim.fn.writefile({ "all:" }, dir .. "/repo/make/Makefile")
+check(project.root(dir .. "/repo/make/src/main.cpp") == dir .. "/repo/make", "C++ source finds Makefile root")
+check(project.root(dir .. "/repo/make/src/sample.h") == dir .. "/repo/make", "C header finds Makefile root")
 local buf = vim.api.nvim_create_buf(true, false)
 vim.api.nvim_buf_set_name(buf, dir .. "/large.json")
 vim.fn.writefile({ string.rep("x", 1024 * 1024 + 1) }, dir .. "/large.json")

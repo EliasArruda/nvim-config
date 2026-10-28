@@ -23,6 +23,9 @@ return {
 		fish = { "fish_indent" },
 		sh = { "shfmt" },
 		python = { "ruff_organize_imports", "ruff_format" },
+		-- C / C++: clang-format discovers the project .clang-format.
+		c = { "clang_format" },
+		cpp = { "clang_format" },
 		-- Web
 		css = web_formatters,
 		html = { "prettier" },
@@ -55,6 +58,11 @@ return {
 		sql = { lsp_format = "never" },
 	},
 	formatters = {
+		clang_format = {
+			prepend_args = {
+				"--style={BasedOnStyle: InheritParentConfig, AllowShortFunctionsOnASingleLine: None, AllowShortBlocksOnASingleLine: Never}",
+			},
+		},
 		injected = {
 			options = { ignore_errors = true },
 		},

@@ -2,7 +2,7 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		cmd = { "DapContinue", "DapToggleBreakpoint", "DapToggleRepl" },
-		keys = {},
+		keys = { "<F5>" },
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
 			"nvim-neotest/nvim-nio",
@@ -29,7 +29,7 @@ return {
 			-- 🛠️ Balanced UI Setup (Full Layout)
 			dapui.setup({
 				expand_lines = true,
-				controls = { enabled = false },
+				controls = { enabled = true },
 				floating = { border = "rounded" },
 				render = { max_type_length = 60, max_value_lines = 200 },
 			})
@@ -38,6 +38,7 @@ return {
 			dap.listeners.after.event_initialized["dapui_config"] = function()
 				dapui.open()
 			end
+			dap.listeners.after.event_stopped["dapui_config"] = dap.listeners.after.event_initialized["dapui_config"]
 			dap.listeners.before.event_terminated["dapui_config"] = function()
 				dapui.close()
 			end
@@ -47,7 +48,12 @@ return {
 
 			-- ⌨️ Ergonomic Keymaps (Modo Normal apenas para evitar conflitos com Terminal)
 			vim.keymap.set("n", "<F5>", function()
-				dap.continue()
+				local ft = vim.bo.filetype
+				if (ft == "cpp" or ft == "c") and not dap.session() then
+					dap.run(dap.configurations[ft][1])
+				else
+					dap.continue()
+				end
 			end, { desc = "DAP Continue" })
 			vim.keymap.set("n", "<C-F5>", function()
 				dap.terminate()

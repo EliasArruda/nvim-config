@@ -1,5 +1,7 @@
 return {
 	ensure_installed = {
+		"clangd",
+		"clang-format",
 		"lua-language-server",
 		"xmlformatter",
 		"prettier",

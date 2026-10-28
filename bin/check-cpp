@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+config_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+check_root="$(mktemp -d "${TMPDIR:-/tmp}/nvim-cpp-check.XXXXXX")"
+printf 'Artifacts: %s\n' "$check_root"
+cp -R "$config_root/tests/cpp/fixtures/." "$check_root/"
+cmake -S "$check_root" -B "$check_root/build" -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+cmake --build "$check_root/build"
+"$check_root/build/cpp-smoke"
+ln -s build/compile_commands.json "$check_root/compile_commands.json"
+export NVIM_TEST_ROOT="$config_root"
+export NVIM_CPP_TEST_ROOT="$check_root"
+export XDG_STATE_HOME="$check_root/state"
+export NVIM_LOG_FILE="$check_root/nvim.log"
+timeout 90 nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
+  '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/cpp/integration.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
+for debug_mode in cmake standalone multiple switch ui error; do
+  NVIM_CPP_F5_MODE="$debug_mode" timeout 60 nvim --headless -i NONE \
+    --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
+    '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/cpp/f5.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end'
+done
+for run_mode in cmake standalone error; do
+  NVIM_CPP_RUN_MODE="$run_mode" timeout 45 nvim --headless -i NONE \
+    --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
+    '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/cpp/run.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end'
+done
