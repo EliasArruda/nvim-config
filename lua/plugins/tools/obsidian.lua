@@ -6,7 +6,7 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"Kicamon/markdown-table-mode.nvim",
-		"TobinPalmer/pastify.nvim",
+		{ "TobinPalmer/pastify.nvim", opts = {} },
 	},
 	cmd = { "Pastify", "PastifyAfter" },
 	keys = {

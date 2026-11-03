@@ -110,4 +110,6 @@ Use `:Lazy restore` to restore pinned commits, `:ConformInfo` to inspect formatt
 
 `bin/check-python` validates Python language tools, virtual environments, formatting, debugging, execution and unittest discovery.
 
+Image/text paste uses a dedicated Python provider with `pynvim` and Pillow, provisioned by `bin/bootstrap-nvim`. It does not replace a project virtual environment. `:NvimDoctor` shows UI ownership, provider, last Vim error, language tools and log paths.
+
 GUIs that provide external messages, command lines or popup menus use their own widgets. Noice loads only when these UI extensions are disabled, avoiding conflicting message handlers.

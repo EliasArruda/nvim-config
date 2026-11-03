@@ -4,7 +4,7 @@ Reformulação para Neovim 0.12, com atalhos preservados, Nightfly com fundo neu
 
 ## Instalação e manutenção
 
-Requisitos: Neovim 0.12+, Git, rg/fd, Node, compilador C e tree-sitter CLI compatível com Treesitter main. Clone em `~/.config/nvim`, execute `bin/bootstrap-nvim`, abra o editor e rode `:NvimToolsInstall` e `:NvimParsersInstall`. A abertura normal não instala plugins ou ferramentas. Use `:NvimDoctor` para diagnóstico.
+Requisitos: Neovim 0.12+, Python 3 com venv/pip, Git, rg/fd, Node, compilador C e tree-sitter CLI compatível com Treesitter main. Clone em `~/.config/nvim`, execute `bin/bootstrap-nvim`, abra o editor e rode `:NvimToolsInstall` e `:NvimParsersInstall`. O bootstrap também cria um provider Python isolado com `pynvim` e Pillow para colagem de imagens/texto, separado dos ambientes dos projetos. A abertura normal não instala plugins ou ferramentas. Use `:NvimDoctor` para diagnóstico.
 
 ## Dependências
 

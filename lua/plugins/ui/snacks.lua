@@ -88,14 +88,14 @@ return {
 		{
 			"<leader>un",
 			function()
-				vim.cmd("Noice history")
+				require("config.notifications").history()
 			end,
 			desc = "Notificações",
 		},
 		{
 			"<leader>uX",
 			function()
-				vim.cmd("Noice dismiss")
+				require("config.notifications").dismiss()
 			end,
 			desc = "Descartar Notificações",
 		},
