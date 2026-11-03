@@ -7,7 +7,6 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 		},
 		ft = { "go", "gomod" },
-		build = '<cmd>lua require("go.install").update_all()<cr>',
 		config = function()
 			require("go").setup({
 				lsp_cfg = false,
@@ -42,7 +41,7 @@ return {
 		end,
 		keys = {
 			{ "<leader>ma", "<cmd>GoAddTag<CR>", desc = "Add struct tags" },
-			{ "<leader>mr", "<cmd>GoRemoveTag<CR>", desc = "Remove struct tags" },
+			{ "<leader>mr", "<cmd>GoRmTag<CR>", desc = "Remove struct tags" },
 			{ "<leader>mi", "<cmd>GoImpl<CR>", desc = "Implement interface" },
 			{ "<leader>mt", "<cmd>GoTestFunc<CR>", desc = "Run test at cursor" },
 			{ "<leader>mT", "<cmd>GoTest<CR>", desc = "Run package tests" },

@@ -21,3 +21,6 @@ done
 
 NVIM_TEST_ROOT="$config_root" nvim --headless -u NONE -i NONE \
   '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/noice-ui.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
+
+nvim --headless -i NONE --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
+  '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/go-plugin.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
