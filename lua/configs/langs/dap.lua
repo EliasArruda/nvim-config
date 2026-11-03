@@ -2,6 +2,7 @@ local M = {}
 
 function M.setup()
 	local dap = require("dap")
+	require("config.python").setup_dap(dap)
 
 	-- 🐹 GO (Delve)
 	dap.adapters.go = {

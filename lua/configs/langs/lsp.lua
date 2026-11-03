@@ -212,16 +212,24 @@ return {
 	},
 
 	ruff = {
+		root_dir = project_root,
 		on_attach = function(client, _)
 			client.server_capabilities.hoverProvider = false
 		end,
 	},
 
 	pyright = {
+		root_dir = project_root,
+		before_init = function(_, config)
+			config.settings.python.pythonPath = config.settings.python.pythonPath
+				or require("config.python").interpreter(config.root_dir)
+		end,
 		settings = {
+			pyright = { disableOrganizeImports = true },
 			python = {
 				analysis = {
 					typeCheckingMode = "basic",
+					autoImportCompletions = true,
 					autoSearchPaths = true,
 					useLibraryCodeForTypes = true,
 					diagnosticMode = "openFilesOnly",

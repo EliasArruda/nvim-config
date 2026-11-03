@@ -51,6 +51,9 @@ return {
 				local ft = vim.bo.filetype
 				if (ft == "cpp" or ft == "c") and not dap.session() then
 					dap.run(dap.configurations[ft][1])
+				elseif ft == "python" and not dap.session() then
+					vim.cmd("silent update")
+					dap.run(dap.configurations.python[1])
 				elseif ft == "rust" and not dap.session() then
 					if vim.fn.exists(":RustLsp") == 2 then
 						vim.cmd("silent update")

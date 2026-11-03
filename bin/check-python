@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+set -euo pipefail
+config_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+check_root="$(mktemp -d /tmp/nvim-python-check.XXXXXX)"
+trap 'rm -rf "$check_root"' EXIT
+python3 -m venv "$check_root/.venv"
+python3 -m venv "$check_root/other"
+printf '[project]\nname = "nvim-python-smoke"\nversion = "0.1.0"\n' > "$check_root/pyproject.toml"
+cat > "$check_root/main.py" <<'PY'
+import pathlib
+import sys
+
+answer: int = "wrong"
+print(pathlib.Path.cwd())
+PY
+printf 'answer = 42\nprint(answer)\n' > "$check_root/debug.py"
+printf '# execution fixture\n' > "$check_root/run.py"
+cat > "$check_root/test_example.py" <<'PY'
+import unittest
+
+class Example(unittest.TestCase):
+    def test_answer(self):
+        self.assertEqual(42, 40 + 2)
+PY
+export NVIM_TEST_ROOT="$config_root" NVIM_PYTHON_TEST_ROOT="$check_root"
+export XDG_STATE_HOME="$check_root/state" NVIM_LOG_FILE="$check_root/nvim.log"
+python_checks=(integration debug run test)
+if [[ "${PYTHON_CHECK_PYTEST:-0}" == "1" ]]; then
+  "$check_root/.venv/bin/python" -m pip install --disable-pip-version-check pytest
+  python_checks+=(pytest)
+fi
+for python_check in "${python_checks[@]}"; do
+  NVIM_PYTHON_CHECK="$python_check" timeout -k 3 70 nvim --headless -i NONE \
+    --cmd 'lua dofile(vim.env.NVIM_TEST_ROOT .. "/tests/pre.lua")' \
+    '+lua vim.api.nvim_create_autocmd("VimEnter",{once=true,callback=function() vim.schedule(function() local mode=vim.env.NVIM_PYTHON_CHECK; local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/python/" .. ((mode=="integration" or mode=="debug") and mode or "run") .. ".lua") end,debug.traceback);if not ok then io.stderr:write(err .. "\n");vim.cmd("cquit 1") end end) end})'
+done
