@@ -109,3 +109,5 @@ Use `:Lazy restore` to restore pinned commits, `:ConformInfo` to inspect formatt
 [Latest verification results and limitations](docs/validation.md).
 
 `bin/check-python` validates Python language tools, virtual environments, formatting, debugging, execution and unittest discovery.
+
+GUIs that provide external messages, command lines or popup menus use their own widgets. Noice loads only when these UI extensions are disabled, avoiding conflicting message handlers.

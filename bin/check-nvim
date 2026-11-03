@@ -18,3 +18,6 @@ for template_mode in native vscode; do
     --cmd 'lua vim.opt.rtp:prepend(vim.env.NVIM_TEST_ROOT)' \
     '+lua local ok,err=xpcall(function() vim.g.vscode=vim.env.NVIM_TEMPLATE_MODE=="vscode"; require(vim.g.vscode and "vscode-nvim-config.templates" or "configs.templates"); dofile(vim.env.NVIM_TEST_ROOT .. "/tests/templates.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
 done
+
+NVIM_TEST_ROOT="$config_root" nvim --headless -u NONE -i NONE \
+  '+lua local ok,err=xpcall(function() dofile(vim.env.NVIM_TEST_ROOT .. "/tests/noice-ui.lua") end,debug.traceback); if not ok then io.stderr:write(err .. "\n"); vim.cmd("cquit 1") end' +qa!
