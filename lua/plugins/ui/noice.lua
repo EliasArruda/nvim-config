@@ -1,6 +1,15 @@
 return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
+	cond = function()
+		-- External UI widgets belong to the GUI; Noice cannot share them.
+		for _, ui in ipairs(vim.api.nvim_list_uis()) do
+			if ui.ext_messages or ui.ext_cmdline or ui.ext_popupmenu then
+				return false
+			end
+		end
+		return true
+	end,
 	dependencies = {
 		"MunifTanjim/nui.nvim",
 		{
