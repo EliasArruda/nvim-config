@@ -26,6 +26,9 @@ function M.root(source, extra_markers)
 		end
 	end
 	add(extra_markers)
+	if filetype == "python" then
+		add({ "setup.py", "setup.cfg", "requirements.txt", "Pipfile" })
+	end
 	if filetype == "c" or filetype == "cpp" then
 		add({ "compile_commands.json", "compile_flags.txt", ".clangd", "Makefile", "meson.build" })
 	end

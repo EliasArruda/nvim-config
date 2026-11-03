@@ -23,6 +23,7 @@ return {
 		"tailwindcss-language-server",
 		"ruff",
 		"pyright",
+		"debugpy",
 		"vue-language-server",
 		"elixir-ls",
 		"sqls",

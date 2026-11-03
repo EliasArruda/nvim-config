@@ -91,6 +91,12 @@ check(
 	"Unmodifiable buffer accepted"
 )
 vim.api.nvim_buf_delete(readonly, { force = true })
+check(open("main.py", nil):find("def main()", 1, true), "Python main missing")
+check(open("__main__.py", {}):find('if __name__ == "__main__":', 1, true), "Python entry guard missing")
+check(open("module.py", nil):find("Module documentation", 1, true), "Python module missing")
+check(open("__init__.py", nil) == "", "Python initializer must remain empty")
+check(open("Old.py", {}, true) == "", "Old Python file changed")
+check(open("Existing.py", { "# keep" }) == "# keep", "Existing Python changed")
 check(open("main.rs", nil):find("fn main()", 1, true), "Rust main template missing")
 check(open("lib.rs", nil):find("//! Library", 1, true), "Rust library template missing")
 check(open("module.rs", {}):find("//! Module", 1, true), "Rust disk module template missing")
