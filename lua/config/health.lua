@@ -12,8 +12,22 @@ function M.report()
 		"Filetype: " .. vim.bo[buf].filetype,
 		"Large file: " .. tostring(require("config.runtime").is_large(buf)),
 		"",
-		"Language clients:",
+		"Attached UI extensions:",
 	}
+	for _, ui in ipairs(vim.api.nvim_list_uis()) do
+		lines[#lines + 1] = ("  channel=%d messages=%s cmdline=%s popupmenu=%s"):format(
+			ui.chan,
+			tostring(ui.ext_messages),
+			tostring(ui.ext_cmdline),
+			tostring(ui.ext_popupmenu)
+		)
+	end
+	local noice = package.loaded["noice.config"]
+	lines[#lines + 1] = "Noice running: " .. tostring(noice ~= nil and noice.is_running())
+	lines[#lines + 1] = "Python provider: " .. (vim.g.python3_host_prog or "automatic detection")
+	lines[#lines + 1] = "Last Vim error: " .. (vim.v.errmsg ~= "" and vim.v.errmsg or "none")
+	lines[#lines + 1] = ""
+	lines[#lines + 1] = "Language clients:"
 	for _, c in ipairs(vim.lsp.get_clients({ bufnr = buf })) do
 		lines[#lines + 1] = ("  %s: ready=%s root=%s"):format(
 			c.name,
@@ -36,6 +50,11 @@ function M.report()
 		"pyright-langserver",
 		"ruff",
 		"debugpy-adapter",
+		"go",
+		"gopls",
+		"gofumpt",
+		"golangci-lint",
+		"govulncheck",
 		"rustup",
 		"cargo",
 		"rustc",
@@ -54,6 +73,11 @@ function M.report()
 	}) do
 		lines[#lines + 1] = tool .. ": " .. (vim.fn.executable(tool) == 1 and vim.fn.exepath(tool) or "MISSING")
 	end
+	lines[#lines + 1] = ""
+	lines[#lines + 1] = "Logs (historical errors can precede the current configuration):"
+	lines[#lines + 1] = "  LSP: " .. vim.lsp.log.get_filename()
+	lines[#lines + 1] = "  Format: " .. vim.fn.stdpath("state") .. "/conform.log"
+	lines[#lines + 1] = "  Plugins/tools: " .. vim.fn.stdpath("state") .. "/mason.log"
 	return lines
 end
 function M.setup()

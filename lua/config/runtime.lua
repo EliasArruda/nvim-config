@@ -8,6 +8,10 @@ function M.is_large(buf)
 	return size and size.size > require("config.settings").large_file_bytes or false
 end
 function M.setup()
+	local provider = vim.fn.stdpath("data") .. "/python-provider/bin/python"
+	if vim.g.python3_host_prog == nil and vim.fn.executable(provider) == 1 then
+		vim.g.python3_host_prog = provider
+	end
 	vim.opt.winborder = "rounded"
 	vim.opt.pumblend = 0
 	vim.opt.completeopt = "menu,menuone,noselect"

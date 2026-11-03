@@ -56,6 +56,7 @@ local deadline = vim.uv.hrtime() + 45e9
 local configured = false
 local reason
 local resumed_start = false
+local entry_frame
 local function poll()
 	local ok, err = pcall(function()
 		local dap = package.loaded.dap
@@ -104,12 +105,13 @@ local function poll()
 			end
 			if not resumed_start then
 				resumed_start = true
+				entry_frame = session.current_frame
 				reason = nil
 				dap.continue()
 				vim.defer_fn(poll, 50)
 				return
 			end
-			if session.current_frame.line ~= (standalone and 3 or 6) then
+			if session.current_frame == entry_frame or session.current_frame.line ~= (standalone and 3 or 6) then
 				vim.defer_fn(poll, 50)
 				return
 			end

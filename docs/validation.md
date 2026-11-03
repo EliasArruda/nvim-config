@@ -45,3 +45,7 @@ Rustaceanvim usa um único rust-analyzer iniciado na raiz Cargo, preservando a s
 - `bin/check-nvim`: passed 162 regression, 19 architecture, 13 diagnostic, 16 icon, 29 terminal-panel checks, actual Alt terminal selection and 54 template checks in each native/VSCode mode.
 - Independent code review found no remaining actionable issues. Bash syntax, changed Lua formatting and `git diff --check` passed. Existing shortcut files were unchanged.
 - Not validated: GUI rendering, a user Python project, remote/container debugging or Jupyter. Project dependencies remain the project's responsibility; pytest was installed only into the disposable verification environment. User-owned `lazy-lock.json` changes were excluded.
+
+## Runtime audit — 2026-11-03
+
+See the [runtime audit](runtime-audit.md) for confirmed paste/notification failures, fixes, tool/provider changes and limitations. General checks passed with the new full-load/command/paste runtime validation; Python, Rust, C++, local Blazor and full .NET integration suites passed. The initial C++ test race was corrected in the test only. EasyDotnet's upstream SIGTERM/143 teardown notification remains documented. Actual OS clipboard capture and GUI rendering were not tested.
