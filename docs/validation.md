@@ -49,3 +49,7 @@ Rustaceanvim usa um único rust-analyzer iniciado na raiz Cargo, preservando a s
 ## Runtime audit — 2026-11-03
 
 See the [runtime audit](runtime-audit.md) for confirmed paste/notification failures, fixes, tool/provider changes and limitations. General checks passed with the new full-load/command/paste runtime validation; Python, Rust, C++, local Blazor and full .NET integration suites passed. The initial C++ test race was corrected in the test only. EasyDotnet's upstream SIGTERM/143 teardown notification remains documented. Actual OS clipboard capture and GUI rendering were not tested.
+
+## Neovide command palette — 2026-11-03
+
+Reproduced the missing centered command palette in an isolated real Neovide GUI. Neovide's default startup-message capture enables ext_messages/ext_cmdline only until its first render; evaluating Lazy's condition during startup had permanently disabled Noice. The configuration now retains Noice for Neovide and defers setup until the GUI releases those extensions. A real `:` input displayed the centered popup, Noice was running and `:messages` was empty. Seven compatibility cases plus the deferred-start lifecycle passed. Other GUIs with permanent external widgets remain excluded.

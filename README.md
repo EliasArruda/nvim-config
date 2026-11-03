@@ -112,4 +112,4 @@ Use `:Lazy restore` to restore pinned commits, `:ConformInfo` to inspect formatt
 
 Image/text paste uses a dedicated Python provider with `pynvim` and Pillow, provisioned by `bin/bootstrap-nvim`. It does not replace a project virtual environment. `:NvimDoctor` shows UI ownership, provider, last Vim error, language tools and log paths.
 
-GUIs that provide external messages, command lines or popup menus use their own widgets. Noice loads only when these UI extensions are disabled, avoiding conflicting message handlers.
+GUIs that permanently provide external messages, command lines or popup menus use their own widgets. Neovide temporarily captures startup messages; Noice waits for that capture to finish, then restores the centered command palette.

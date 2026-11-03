@@ -2,6 +2,10 @@ return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
 	cond = function()
+		-- Neovide releases its temporary message capture after the first render.
+		if vim.g.neovide then
+			return true
+		end
 		-- External UI widgets belong to the GUI; Noice cannot share them.
 		for _, ui in ipairs(vim.api.nvim_list_uis()) do
 			if ui.ext_messages or ui.ext_cmdline or ui.ext_popupmenu then
@@ -245,8 +249,21 @@ return {
 			vim.cmd.messages({ args = "clear" })
 		end
 
-		require("noice").setup(opts)
-
-		require("config.ui").apply()
+		local attempts = 0
+		local function setup()
+			for _, ui in ipairs(vim.api.nvim_list_uis()) do
+				if ui.ext_messages or ui.ext_cmdline or ui.ext_popupmenu then
+					-- Do not block startup: the GUI must render before releasing capture.
+					attempts = attempts + 1
+					if vim.g.neovide and attempts < 100 then
+						vim.defer_fn(setup, 50)
+					end
+					return
+				end
+			end
+			require("noice").setup(opts)
+			require("config.ui").apply()
+		end
+		setup()
 	end,
 }
